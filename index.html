@@ -86,9 +86,9 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">2</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">1</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">3</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">4</span></a></li>
   </ul>
 </nav>
 
@@ -133,18 +133,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -183,7 +183,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/27/Hexo%E5%B8%B8%E8%A7%81%E6%8C%87%E4%BB%A4%E6%B1%87%E6%80%BB/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/27/markdown%E8%AF%AD%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -196,7 +196,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/02/27/Hexo%E5%B8%B8%E8%A7%81%E6%8C%87%E4%BB%A4%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">Hexo常见指令汇总</a>
+          <a href="/2022/02/27/markdown%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">markdown语法</a>
         </h2>
 
         <div class="post-meta-container">
@@ -208,7 +208,106 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-02-27 18:43:06 / 修改时间：18:47:34" itemprop="dateCreated datePublished" datetime="2022-02-27T18:43:06+08:00">2022-02-27</time>
+      <time title="创建时间：2022-02-27 21:14:03 / 修改时间：21:43:33" itemprop="dateCreated datePublished" datetime="2022-02-27T21:14:03+08:00">2022-02-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/markdown/" itemprop="url" rel="index"><span itemprop="name">markdown</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Markdown简介"><a href="#Markdown简介" class="headerlink" title="Markdown简介"></a>Markdown简介</h2><p>Markdown是一种轻量级标记语言，允许人们使用易读易写的纯文本格式编写文档。Markdown编写的文档可以导出HTML、Word、Img、PDF等多种格式的文档，Markdown编写的文档后缀为<code>.md</code>。推荐使用Typora作为Markdown的编辑器。推荐对应的书<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1BU2Q0hqfPKoBLK-A1j7jiQ">《了不起的Markdown》</a>(提取码：1234)。</p>
+<blockquote>
+<p><strong>说明</strong>：本学习笔记只记录Markdown推荐使用的语法，不对所有语法进行呈列。</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/02/27/markdown%E8%AF%AD%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/27/Typora%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Fan">
+      <meta itemprop="description" content="个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼七">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/02/27/Typora%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">Typora的简单操作</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-02-27 18:43:06 / 修改时间：21:10:15" itemprop="dateCreated datePublished" datetime="2022-02-27T18:43:06+08:00">2022-02-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -227,7 +326,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>12</span>
+      <span>514</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -245,11 +344,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>Hexo指令汇总hexo</p>
-
+          <h3 id="Typora简介"><a href="#Typora简介" class="headerlink" title="Typora简介"></a>Typora简介</h3><p><strong>Typora是一款功能全面、简洁高效，而且又非常优雅的Markdown编辑器。它把源码编辑和效果预览合二为一，在输入标记之后随即生成预览效果，提供了所见即所得的Markdown写作体验。</strong></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/02/27/Hexo%E5%B8%B8%E8%A7%81%E6%8C%87%E4%BB%A4%E6%B1%87%E6%80%BB/#more" rel="contents">
+              <a class="btn" href="/2022/02/27/Typora%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -495,14 +593,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">3k</span>
+    <span title="站点总字数">8k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3 分钟</span>
+    <span title="站点阅读时长">7 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
