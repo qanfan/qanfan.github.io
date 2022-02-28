@@ -178,7 +178,7 @@
     <img class="site-author-image" itemprop="image" alt="Fan"
       src="/images/avatar.png">
   <p class="site-author-name" itemprop="name">Fan</p>
-  <div class="site-description" itemprop="description">个人博客</div>
+  <div class="site-description" itemprop="description">自强不息！</div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
@@ -240,7 +240,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="Fan">
-      <meta itemprop="description" content="个人博客">
+      <meta itemprop="description" content="自强不息！">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -279,21 +279,6 @@
     </span>
 
   
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.8k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
 </div>
 
         </div>
@@ -375,7 +360,7 @@
 <h5 id="2-2-3-Git初始化"><a href="#2-2-3-Git初始化" class="headerlink" title="2.2.3 Git初始化"></a>2.2.3 Git初始化</h5><ul>
 <li>在桌面右击选择<code>Git Bash Here</code>，打开命令行，输入：</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;用户名&quot;</span><br><span class="line">git config --global user.email &quot;你的邮箱&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config <span class="attr">--global</span> user<span class="selector-class">.name</span> <span class="string">&quot;用户名&quot;</span></span><br><span class="line">git config <span class="attr">--global</span> user<span class="selector-class">.email</span> <span class="string">&quot;你的邮箱&quot;</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>配置ok后，在命令行输入<code>git config --list</code>进行验证是否配置成功。</li>
@@ -409,21 +394,21 @@
 <p> <img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20211030193055972.png" alt="image-20211030193055972"></p>
 </li>
 <li><p>安装hexo-deployer-git，部署到GitHub的工具，必须在我们创建的博客目录下进行，不在该目录下安装部署时依旧显示未安装。</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+ <figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在命令行中输入<code>hexo s</code>启动Hexo，可能防火墙会提示，这里要允许通过。在本地浏览器输入<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a>即可在本地4000端口浏览自己的网站。</p>
 <p> <img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20211030193827087.png" alt="image-20211030193827087"></p>
 </li>
 </ol>
 <h4 id="3-2-部署到GitHub-Pages"><a href="#3-2-部署到GitHub-Pages" class="headerlink" title="3.2 部署到GitHub Pages"></a>3.2 部署到GitHub Pages</h4><h5 id="3-2-1-创建一对新的SSH密钥"><a href="#3-2-1-创建一对新的SSH密钥" class="headerlink" title="3.2.1 创建一对新的SSH密钥"></a>3.2.1 创建一对新的SSH密钥</h5><p>在命令行中执行如下命令，创建密钥</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</span><br><span class="line">#这将按照你提供的邮箱地址，创建一对密钥</span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/c/Users/you/.ssh/id_rsa): [Press enter]</span><br><span class="line">#此处直接回车，则将密钥按默认文件进行存储</span><br></pre></td></tr></table></figure>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;your_email@example.com&quot;</span></span><br><span class="line">#这将按照你提供的邮箱地址，创建一对密钥</span><br><span class="line">Generating <span class="keyword">public</span>/<span class="keyword">private</span> rsa key pair.</span><br><span class="line">Enter <span class="keyword">file</span> in which to save the key (<span class="regexp">/c/U</span>sers<span class="regexp">/you/</span>.ssh/id_rsa): [Press enter]</span><br><span class="line">#此处直接回车，则将密钥按默认文件进行存储</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><p>根据提示，需要输入密码和确认密码（其实可以不用密码，就是到输密码的地方，都直接回车，所以每次push就只管回车即可）。相关提示如下：</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase (empty for no passphrase): [Type a passphrase]</span><br><span class="line">Enter same passphrase again: [Type passphrase again]</span><br></pre></td></tr></table></figure>
+  <figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase): [<span class="keyword">Type</span> <span class="type">a </span>passphrase]</span><br><span class="line">Enter same passphrase again: [<span class="keyword">Type</span> <span class="type">passphrase </span>again]</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>全部完成后，会输出如下信息：</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Your identification has been saved in /c/Users/you/.ssh/id_rsa.</span><br><span class="line">Your public key has been saved in /c/Users/you/.ssh/id_rsa.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db your_email@example.com</span><br></pre></td></tr></table></figure>
+  <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Your identification has been saved in <span class="regexp">/c/U</span>sers<span class="regexp">/you/</span>.ssh/id_rsa.</span><br><span class="line">Your <span class="keyword">public</span> key has been saved in <span class="regexp">/c/U</span>sers<span class="regexp">/you/</span>.ssh/id_rsa.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line"><span class="number">01</span>:<span class="number">0</span>f:f4:<span class="number">3</span>b:ca:<span class="number">85</span>:d6:<span class="number">17</span>:a1:<span class="number">7</span>d:f0:<span class="number">68</span>:<span class="number">9</span>d:f0:a2:db your_email@example.com</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>命令行代码实例图：</p>
 <p>  [<img src="https://dongqing1903.oss-cn-shanghai.aliyuncs.com/img/image-20211030235120833.png" alt="image-20211030235120833"></p>
@@ -455,7 +440,7 @@
 <ul>
 <li>滑到底部，修改为以下内容</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:qanfan/qanfan.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">  type:</span> git</span><br><span class="line"><span class="symbol">  repo:</span> git@github.com:qanfan/qanfan.github.io.git</span><br><span class="line"><span class="symbol">  branch:</span> main</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>repository写自己GitHub的地址</li>
@@ -469,7 +454,7 @@
 </blockquote>
 </li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean	//清除缓存</span><br><span class="line">hexo g	//generate生成静态文件</span><br><span class="line">hexo d	//depoly部署到GitHub</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean	<span class="regexp">//</span>清除缓存</span><br><span class="line">hexo g	<span class="regexp">//g</span>enerate生成静态文件</span><br><span class="line">hexo d	<span class="regexp">//</span>depoly部署到GitHub</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>经过以上配置，我们的博客已经可以正常使用了，输入“你的用户名.github.io”访问自己的博客。下面截图是网上参考截图。</li>
@@ -528,35 +513,28 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Fan</span>
 </div>
-<div class="wordcount">
-  <span class="post-meta-item">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-chart-line"></i>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
     </span>
-      <span>站点总字数：</span>
-    <span title="站点总字数">8k</span>
-  </span>
-  <span class="post-meta-item">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
     </span>
-      <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">7 分钟</span>
-  </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-<div class="powered-by">
-<i class="fa fa-user-md"></i>
-<span id="busuanzi_container_site_uv">
-  本站总访客数:<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;| 
-</span>
-<span id="busuanzi_container_site_pv">
-    &nbsp;本站总访问量<span id="busuanzi_value_site_pv"></span>次
-</span>
-</div>
-</div>
+
 
 <!-- 网站运行时间的设置 -->
 <span id="timeDate">载入天数...</span>
@@ -577,6 +555,8 @@
     }
 setInterval("createtime()",250);
 </script>
+
+
     </div>
   </footer>
 
@@ -594,6 +574,7 @@ setInterval("createtime()",250);
 
 
   
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
