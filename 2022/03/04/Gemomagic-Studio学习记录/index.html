@@ -24,7 +24,7 @@
   <meta name="description" content="利用GS对CT扫描出来的骨骼数据模型转换为通用的CAD格式，下面记录用到的操作指令。  Geomagic Studio 2014">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Geomagic Studio学习记录">
-<meta property="og:url" content="http://example.com/2022/02/28/Gemomagic-Studio%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:url" content="http://example.com/2022/03/04/Gemomagic-Studio%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="鱼七">
 <meta property="og:description" content="利用GS对CT扫描出来的骨骼数据模型转换为通用的CAD格式，下面记录用到的操作指令。  Geomagic Studio 2014">
 <meta property="og:locale">
@@ -35,19 +35,19 @@
 <meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220304110212772.png">
 <meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220304150107845.png">
 <meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220304151318833.png">
-<meta property="article:published_time" content="2022-02-28T02:43:45.000Z">
-<meta property="article:modified_time" content="2022-03-04T08:28:06.143Z">
+<meta property="article:published_time" content="2022-03-04T02:43:45.000Z">
+<meta property="article:modified_time" content="2022-03-04T08:35:55.510Z">
 <meta property="article:author" content="Fan">
 <meta property="article:tag" content="逆向">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220304161626773.png">
 
 
-<link rel="canonical" href="http://example.com/2022/02/28/Gemomagic-Studio%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+<link rel="canonical" href="http://example.com/2022/03/04/Gemomagic-Studio%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2022/02/28/Gemomagic-Studio%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/","path":"2022/02/28/Gemomagic-Studio学习记录/","title":"Geomagic Studio学习记录"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2022/03/04/Gemomagic-Studio%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/","path":"2022/03/04/Gemomagic-Studio学习记录/","title":"Geomagic Studio学习记录"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>Geomagic Studio学习记录 | 鱼七</title>
@@ -98,7 +98,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">4</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a></li>
   </ul>
 </nav>
@@ -130,7 +130,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D"><span class="nav-text">基础介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%BE%B9%E5%BD%A2%E6%8C%87%E4%BB%A4"><span class="nav-text">多边形指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%87%8D%E7%94%BB%E7%BD%91%E6%A0%BC"><span class="nav-text">1.重画网格</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B2%BE%E7%A1%AE%E6%9B%B2%E9%9D%A2"><span class="nav-text">精确曲面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E8%BD%AE%E5%BB%93%E7%BA%BF"><span class="nav-text">编辑轮廓线</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%8E%A2%E6%B5%8B%E6%9B%B2%E7%8E%87"><span class="nav-text">1. 探测曲率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E6%8E%A2%E6%B5%8B%E8%BD%AE%E5%BB%93%E7%BA%BF"><span class="nav-text">2、探测轮廓线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%8F%90%E5%8D%87%E7%BA%A6%E6%9D%9F"><span class="nav-text">3.提升约束</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E6%9B%B2%E9%9D%A2%E7%89%87"><span class="nav-text">构造曲面片</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%E9%9D%A2%E6%9D%BF"><span class="nav-text">移动面板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9-x2F-%E8%A7%A3%E5%8E%8B%E7%BC%A9%E6%9B%B2%E9%9D%A2%E7%89%87%E5%B1%82"><span class="nav-text">压缩&#x2F;解压缩曲面片层</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E6%A0%BC%E6%A0%85"><span class="nav-text">构造格栅</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%8C%87%E5%AE%9A%E5%B0%96%E8%A7%92%E8%BD%AE%E5%BB%93"><span class="nav-text">1. 指定尖角轮廓</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%8C%87%E5%AE%9A%E5%B9%B3%E9%9D%A2%E5%8C%BA%E5%9F%9F"><span class="nav-text">2. 指定平面区域</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%9F%E5%90%88%E6%9B%B2%E9%9D%A2"><span class="nav-text">拟合曲面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%8F%E5%B7%AE%E5%88%86%E6%9E%90%EF%BC%88%E5%8F%AF%E4%B8%8D%E5%81%9A%EF%BC%89"><span class="nav-text">偏差分析（可不做）</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D"><span class="nav-text">基础介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%BE%B9%E5%BD%A2%E6%8C%87%E4%BB%A4"><span class="nav-text">多边形指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%87%8D%E7%94%BB%E7%BD%91%E6%A0%BC"><span class="nav-text">1.重画网格</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B2%BE%E7%A1%AE%E6%9B%B2%E9%9D%A2"><span class="nav-text">精确曲面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%BC%96%E8%BE%91%E8%BD%AE%E5%BB%93%E7%BA%BF"><span class="nav-text">1. 编辑轮廓线</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A2%E6%B5%8B%E6%9B%B2%E7%8E%87"><span class="nav-text">探测曲率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A2%E6%B5%8B%E8%BD%AE%E5%BB%93%E7%BA%BF"><span class="nav-text">探测轮廓线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E5%8D%87%E7%BA%A6%E6%9D%9F"><span class="nav-text">提升约束</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%9E%84%E9%80%A0%E6%9B%B2%E9%9D%A2%E7%89%87"><span class="nav-text">2. 构造曲面片</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%E9%9D%A2%E6%9D%BF"><span class="nav-text">移动面板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9-x2F-%E8%A7%A3%E5%8E%8B%E7%BC%A9%E6%9B%B2%E9%9D%A2%E7%89%87%E5%B1%82"><span class="nav-text">压缩&#x2F;解压缩曲面片层</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9E%84%E9%80%A0%E6%A0%BC%E6%A0%85"><span class="nav-text">3. 构造格栅</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E5%B0%96%E8%A7%92%E8%BD%AE%E5%BB%93"><span class="nav-text">指定尖角轮廓</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E5%B9%B3%E9%9D%A2%E5%8C%BA%E5%9F%9F"><span class="nav-text">指定平面区域</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%8B%9F%E5%90%88%E6%9B%B2%E9%9D%A2"><span class="nav-text">4. 拟合曲面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%81%8F%E5%B7%AE%E5%88%86%E6%9E%90%EF%BC%88%E5%8F%AF%E4%B8%8D%E5%81%9A%EF%BC%89"><span class="nav-text">5. 偏差分析（可不做）</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -151,7 +151,7 @@
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -196,7 +196,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/28/Gemomagic-Studio%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/04/Gemomagic-Studio%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -219,15 +219,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2022-02-28 10:43:45" itemprop="dateCreated datePublished" datetime="2022-02-28T10:43:45+08:00">2022-02-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-04 16:28:06" itemprop="dateModified" datetime="2022-03-04T16:28:06+08:00">2022-03-04</time>
+      <time title="创建时间：2022-03-04 10:43:45 / 修改时间：16:35:55" itemprop="dateCreated datePublished" datetime="2022-03-04T10:43:45+08:00">2022-03-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -294,7 +288,9 @@
 <td align="center">设置旋转中心</td>
 </tr>
 </tbody></table>
-<h2 id="多边形指令"><a href="#多边形指令" class="headerlink" title="多边形指令"></a>多边形指令</h2><h3 id="1-重画网格"><a href="#1-重画网格" class="headerlink" title="1.重画网格"></a>1.重画网格</h3><p>删除流形</p>
+<h2 id="多边形指令"><a href="#多边形指令" class="headerlink" title="多边形指令"></a>多边形指令</h2><h3 id="1-重画网格"><a href="#1-重画网格" class="headerlink" title="1.重画网格"></a>1.重画网格</h3><ul>
+<li><strong>删除流形</strong></li>
+</ul>
 <p>去除特征 解决小范围的凹凸平面，分析中易产生应力集中</p>
 <p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/QQ%E6%88%AA%E5%9B%BE20220301161048.png"></p>
 <blockquote>
@@ -306,10 +302,15 @@
 <li>存在空洞</li>
 <li>未选中所有的面（软件只会选中视角所看到区域）</li>
 </ol>
-<p>删除钉状物</p>
+<ul>
+<li><p><strong>删除钉状物</strong>  </p>
+<p>  边峰尖锐处可以选中，删除钉状物，让其圆滑。</p>
+</li>
+</ul>
 <p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220301162000836.png"></p>
-<p>边峰尖锐处可以选中，删除钉状物，让其圆滑。</p>
-<p>显示–视图剪切 可以看到剖面情况</p>
+<ul>
+<li><strong>显示–视图剪切 可以看到剖面情况</strong></li>
+</ul>
 <h2 id="精确曲面"><a href="#精确曲面" class="headerlink" title="精确曲面"></a>精确曲面</h2><p>曲面阶段的主要任务为<strong>轮廓线的编辑</strong>与<strong>曲面片的基本编辑</strong>，前者主要包括轮廓线的探测、曲率的探测、</p>
 <p>轮廓线的抽取、轮廓线的编辑与延伸以及如何松弛轮廓线；后者包括曲面片的编辑、面板移动、曲面片</p>
 <p>松弛以及曲面片修理。</p>
@@ -323,22 +324,22 @@
 <blockquote>
 <p>也可以选择自动生成曲面片，但曲面片质量一般，不利于之后的网格划分及有限元分析。尽量手动从左到右四个流程走一遍。</p>
 </blockquote>
-<h3 id="编辑轮廓线"><a href="#编辑轮廓线" class="headerlink" title="编辑轮廓线"></a>编辑轮廓线</h3><p><strong>轮廓线的生成方法有二种，一就是探测曲率自动生成轮廊线，二就是探测轮廊线，再抽取出轮廓线。这二种方法只能二选一，介绍如下：</strong></p>
-<h4 id="1-探测曲率"><a href="#1-探测曲率" class="headerlink" title="1. 探测曲率"></a>1. 探测曲率</h4><p>选择<code>轮廓线</code>→<code>探测曲率</code>命令，在管理器面板上弹出<strong>探测曲率</strong>对话框。选中<strong>自动评估</strong>复选框，设置曲率级别，选中<strong>简化轮廓线</strong>复选框，单击应用按钮，单击确定按钮完成该命令。</p>
+<h3 id="1-编辑轮廓线"><a href="#1-编辑轮廓线" class="headerlink" title="1. 编辑轮廓线"></a>1. 编辑轮廓线</h3><p><strong>轮廓线的生成方法有二种，一就是探测曲率自动生成轮廊线，二就是探测轮廊线，再抽取出轮廓线。这二种方法只能二选一，介绍如下：</strong></p>
+<h4 id="探测曲率"><a href="#探测曲率" class="headerlink" title="探测曲率"></a>探测曲率</h4><p>选择<code>轮廓线</code>→<code>探测曲率</code>命令，在管理器面板上弹出<strong>探测曲率</strong>对话框。选中<strong>自动评估</strong>复选框，设置曲率级别，选中<strong>简化轮廓线</strong>复选框，单击应用按钮，单击确定按钮完成该命令。</p>
 <p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220304150107845.png"></p>
 <blockquote>
 <p><strong>探测曲率</strong>命令将会引导软件自动地依据模型曲面的曲率生成轮廊线。<strong>自动估计</strong>就是让软件根据模型的复杂程度自动判断轮廊线的生成，而<strong>曲率级别</strong>决定了最高曲率线的临界值，它的值越小，最高曲率线的临界值就越小，即橘黄色线出现的可能性越大。</p>
 </blockquote>
-<h4 id="2、探测轮廓线"><a href="#2、探测轮廓线" class="headerlink" title="2、探测轮廓线"></a>2、探测轮廓线</h4><p>选择<code>轮廓线</code>→<code>探测轮廓线</code>命令，在管理器面板上弹出<strong>探测轮廓线</strong>对话框。</p>
+<h4 id="探测轮廓线"><a href="#探测轮廓线" class="headerlink" title="探测轮廓线"></a>探测轮廓线</h4><p>选择<code>轮廓线</code>→<code>探测轮廓线</code>命令，在管理器面板上弹出<strong>探测轮廓线</strong>对话框。</p>
 <p>通过设置区域的曲率敏感性、分隔符敏感性与最小面积，单击<strong>计算</strong>按钮探测区域，并通过编辑命令对探测区域进行修改，修改完成后，单</p>
 <p>击<strong>抽取</strong>按钮，最后单击确定按钮完成该命令。</p>
 <p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220304151318833.png"></p>
-<h4 id="3-提升约束"><a href="#3-提升约束" class="headerlink" title="3.提升约束"></a>3.提升约束</h4><p>执行<code>轮廓线</code>→<code>提升约束</code>→<code>升级/约束</code>，在管理器面板中弹出<strong>升级&#x2F;约束</strong>对话框。</p>
+<h4 id="提升约束"><a href="#提升约束" class="headerlink" title="提升约束"></a>提升约束</h4><p>执行<code>轮廓线</code>→<code>提升约束</code>→<code>升级/约束</code>，在管理器面板中弹出<strong>升级&#x2F;约束</strong>对话框。</p>
 <p>其中<strong>局部</strong>对话框用于对局部的曲率线或点进行操作，单击图中的黑色轮廓可将其升级为橘黄色轮廓线（高曲率轮廓线），如果错选了轮廓</p>
 <p>线，可以同时按着ctr1键同时单击该轮廓线，取消升级或降级。</p>
 <p><strong>全局</strong>对话框用于进行全局操作，<strong>全部约束</strong>即对所有点、线进行约束。选择完所有需升级约束的曲线或点后，单击执行和确定按钮即完成轮</p>
 <p>廓线的升级</p>
-<h3 id="构造曲面片"><a href="#构造曲面片" class="headerlink" title="构造曲面片"></a>构造曲面片</h3><p>执行<code>曲面片</code>→<code>构造曲面片命令</code>，选中<strong>自动估计</strong>复选框，并勾选<strong>检查路径相交</strong>复选框避免相交路径的出现，单击应用按钮，得到图形，最后单击确定按钮完成曲面片的构造。</p>
+<h3 id="2-构造曲面片"><a href="#2-构造曲面片" class="headerlink" title="2. 构造曲面片"></a>2. 构造曲面片</h3><p>执行<code>曲面片</code>→<code>构造曲面片命令</code>，选中<strong>自动估计</strong>复选框，并勾选<strong>检查路径相交</strong>复选框避免相交路径的出现，单击应用按钮，得到图形，最后单击确定按钮完成曲面片的构造。</p>
 <h4 id="移动面板"><a href="#移动面板" class="headerlink" title="移动面板"></a>移动面板</h4><p>选择菜单<code>曲面片</code>→<code>移动</code>→<code>移动面板</code>，在管理器面板中弹出<strong>移动面板</strong>对话框。在<strong>操作</strong>一栏选择<strong>编辑</strong>选项，这样就可以将轮廊线的顶点移到想</p>
 <p>要的地方，与此同时还可以升级&#x2F;降级线。</p>
 <blockquote>
@@ -356,13 +357,13 @@
 <p>压缩合并曲面片的两行为一行。</p>
 <p>解压缩则正好相反，其将曲面的一行分为两半。</p>
 </blockquote>
-<h3 id="构造格栅"><a href="#构造格栅" class="headerlink" title="构造格栅"></a>构造格栅</h3><p>执行<code>格栅</code>→<code>构造格栅</code>命令，设置分辨率为20，这意味着每个曲面将会生成20个更小的曲面片，这些曲面片以直角的形式分布于大的曲面</p>
+<h3 id="3-构造格栅"><a href="#3-构造格栅" class="headerlink" title="3. 构造格栅"></a>3. 构造格栅</h3><p>执行<code>格栅</code>→<code>构造格栅</code>命令，设置分辨率为20，这意味着每个曲面将会生成20个更小的曲面片，这些曲面片以直角的形式分布于大的曲面</p>
 <p>片里。NURBS曲面的控制点将遵循这些栅格。</p>
 <p><strong>修复相交区域</strong>复选框，用于检查相交的格栅并进行修复，通常选中该项。</p>
 <p><strong>检查几何图形</strong>就是指就是否通知用户，一旦完成这个功能，不论就是否存在不完善的区域都将使用格栅固定住，一般不选中该项。</p>
-<h4 id="1-指定尖角轮廓"><a href="#1-指定尖角轮廓" class="headerlink" title="1. 指定尖角轮廓"></a>1. 指定尖角轮廓</h4><p>指定尖角轮廓指定尖角轮廓与我们平时比较熟悉的锐化命令相似，通过选择<code>格栅</code>→<code>指定</code>命令，在其下拉菜单中选择指定尖角轮廓，打开<strong>指定尖角轮廓</strong>对话框，在<strong>选择</strong>一栏勾选轮廓线，用选择工具选择需要的轮廓线，选中的轮廓线将以紫色显示，单击约束按钮，约束选定的轮廓线。</p>
-<h4 id="2-指定平面区域"><a href="#2-指定平面区域" class="headerlink" title="2. 指定平面区域"></a>2. 指定平面区域</h4><p>在<code>格栅</code>→<code>指定</code>命令的下拉菜单中选择指定平面区域，打开<strong>指定平面区域</strong>对话框，勾选将边界标记为尖锐，选择工具选择需要置平的区域，并单击<strong>下一个</strong>按钮，依次指定平面区域，指定的平面区域将以彩色高亮显示。</p>
-<h3 id="拟合曲面"><a href="#拟合曲面" class="headerlink" title="拟合曲面"></a>拟合曲面</h3><p>选择<code>曲面</code>→<code>拟合曲面</code>命令置，打开<strong>拟合曲面</strong>对话框，系统将以面板上的格栅为基础创建一个NURBS曲面，创建的NURBS曲面如下图。</p>
+<h4 id="指定尖角轮廓"><a href="#指定尖角轮廓" class="headerlink" title="指定尖角轮廓"></a>指定尖角轮廓</h4><p>指定尖角轮廓指定尖角轮廓与我们平时比较熟悉的锐化命令相似，通过选择<code>格栅</code>→<code>指定</code>命令，在其下拉菜单中选择指定尖角轮廓，打开<strong>指定尖角轮廓</strong>对话框，在<strong>选择</strong>一栏勾选轮廓线，用选择工具选择需要的轮廓线，选中的轮廓线将以紫色显示，单击约束按钮，约束选定的轮廓线。</p>
+<h4 id="指定平面区域"><a href="#指定平面区域" class="headerlink" title="指定平面区域"></a>指定平面区域</h4><p>在<code>格栅</code>→<code>指定</code>命令的下拉菜单中选择指定平面区域，打开<strong>指定平面区域</strong>对话框，勾选将边界标记为尖锐，选择工具选择需要置平的区域，并单击<strong>下一个</strong>按钮，依次指定平面区域，指定的平面区域将以彩色高亮显示。</p>
+<h3 id="4-拟合曲面"><a href="#4-拟合曲面" class="headerlink" title="4. 拟合曲面"></a>4. 拟合曲面</h3><p>选择<code>曲面</code>→<code>拟合曲面</code>命令置，打开<strong>拟合曲面</strong>对话框，系统将以面板上的格栅为基础创建一个NURBS曲面，创建的NURBS曲面如下图。</p>
 <p>对话框中部分选项说明如下:</p>
 <p><code>拟合方法</code>对话框用于选择曲面拟合的方法。</p>
 <p><strong>适应性</strong>方法将优化每个曲面片内所使用的控制点的数量,就是较常采用的方法;</p>
@@ -372,7 +373,7 @@
 <p><strong>公差</strong>指定NURBS曲面相对于原始曲面片偏离的最大距离;</p>
 <p><strong>表面张力</strong>用于调整精度与平滑度之间的平衡;</p>
 <p>体外孤点百分比在NURBS曲面公差允许范围内,指定基本网格内可以超出公差的点的百分比。</p>
-<h3 id="偏差分析（可不做）"><a href="#偏差分析（可不做）" class="headerlink" title="偏差分析（可不做）"></a>偏差分析（可不做）</h3><p>利用偏差分析可查看生成的曲面模型与原始模型之间的偏差，通过单击<code>偏差分析</code>命令，打开偏差分析对话框，设置参考对象、测试对象、</p>
+<h3 id="5-偏差分析（可不做）"><a href="#5-偏差分析（可不做）" class="headerlink" title="5. 偏差分析（可不做）"></a>5. 偏差分析（可不做）</h3><p>利用偏差分析可查看生成的曲面模型与原始模型之间的偏差，通过单击<code>偏差分析</code>命令，打开偏差分析对话框，设置参考对象、测试对象、</p>
 <p>颜色段等参数，点击应用按钮，系统自动对测试对象与参考对象之间的偏差进行分析，并以不同的颜色分级显示误差大小。</p>
 
     </div>
