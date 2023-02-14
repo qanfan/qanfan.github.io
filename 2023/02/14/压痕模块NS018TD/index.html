@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+  <meta name="description" content="本文为原子力显微镜压痕模块操作说明。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NS018TD压痕模块">
+<meta property="og:url" content="http://example.com/2023/02/14/%E5%8E%8B%E7%97%95%E6%A8%A1%E5%9D%97NS018TD/index.html">
+<meta property="og:site_name" content="鱼七">
+<meta property="og:description" content="本文为原子力显微镜压痕模块操作说明。">
+<meta property="og:locale">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110124734287.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110130455327.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110131423132.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230107090934933.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230107091013843.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110132024985.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110132213200.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110132545434.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110134120090.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110134711778.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110135224540.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110135403635.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110135803347.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110135959283.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110140230462.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110140757609.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110142010994.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110144828741.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110145452239.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110145648019.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110145909566.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110145940983.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110150055607.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112123107048.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112123901446.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112124425855.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112124710947.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112125322943.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112125537766.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112204335236.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112204629108.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112204555974.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112212637761.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112212847204.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112213034765.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112213143230.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112213806579.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112213905595.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112215643682.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112215858021.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112215916661.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112215916661.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112220314519.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113204740947.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113204907442.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113205317311.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113205750177.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113205939775.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113210150861.png">
+<meta property="og:image" content="c:%5CUsers%5CFan%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230113210407012.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113210631915.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113211051947.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113212942426.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113214013543.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113214832531.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113215109965.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113215849333.png">
+<meta property="article:published_time" content="2023-02-14T06:42:18.000Z">
+<meta property="article:modified_time" content="2023-02-14T01:55:12.326Z">
+<meta property="article:author" content="Fan">
+<meta property="article:tag" content="MD">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110124734287.png">
+
+
+<link rel="canonical" href="http://example.com/2023/02/14/%E5%8E%8B%E7%97%95%E6%A8%A1%E5%9D%97NS018TD/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2023/02/14/%E5%8E%8B%E7%97%95%E6%A8%A1%E5%9D%97NS018TD/","path":"2023/02/14/压痕模块NS018TD/","title":"NS018TD压痕模块"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>NS018TD压痕模块 | 鱼七</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="鱼七" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">鱼七</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">8</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">6</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%87%86%E5%A4%87%E7%A1%AC%E4%BB%B6"><span class="nav-text">1、准备硬件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%90%AF%E5%8A%A8%E8%BD%AF%E4%BB%B6"><span class="nav-text">2、启动软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E4%B8%8B%E5%8E%8B%E6%A0%B7%E5%93%81"><span class="nav-text">3、下压样品</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6%E7%AC%A6%E5%90%88%E6%80%A7"><span class="nav-text">4、计算框架符合性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81%E5%88%9B%E5%BB%BA%E5%B0%96%E7%AB%AF%E5%BD%A2%E7%8A%B6%E9%9D%A2%E7%A7%AF%E5%87%BD%E6%95%B0"><span class="nav-text">5、创建尖端形状面积函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6%E3%80%81%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE"><span class="nav-text">6、处理数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%84%E5%BD%951-%E5%BC%95%E5%85%A5%E4%BB%AA%E8%A1%A8%E5%8C%96%E5%8E%8B%E7%97%95"><span class="nav-text">附录1 引入仪表化压痕</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%84%E5%BD%952-%E7%A6%81%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-text">附录2 禁用防火墙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%84%E5%BD%953-%E9%85%8D%E7%BD%AE%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2"><span class="nav-text">附录3 配置远程桌面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%84%E5%BD%954-%E6%94%B9%E5%8F%98%E6%8E%A5%E8%A7%A6%E7%82%B9"><span class="nav-text">附录4 改变接触点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%84%E5%BD%955-%E4%BD%BF%E7%94%A8%E5%9B%BE%E8%A1%A8%E7%AE%A1%E7%90%86%E5%99%A8"><span class="nav-text">附录5 使用图表管理器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%B3%E8%8B%B1"><span class="nav-text">石英</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fan"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Fan</p>
+  <div class="site-description" itemprop="description">自强不息！</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/14/%E5%8E%8B%E7%97%95%E6%A8%A1%E5%9D%97NS018TD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Fan">
+      <meta itemprop="description" content="自强不息！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼七">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          NS018TD压痕模块
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-02-14 14:42:18 / 修改时间：09:55:12" itemprop="dateCreated datePublished" datetime="2023-02-14T14:42:18+08:00">2023-02-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BB%AA%E5%99%A8%E6%93%8D%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">仪器操作</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>本文为原子力显微镜压痕模块操作说明。</p>
+<span id="more"></span>
+
+<h3 id="1、准备硬件"><a href="#1、准备硬件" class="headerlink" title="1、准备硬件"></a>1、准备硬件</h3><p>纳米压痕系统由<strong>主测试仪</strong>(摩擦计或轮廓仪)、通过以太网集线器连接的<strong>两台计算机</strong>(主PC和纳米头PC)、<strong>纳米头和纳米头尖端</strong>组成。在启动软件之前，将主测试仪和两台电脑连接在一起，用提供的操纵杆将Z2载物台一直向上移动，将纳米头尖端安装在纳米头轴上(如果已经拆除)，将纳米头安装在Z2载物台上，然后将两根纳米头控制电缆连接到纳米头中。然后启动软件，将样品放在纳米头下。</p>
+<ul>
+<li><p>1.1、计算机通过以太网集线器连接，因此它们必须有唯一的IP地址才能正常通信。</p>
+</li>
+<li><p>1.2、纳米头尖端安装在纳米头轴上。更换吸头时，用手指拧开它。在轴上安装齿尖时，<strong>只能用手指拧紧</strong>，不要使用工具。但是，不要让齿尖松动，因为齿尖安装是机架柔度值的最大贡献者。<code>当纳米头不使用时，其轴必须用两根特殊的针固定到位，并用保护帽盖住。</code></p>
+</li>
+</ul>
+<blockquote>
+<p><strong>在使用纳米头之前，拧开保护帽并拔出两根针</strong></p>
+</blockquote>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110124734287.png"></p>
+<ul>
+<li>1.3、在将纳米头安装到Z2载物台上之前，用操纵杆将Z2载物台一直向上移动，并确保纳米头尖端在纳米头安装过程中不会有任何损伤。如果下面有样品，请在安装纳米头之前将其移除。</li>
+</ul>
+<blockquote>
+<p>利用两个板顶部的燕尾接头，将纳米头安装在连接到Z2级的专用板上。安装纳米头后，用<strong>两个20英寸长的内六角螺钉</strong>将其固定。</p>
+</blockquote>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110130455327.png"></p>
+<ul>
+<li>1.4、将纳米头安装并固定到位后，连接两根纳米头控制电缆，并用<strong>小平头螺丝刀</strong>拧紧。</li>
+</ul>
+<blockquote>
+<p><strong>请勿在nanohead软件运行时连接或断开nanohead电缆。</strong></p>
+</blockquote>
+<ul>
+<li>1.5、待压痕的样品安装在专用的钢制圆盘上，圆盘具有高度平行且平坦的安装表面。使用低粘度、低固化温度、易洗掉的粘合剂粘贴样品，不要使用双面胶带。</li>
+</ul>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110131423132.png"></p>
+<h3 id="2、启动软件"><a href="#2、启动软件" class="headerlink" title="2、启动软件"></a>2、启动软件</h3><p>步骤1完成后(两台计算机(主PC和nanohead PC)已经启动并运行，并且安装了连接了两条电缆的nanohead ),按以下顺序启动软件:</p>
+<ul>
+<li><p>2.1、检查两台计算机上的防火墙是否已被禁用。如果它们尚未被禁用，请将其禁用(禁用防火墙请[参考附录2)](#附录2 禁用防火墙)。</p>
+</li>
+<li><p>2.2、在主PC上启动软件:</p>
+<ul>
+<li><p>启动<strong>MechStressStage</strong><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230107090934933.png">(如果运行tribometer)或<strong>Lambda</strong><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230107091013843.png">(如果运行profilometer)软件。单击MechStressStage或Lambda图标可同时打开两个程序:实际软件(<strong>MechStressStage</strong>或<strong>Lambda</strong>)和另一个名为<strong>RTec控制器</strong>的程序，该程序<strong>控制测试仪的电机</strong>。</p>
+</li>
+<li><p>等待3分钟，直到测试仪完全初始化。然后关闭<strong>MechStressStage</strong>或<strong>Lambda</strong>(无论哪个打开)软件，但保持Rtec控制器软件运行。</p>
+</li>
+<li><p><strong>Rtec控制器</strong>软件自动最小化至主电脑桌面上的任务栏(①)或隐藏图标箱(②)。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110132024985.png"></p>
+</li>
+<li><p>通过单击①或②最大化Rtec控制器窗口，并检查X、Y、Z2和另一个Z2状态:它们都必须如图所示<img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110132213200.png">。如果其中至少有一个未准备好，请不要继续操作。</p>
+</li>
+<li><p>如果X、Y、Z2和Z2是<strong>绿色Ready</strong>，<code>最小化Rtec控制器窗口并保持Rtec控制器软件运行。</code></p>
+</li>
+</ul>
+</li>
+<li><p>2.3、通过在主电脑上启动<strong>远程桌面连接</strong><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110132545434.png">，在主电脑和nanohead电脑之间启动远程桌面会话(如何配置远程桌面应用程序设置请[参考附录3](#附录3 配置远程桌面):</p>
+<ul>
+<li><p>通过单击桌面、任务栏或主电脑的“开始”菜单上的图标，在主电脑上启动远程桌面连接会话。如果图标不存在，请执行以下操作:</p>
+</li>
+<li><p>单击开始按钮，在搜索窗口中输入“remote desktop connection（<strong>远程桌面连接</strong>）”(①)。然后点击(②)。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110134120090.png"></p>
+</li>
+<li><p>打开远程桌面连接窗口后，在计算机文本框中输入:192.168.0.3(<code>纳米头计算机IP地址是什么；关于如何配置IP地址</code>，请[参考附录3](#附录3 配置远程桌面))，然后单击连接。</p>
+</li>
+</ul>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110134711778.png"></p>
+<ul>
+<li><p>在打开的Windows安全窗口中，输入nanohead PC用户的用户名和密码(有关如何设置，请[参考附录3](#附录3 配置远程桌面))。然后单击确定。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110135224540.png"></p>
+</li>
+<li><p>此时，主PC控制nanohead PC。通过单击nanohead桌面顶部的最小化按钮(①)或单击电脑主任务栏中的远程桌面连接图标(②),可以在两个桌面之间进行切换。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110135403635.png"></p>
+</li>
+</ul>
+</li>
+<li><p>2.4、现在启动nanohead软件:</p>
+<ul>
+<li><p>验证nanaohead PC桌面是否显示在主PC显示器上(如果没有，请单击按钮②，参考上一步骤）</p>
+</li>
+<li><p>点击图标启动RTecViewer<img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110135803347.png">软件。如果出现“数据目录丢失”的错误信息，只需单击“确定”，缺失的目录将自动创建。</p>
+</li>
+<li><p>确保<strong>RTecViewer</strong>软件正在运行。然后点击图标启动<strong>RtecDevCtrl</strong><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110135959283.png">软件(纳米头控制)。</p>
+</li>
+<li><p>运行<strong>RTecViewer</strong>和<strong>RtecDevCtrl</strong>程序时，nanohead桌面应如下图所示:<strong>RTec Viewer</strong>桌面内有一个绿色背景的<strong>RTec</strong><br><strong>Instruments</strong>窗口。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110140230462.png"></p>
+</li>
+<li><p>转到<strong>RTec Instruments</strong>窗口，单击<strong>Device → Run</strong>。</p>
+</li>
+<li><p>绿色背景色应变成黄色，并显示<strong>Turning the device ON</strong>。</p>
+</li>
+<li><p>然后，大约10秒钟后，<strong>RTec Instruments</strong>窗口应改变其外观，如下图所示，窗口底部(③)的绿色背景上显示“<strong>Ready</strong>”消息。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110140757609.png"></p>
+</li>
+<li><p>但是，如果出现“**Error initializing motors!**”的显示消息，在解决问题之前，不要继续操作。该错误消息通常指示两个潜在问题中的一个(或两个):</p>
+<ul>
+<li>主PC上的防火墙仍处于打开状态；关于如何检查和禁用防火墙，请[参考附录2](#附录2 禁用防火墙)。</li>
+<li><strong>Rtec controller</strong>软件已关闭，重新打开。</li>
+</ul>
+</li>
+<li><p>解决问题后，关闭<strong>Rtec controller</strong>窗口并重启<strong>RtecDevCtrl</strong>软件。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3、下压样品"><a href="#3、下压样品" class="headerlink" title="3、下压样品"></a>3、下压样品</h3><p>完成第1步和第2步后，<strong>RTec Instruments</strong>窗口状态栏中显示绿色<strong>Ready</strong>信息(如右图所示)，继续进行样品下压和压痕。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110142010994.png"></p>
+<ul>
+<li><p>3.1、设置X、Y和Z载物台速度，并刷新X和Y编码器的读数:</p>
+<ul>
+<li><p>点击<strong>Speed</strong>下拉菜单，将速度值设置为“<strong>Very slow</strong>”(①)。速度值适用于<strong>XY Sample Stage</strong>速度(②)以及<strong>Indenter</strong>(Z)手动上升(③)和手动下降(④)速度。</p>
+</li>
+<li><p>检查纳米头尖端周围或下方10毫米半径范围内没有障碍物。</p>
+</li>
+<li><p>此时，所有三个编码器X、Y和Z (⑤)的读数应该为0.0µm 。</p>
+</li>
+<li><p>单击向左箭头按钮(②)并按住2-3秒钟，但不再按住。然后用向右箭头、向上箭头和向下箭头按钮做同样的操作。在这一点上，X和Y编码器(⑤)应该读取他们的真实坐标。</p>
+<blockquote>
+<p>X和Y使用全局坐标，这些坐标在安装过程中通过X和Y编码器复位一次，并且不能使用nanohead软件在不同的点再次复位为零。双击X和Y读数不会将X和Y全局坐标重置为零，因此不应尝试这样做。<strong>如果X或Y编码器读数为0.0 m，必须重复上个步骤。</strong></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>3.2、设置表面接近参数(Set surface approach parameters):</p>
+<ul>
+<li>在<strong>RTec Instruments</strong>窗口，单击<strong>Device → Calibration</strong>。</li>
+<li>在打开的<strong>Settings</strong>窗口中，点击<strong>Find Surface</strong>选项卡(①)并输入&#x2F;选择这些参数:<ul>
+<li><strong>Motor velocity during surface approach – Very slow;</strong></li>
+<li><strong>RMS level</strong>–在高噪声环境中为5至7，在低噪声环境中为3至4；</li>
+<li><strong>Do not use Find Surface criteria</strong>—不勾选；</li>
+<li><strong>Work with high-compliant surface</strong>—<strong>勾选</strong>。</li>
+</ul>
+</li>
+<li>点击<strong>Indentation</strong>标签(②)并选择<strong>Do surface pre-approach</strong>选项。然后单击<strong>OK</strong>。</li>
+</ul>
+</li>
+<li><p>3.3、设定压痕参数（Set indentation parameters):</p>
+<ul>
+<li>在<strong>RTec Instruments</strong>窗口，单击<strong>Device → Settings</strong>。</li>
+<li>在打开的<strong>Mode Manager</strong>窗口中，选择<strong>Load</strong> 和 <strong>Displacement</strong>范围:<ul>
+<li><strong>Load range</strong>应超过最大压痕力至少20%。然而，对于嘈杂的环境，选择第三<code>本例中为330mN</code>或第四范围；</li>
+<li><strong>Displacement range</strong>应超过最大路径+压痕组合位移值。然而，对于嘈杂的环境，选择第三档<code>本例中为60微米</code>或第四档;</li>
+</ul>
+</li>
+<li>点击<strong>Apply</strong>按钮，不要改变其他任何东西。然后点击<strong>Close</strong>按钮。</li>
+</ul>
+</li>
+<li><p>3.4、验证<strong>Sensor Position</strong>栏显示**xt(nm)**信号(最后一个)。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110144828741.png"></p>
+</li>
+<li><p>3.5、将纳米头尖端移近样品表面:</p>
+<ul>
+<li><p>仔细看看纳米头，找到安装在纳米头上的尖端。然后检查尖端头部。有关更多详细信息，请<a href="#1%E3%80%81%E5%87%86%E5%A4%87%E7%A1%AC%E4%BB%B6">参考1、准备硬件</a>。</p>
+</li>
+<li><p>仔细观察位于纳米头下方的样品，并确定样品的表面。</p>
+</li>
+<li><p>确保纳米头尖端移动到样品表面的预期压痕区域时没有障碍。</p>
+</li>
+<li><p>找到连接到系统的操纵杆，然后朝电缆方向轻轻点击Z和Z2按钮(如右图中的白色箭头所示),<strong>验证是Z还是Z2控制纳米头的垂直运动</strong>。一旦清楚了这一点，握住操纵杆，使图中的白色箭头垂直指向系统的前面。然后使用X、Y和Z(或Z2)按钮，非常小心地将纳米头尖端移向样品表面的预期压痕区域。在针尖末端和样品表面之间<strong>留有2毫米或更大的间隙</strong>。无论如何不要用尖端接触样品。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110145452239.png"></p>
+</li>
+</ul>
+</li>
+<li><p>3.6、等待纳米头漂移稳定:</p>
+<ul>
+<li><p>点击按钮(②)打开指示器面板，然后勾<strong>Oscillograph mode</strong>复选框。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110145648019.png"></p>
+</li>
+<li><p>最初，位移信号漂移，如图④所示。在信号稳定（如图⑤和⑥）之前不要开始缩进(单击<img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110145909566.png">使⑥退出⑤)。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110145940983.png"></p>
+</li>
+</ul>
+</li>
+<li><p>3.7、在等待漂移稳定的同时，填写一张压痕表，注明压痕的力度和位置:</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230110150055607.png"></p>
+<ul>
+<li><p>点击<strong>Measure</strong>按钮(①),打开<strong>Tests Manger</strong>表。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112123107048.png"></p>
+<ul>
+<li><p>在 <strong>Loading mode</strong> 下拉列表选择 “<strong>Lin. Force</strong>” (linear force);</p>
+</li>
+<li><p>**Load (µN) -**压痕过程中施加的最大力；</p>
+</li>
+<li><p>**Load time (ms) -**从零到最高压痕力的加载时间；10000毫秒是一个好的开始值；</p>
+</li>
+<li><p><strong>Hold time (ms) –</strong>最高压力下的保持时间；5000毫秒将是一个好的起始值；</p>
+</li>
+<li><p><strong>TDrift level (%) –</strong>以最大压痕力的%表示的力，在卸载阶段保持不变，以便计算温度漂移；15%被认为是普遍接受的值；</p>
+</li>
+<li><p><strong>TDrift time (ms)–</strong>施加TDrift水平(%)力的时间(保持恒定)；5000毫秒将是一个很好的起始值。</p>
+<p>有关这些参数的更多详细信息，请[参考附录1](#附录1 引入仪表化压痕)。</p>
+</li>
+</ul>
+</li>
+<li><p>点击<strong>Add</strong>按钮(③)。“<strong>Set XY position</strong>”窗口将会打开(④)。设置XY位置中的X ( m)和Y( m)值将与<strong>RTec Instruments</strong>窗口中的X和Y读数相同(⑤)。这个X和Y位置可以用来制作第一次压痕。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112123901446.png"></p>
+<blockquote>
+<p>此时x和Y的<strong>读数不得为0.0</strong>。如果其中至少有一个读数为0.0，请按以下步骤操作:</p>
+<p>1)不要在设置XY位置窗口中单击<strong>OK</strong>；</p>
+<p>2)用关闭设置XY位置窗口；</p>
+<p>3)验证纳米压头尖端周围至少有2毫米的空间;</p>
+<p>4)如果尖端周围没有2毫米的空间，用<img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112124425855.png">按钮缩回纳米头，直到尖端周围有2毫米的空间；</p>
+<p>5)调整上下左右箭头<img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112124710947.png">；</p>
+<p>6)然后重复上个步骤。</p>
+</blockquote>
+</li>
+<li><p>单击 <strong>Set XY position</strong>窗口的<strong>OK</strong>,从而在 <strong>Tests Manager</strong>窗口创建第一个条目。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112125322943.png"></p>
+</li>
+<li><p>然后在<strong>Tests Manager</strong>窗口添加更多的压痕命令。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112125537766.png"></p>
+<ul>
+<li>1）输入新<strong>Load (µN) ** (④，带圈)。由于下压通常在可变载荷下执行，新的</strong>Load (µN)<strong>值将不同于第一个值。然而，当输入负载时，不要从最高负载开始一直到最低负载(反之亦然)。相反，将整个力的范围分成3-4个较小的范围，然后在输入</strong>Load (µN)**时，依次从这些较小的范围中取值(从中间的开始)。</li>
+<li>2）单击<strong>Add</strong>按钮(⑤)并在打开的<strong>Set XY position</strong>窗口中输入新的X和Y坐标(⑥，带圆圈)。由于缩进不应重叠，<code>X和Y应间隔几微米(低载荷下的硬材料)到几百微米(软材料)</code>。在上面的例子中，X保持不变(在-0.6微米)，但是Y在缩进之间移动了28.1微米(从-31.9到-60.0微米)。输入X和Y坐标时，确保吸头不会移动到样品之外，并且在移动过程中不会碰到任何东西。</li>
+<li>3）单击 <strong>Set XY position</strong>窗口的<strong>OK</strong>,从而在 <strong>Tests Manager</strong>窗口创建新的条目。</li>
+</ul>
+</li>
+<li><p>重复上个步骤，根据需要向<strong>Tests Manager</strong>表中添加尽可能多的下压命令。</p>
+</li>
+<li><p>编辑<strong>Tests Manager</strong>表中的条目：</p>
+<ul>
+<li>1）双击要编辑的条目；</li>
+<li>2）在打开的<strong>Edit Test</strong>窗口中更改条目；</li>
+<li>3）单击<strong>OK</strong>。</li>
+</ul>
+</li>
+<li><p>输入<strong>Load (µN)<strong>值时，确保最高载荷值不会达到</strong>Displacement Range</strong>的至少15%。</p>
+</li>
+<li><p>删除<strong>Tests Manager</strong>表中的条目：</p>
+<ul>
+<li>高亮要删除的条目，点击<strong>Edit → Delete</strong>。</li>
+<li>删除所有条目，点击<strong>click Edit → Reset</strong> 。</li>
+</ul>
+</li>
+<li><p>不要关闭<strong>Tests Manager</strong>窗口。</p>
+</li>
+</ul>
+</li>
+<li><p>3.8、检查位移信号是否已经稳定，如步骤3.6所述。如果信号仍在漂移，不要继续前进，等待信号稳定下来。如果信号稳定，开始接近表面:</p>
+<ul>
+<li><p>点击<img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112204335236.png">按钮(⑤),开始样品处理。在<strong>RTec Instruments</strong>窗口信息板上，绿色的“<strong>Ready</strong>”信息变为黄色的“<strong>Find Surface</strong>”信息。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112204629108.png"></p>
+</li>
+<li><p>在<strong>Indicator</strong>窗口中，点击<img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112204555974.png">按钮刷新图表。</p>
+</li>
+<li><p>当下落继续时，时刻关注<strong>Indicator</strong>图和<strong>RTec Instruments</strong>窗口信息板。第一种方法可能需要一些时间，所以请耐心等待。如有必要，可通过点击红色<strong>STOP</strong>按钮停止接近。</p>
+</li>
+<li><p>如果<strong>RTec Instruments</strong>窗口信息板变绿，显示“<strong>Surface Found</strong>”信息，指示器窗口中的信号移动，如图⑤和⑥所示(点击⑥退出⑤)，则表面接近已经完成。转到步骤3.9。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112212637761.png"></p>
+</li>
+<li><p>但是，如果<strong>RTec Instruments</strong>窗口信息板变绿，显示“<strong>Surface Found</strong>”信息，但指示器窗口中的信号没有变化，如图⑦和⑧所示，则表明尖端没有到达表面。如果发生这种情况，再次接近表面，重复步骤3.8中的过程。(点击退出⑦)。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112212847204.png"></p>
+</li>
+</ul>
+</li>
+<li><p>3.9、到达表面后，尖端必须立即缩回几微米:</p>
+<ul>
+<li><p>不要关闭<strong>Indicator</strong>窗口，也不要点击窗口中的<img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112213034765.png">按钮。</p>
+</li>
+<li><p>点击按钮(⑨),打开<strong>Move to distance&#x2F;position</strong>窗口。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112213143230.png"></p>
+</li>
+<li><p>一但<strong>Move to distance&#x2F;position</strong>窗口打开，单击XYZ Relative选项卡，并在dZ框中输入-2。<code>输入该值时请格外注意，因为必须用减号输入。</code></p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112213806579.png"></p>
+</li>
+<li><p>在dZ框中输入-2(负2)后，开始<strong>Indicator</strong>图(③)，然后单击<strong>run</strong>按钮。</p>
+</li>
+<li><p><strong>Indicator</strong>图中的信号应立即上升，如下面左图和右图中的箭头⑥所示(单击使右图脱离左图)。上移(⑦)后的信号水平可能达到，也可能达不到开始(⑧)前的初始水平。如果上移⑦后的信号电平低于其初始电平⑧，重复上移-2步骤。再次向上移动(⑨)后的信号电平将达到其初始电平⑧。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112213905595.png"></p>
+</li>
+</ul>
+</li>
+<li><p>3.10、现在靠近过程已经完成，下压前的最后两步是创建一个保存数据的文件夹，并为数据处理定义一个零点:</p>
+<ul>
+<li>在<strong>RTec Instruments</strong>菜单中，单击<strong>Settings</strong>;</li>
+<li>在<strong>Settings</strong>窗口中，选中<strong>Find zero loading point</strong>选项卡；</li>
+<li>在“<strong>Find zero point mode</strong>”下拉菜单中选择“<strong>Find over ZOpt signal (RMS)<strong>”，并在“</strong>Level</strong>”框中输入“<strong>3.5</strong>”。单击<strong>OK</strong>按钮。有关接触点定义的更多详细信息，请[参考附录4](#附录4 改变接触点)。</li>
+</ul>
+</li>
+<li><p>3.11、下压前的最后一步是创建数据文件名:</p>
+<ul>
+<li><p>要创建保存数据的文件夹，进入<strong>RTec Instruments</strong>菜单并点击<strong>Settings</strong>。在打开的<strong>Settings</strong>窗口中，选中<strong>common</strong>选项卡，默认情况下，数据保存在<strong>C:\NIData</strong>文件夹。如果需要，通过单击<img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112215643682.png">按钮，更改文件夹位置。</p>
+</li>
+<li><p>然后转到步骤3.7中填写的<strong>Test Manager</strong>表。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112215858021.png"></p>
+</li>
+<li><p>在<strong>Test Manager</strong>表中，单击<img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112215916661.png">按钮。</p>
+</li>
+<li><p>点击<img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112215916661.png">按钮将不会开始下压，而是会打开一个<strong>Sample Name</strong>窗口，该窗口必须通过输入数据文件名(⑥)来填写，如果需要，还可以输入在步骤中创建的文件夹中的一个新的子文件夹的名称(⑦)。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230112220314519.png"></p>
+</li>
+<li><p>将自动添加编号。</p>
+</li>
+</ul>
+</li>
+<li><p>3.12、要开始缩进，请单击<strong>OK</strong>按钮(⑧)。</p>
+</li>
+<li><p>3.13、一旦压痕开始，不要干扰系统，让它完成测试。<code>小心，不要触摸操纵杆控制装置。</code></p>
+</li>
+<li><p>3.14、当下压开始时，绿色信息板变成<code>黄色</code>并一直保持黄色，直到测试完成或停止。要提前停止测试，请单击红色的<strong>STOP</strong>按钮。在紧急情况下(假设<strong>Test Manager</strong>表格中的XY坐标错误，尖端即将碰到某物)，单击<strong>RTec Instruments</strong>窗口中的<strong>Help</strong>并点击<strong>911</strong> 。</p>
+</li>
+<li><p>3.15、一旦测试完成(或停止)，黄色的信息板颜色将再次变为绿色。所有窗口后面还会显示一条单独的消息“<strong>Test Completed</strong>”。找到它并单击<strong>OK</strong>按钮。</p>
+</li>
+<li><p>3.16、完成(或停止)测试后，立即点击按钮(⑧) <strong>4次</strong>，使尖端脱离安全距离。(等待Z运动停止，然后再次点击，总共4次)。只需点击一下按钮，纳米头就会向上移动100微米。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113204740947.png"></p>
+</li>
+<li><p>3.17、在测试运行期间，<strong>Test Manager</strong>表格的背景将会改变:已完成的下压将会变灰(⑨)，当前正在进行的下压将会突出显示(⑩)。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113204907442.png"></p>
+</li>
+<li><p>3.18、在正常情况下，测试会按计划进行，并在完成所有下压后自动停止。然而，由于:</p>
+<p>1)过度的噪音&#x2F;振动；</p>
+<p>2)样品倾斜或移位；</p>
+<p>3)负载&#x2F;位移范围选择不正确(步骤3.3);</p>
+<p>4)在测试之前(上面的步骤3.9)，尖端没有缩回，可能会显示一个错误消息弹出窗口。如果显示错误消息，请转到步骤3.21。以获得如何继续操作的说明。</p>
+</li>
+<li><p>3.19、在无人看管系统或改变任何东西或将尖端移动到不同的点&#x2F;高度之前，通过将Z(或Z2)按钮轻轻推向电缆(如图中的白色箭头所示)，将纳米头收回到与系统连接的操纵杆的安全距离。关于Z和Z2的区别请参考步骤3.5。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113205317311.png"></p>
+</li>
+<li><p>3.20、完成测试后，<strong>RTec Instruments</strong>窗口上将显示原始数据图。如果必须立即处理数据，请转到<a href="#6%E3%80%81%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE">步骤6</a>。但是，如果需要执行更多测试，关闭窗口的最佳方式是单击<strong>RTec Instruments</strong>菜单中的<strong>Window</strong>选项卡，并选择<strong>Close all</strong>。然后在“<strong>Close all</strong>”窗口中，选中“<strong>Repeat for all</strong>”并单击“<strong>No</strong>”。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113205750177.png"></p>
+</li>
+<li><p>3.21、在测试运行期间，可能会显示几条<code>错误消息</code>:</p>
+<ul>
+<li><p>消息①表示尖端无法到达表面。先从表面收回(步骤3.16)，将负载范围更改为更大的范围(步骤3.3)并从步骤3.8重新开始。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113205939775.png"></p>
+</li>
+<li><p>信息②表示尖端无法到达表面。先从表面收回(步骤3.16)并从步骤3.8重新开始。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113210150861.png"></p>
+</li>
+<li><p>信息③、④和⑤表明纳米头离样品太近，尖端已经完全缩回，没有更多的行程，这是非常危险的情况。收到这三条信息之一(③、④、⑤或类似信息)时，按以下步骤进行:</p>
+<p><img src="C:%5CUsers%5CFan%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230113210407012.png"></p>
+<ul>
+<li><p>1）通过重复步骤3.16<strong>两次</strong>将尖端从表面缩回；</p>
+</li>
+<li><p>2）在<strong>RTec Instruments</strong>窗口中点击<img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113210631915.png">按钮(⑥)；</p>
+</li>
+<li><p>3）启动监控窗口⑦；</p>
+</li>
+<li><p>4）点击按钮⑨，然后点击按钮⑧，窗口⑦读数必须根据窗口⑩值改变；</p>
+</li>
+<li><p>5）如果窗口⑦读数不变或显示零值，关闭<strong>RTec Instruments</strong>软件并从步骤2.4.5重新启动。(请注意，Tests Manager表将会丢失)。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113211051947.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4、计算框架符合性"><a href="#4、计算框架符合性" class="headerlink" title="4、计算框架符合性"></a>4、计算框架符合性</h3><p>在完成对试样的一系列压痕并将尖端缩回到安全距离后，继续进行数据处理。然而，在数据处理之前，必须知道两个因素:尖端形状面积函数（the tip shape area function ）和测试仪框架柔量值（the tester frame compliance value）。如果还不知道这两个因素，可以在对经认证的熔融石英样品进行一系列压痕后进行计算。测试仪框架柔度值通常只计算一次，除非测试仪框架、纳米头安装或纳米头尖端安装发生变化，否则不会改变。</p>
+<p>因此，如果已经计算了该值，并且没有其他变化，只需跳到<a href="#5%E3%80%81%E5%88%9B%E5%BB%BA%E5%B0%96%E7%AB%AF%E5%BD%A2%E7%8A%B6%E9%9D%A2%E7%A7%AF%E5%87%BD%E6%95%B0">步骤5</a>，进行尖端形状区域校准。否则，继续下面的框架符合性计算。</p>
+<ul>
+<li><p>4.1、框架符合性计算的下压必须完全按照<a href="#3%E3%80%81%E4%B8%8B%E5%8E%8B%E6%A0%B7%E5%93%81">步骤3</a>中的说明执行，并且必须满足以下条件:</p>
+<ul>
+<li>使用经过认证的Berkovich尖端，但不要改变系统设置中的任何其他内容。</li>
+<li>用一块厚的经认证的熔融石英替换试样，并将其准确地安装在试样上。熔融石英片必须至少2毫米厚，具有<strong>已知的弹性模量、硬度和泊松比值</strong>。</li>
+<li>在10至300mN的力下运行至少2组至少30个等距压痕。</li>
+<li>一旦收集了所有数据，就按照下面的说明进行数据处理。</li>
+</ul>
+</li>
+<li><p>4.2、创建一个新表，在三个步骤(步骤4、5和6)中用下列条目填充:</p>
+<p>1）测试仪框架符合值(在此步骤期间)；</p>
+<p>2）尖端形状面积函数(步骤5)；</p>
+<p>3）测试样品纳米压痕数据(步骤6):</p>
+<ul>
+<li><p>在<strong>RTec Viewer</strong>菜单中，单击**Process → NanoIndentation **</p>
+</li>
+<li><p>默认情况下，将打开最后使用的表。</p>
+</li>
+<li><p>要开始新的校准，建议创建一个新表:</p>
+<ul>
+<li>1）单击**File → New **。</li>
+<li>2）在弹出的<strong>New Measurement</strong>窗口中，输入新表的名称(在本例中称为“New Measurement”)并单击确定。</li>
+</ul>
+</li>
+<li><p>创建新表格（名称“New Measurement”），选中<strong>Loaded Calibrations</strong> (⑤)，并单击<strong>new</strong>按钮(⑥)。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113212942426.png"></p>
+</li>
+<li><p>在<strong>New Calibration</strong>窗口(⑦)弹出的<strong>Ref. Material</strong> 中，材料字段输入用于校准框架符合性的参考材料(一块厚度经认证的熔融石英)的名称。在这个例子中，它被称为“Fused Silica 10 to 300 mN”。其余条目应该与它们在此窗口中显示的完全一样。单击<strong>OK</strong>(⑧)按钮。</p>
+</li>
+<li><p>在**Loaded Calibrations **文件夹(⑨)中创建了一个新条目(<strong>Fused Silica 10 to 300 mN</strong>)。</p>
+</li>
+<li><p>选中<strong>Fused Silica 10 to 300 mN</strong>并单击<strong>Settings</strong>按钮。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113214013543.png"></p>
+</li>
+<li><p><strong>Calibration Settings</strong>窗口被打开，单击<strong>Advanced</strong>按钮。</p>
+</li>
+<li><p>将会打开<strong>Advanced Processing Settings</strong>窗口(⑤)。输入&#x2F;选择与窗口中显示的完全相同的所有参数，然后单击<strong>OK</strong>按钮(⑥)，返回<strong>Calibration Settings</strong>窗口。</p>
+</li>
+<li><p>回到<strong>Calibration Settings</strong>窗口(③)后，选择&#x2F;输入所有与该窗口中显示的完全相同的参数，然后单击<strong>OK</strong>按钮(⑦)。</p>
+</li>
+<li><p>找到包含将用于计算框架符合性的文件的文件夹(步骤4.2，并创建该文件夹的副本。）</p>
+</li>
+<li><p>选中<strong>Fused Silica 10 to 300 mN</strong>并单击 <strong>Process</strong>按钮。</p>
+</li>
+<li><p>对弹出的两个问题“使用相同的文件？”和“使用文件夹中的所有文件？”回答“否”和“否”(⑩)，然后会打开Windows资源管理器。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113214832531.png"></p>
+</li>
+<li><p>找到并选中所有文件(参见步骤4.2.11))，并单击打开。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113215109965.png"></p>
+</li>
+<li><p>进度条会停留一会儿，然后数据会显示在<strong>Nanoindentation</strong>表中。</p>
+</li>
+<li><p>在<strong>Nanoindentation</strong>表的上方，将有一个定义载荷范围窗口，显示估计的柔度值(本例中为0.870672)(③)。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20230113215849333.png"></p>
+</li>
+<li><p>暂时不要单击<strong>Define Load Range</strong>窗口中的任何内容。</p>
+</li>
+<li><p>查看纳米压痕图(④，带圈)中显示的数据，并进行如下操作:</p>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="5、创建尖端形状面积函数"><a href="#5、创建尖端形状面积函数" class="headerlink" title="5、创建尖端形状面积函数"></a>5、创建尖端形状面积函数</h3><p>必须在使用每个新尖端之前为每个新尖端创建一个尖端形状区域函数，并在使用它执行大量压痕后为使用过的尖端创建一个尖端形状区域函数。在创建尖端形状面积函数之前，必须知道测试仪框架符合性（第 4 步）。</p>
+<h3 id="6、处理数据"><a href="#6、处理数据" class="headerlink" title="6、处理数据"></a>6、处理数据</h3><h3 id="附录1-引入仪表化压痕"><a href="#附录1-引入仪表化压痕" class="headerlink" title="附录1 引入仪表化压痕"></a>附录1 引入仪表化压痕</h3><h3 id="附录2-禁用防火墙"><a href="#附录2-禁用防火墙" class="headerlink" title="附录2 禁用防火墙"></a>附录2 禁用防火墙</h3><h3 id="附录3-配置远程桌面"><a href="#附录3-配置远程桌面" class="headerlink" title="附录3 配置远程桌面"></a>附录3 配置远程桌面</h3><h3 id="附录4-改变接触点"><a href="#附录4-改变接触点" class="headerlink" title="附录4 改变接触点"></a>附录4 改变接触点</h3><h3 id="附录5-使用图表管理器"><a href="#附录5-使用图表管理器" class="headerlink" title="附录5 使用图表管理器"></a>附录5 使用图表管理器</h3><h3 id="石英"><a href="#石英" class="headerlink" title="石英"></a>石英</h3><p>压头面积函数校准：</p>
+<p>1、仪器的机架柔度校准</p>
+<p>2、压头的接触投影面积校准</p>
+<p>俩个过程都需要熔融石英作为参考样品进行校准，熔融石英具有以下优点:<code>材料表面光滑、测试结果重复性和均匀性好;各向同性;材料的性质不随压入深度的变化而改变;材料表面在压入过程中不产生凸起变形</code></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MD/" rel="tag"># MD</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/01/19/lammps%E5%91%BD%E4%BB%A4/" rel="prev" title="lammps命令">
+                  <i class="fa fa-chevron-left"></i> lammps命令
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fan</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span> 
+<span id="times">载入时分秒...</span> 
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("02/22/2022 16:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

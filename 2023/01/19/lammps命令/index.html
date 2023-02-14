@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+  <meta name="description" content="本文为lammps常用命令解释，记录了学习lammps命令的过程以及建模思路。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lammps命令">
+<meta property="og:url" content="http://example.com/2023/01/19/lammps%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="鱼七">
+<meta property="og:description" content="本文为lammps常用命令解释，记录了学习lammps命令的过程以及建模思路。">
+<meta property="og:locale">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220915202102807.png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/RDM2ibjLOnY5KSnoAomHdo5Q4DIZG7o5rJzBONpaKaC8F3qeC15qZWjxdISzv94xURp0NtiaYicdWcpncmyIZU7oQ/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220915212654228.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220915212817307.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220916210338871.png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/RDM2ibjLOnY7qq98mBXhPHm00iakcicY6ibicjyMibX5WxDp0aBLHlcWypcibslQcmOqiaatRMKJAH8wZrCKw59TE6IftQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/RDM2ibjLOnY7Hj64VdUfvTEv37vc3FGVNTxAicic0at9zkEjoF7adqjeleMRAQwmIRiaeY0TE38khELIzrl4UCicA1w/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/RDM2ibjLOnY7Hj64VdUfvTEv37vc3FGVNFNFcoGCqLWUYViadgmmPJQKo3oshicLsPV4x5gGzCUpsjTrKqOZWeNUw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/RDM2ibjLOnY7iaDplRMAZs3fR9NBCCQggu9knVia9fKxwKW5qLokdne2n7xwoMBpdCL6Tmh3X39xjIZ2t0Szgy2yQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220927094805625.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220923155712014.png">
+<meta property="og:image" content="c:%5CUsers%5CFan%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230206103052095.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220920152307514.png">
+<meta property="article:published_time" content="2023-01-19T01:52:45.000Z">
+<meta property="article:modified_time" content="2023-02-14T01:53:05.044Z">
+<meta property="article:author" content="Fan">
+<meta property="article:tag" content="MD">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220915202102807.png">
+
+
+<link rel="canonical" href="http://example.com/2023/01/19/lammps%E5%91%BD%E4%BB%A4/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2023/01/19/lammps%E5%91%BD%E4%BB%A4/","path":"2023/01/19/lammps命令/","title":"lammps命令"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>lammps命令 | 鱼七</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="鱼七" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">鱼七</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">8</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">6</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF"><span class="nav-text">模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80"><span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81in%E6%96%87%E4%BB%B6"><span class="nav-text">1、in文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-in%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97%E5%88%86%E7%B1%BB"><span class="nav-text">1.1 in文件模块分类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%A8%A1%E6%8B%9F%E5%8F%82%E6%95%B0"><span class="nav-text">一、模拟参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81units"><span class="nav-text">1、units</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81boundary"><span class="nav-text">2、boundary</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81atom-style"><span class="nav-text">3、atom_style</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81dimension"><span class="nav-text">4、dimension</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BD%93%E7%B3%BB%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BB%BA%E7%AB%8B"><span class="nav-text">二、体系模型的建立</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81region"><span class="nav-text">1、region</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81create-box"><span class="nav-text">2、create_box</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-%E5%88%9B%E5%BB%BA%E6%AD%A3%E4%BA%A4box"><span class="nav-text">2.1 创建正交box</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-%E5%88%9B%E5%BB%BA%E9%9D%9E%E6%AD%A3%E4%BA%A4box"><span class="nav-text">2.2 创建非正交box</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-%E5%88%9B%E5%BB%BA%E5%A4%8D%E6%9D%82box"><span class="nav-text">2.3 创建复杂box</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81lattice"><span class="nav-text">3、lattice</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-lattice"><span class="nav-text">3.1 lattice</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-lattice-custom"><span class="nav-text">3.2 lattice custom</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81create-atoms"><span class="nav-text">4、create_atoms</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-%E5%9C%A8%E7%9B%92%E5%AD%90box%E5%86%85%E5%A1%AB%E5%85%85%E5%8E%9F%E5%AD%90"><span class="nav-text">4.1 在盒子box内填充原子</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-%E5%9C%A8%E6%8C%87%E5%AE%9A%E5%8C%BA%E5%9F%9F%EF%BC%88region%EF%BC%89%E5%86%85%E5%A1%AB%E5%85%85%E5%8E%9F%E5%AD%90"><span class="nav-text">4.2 在指定区域（region）内填充原子</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-%E7%94%9F%E6%88%90%E5%8D%95%E4%B8%AA%E5%8E%9F%E5%AD%90"><span class="nav-text">4.3 生成单个原子</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-4-%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90%E5%8E%9F%E5%AD%90"><span class="nav-text">4.4 随机生成原子</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5%E3%80%81read-data"><span class="nav-text">5、read_data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6%E3%80%81set"><span class="nav-text">6、set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7%E3%80%81delete-atoms"><span class="nav-text">7、delete_atoms</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#7-1-%E5%88%A0%E9%99%A4%E7%BB%84%E5%86%85%E6%88%96%E5%8C%BA%E5%9F%9F%E5%86%85%E5%8E%9F%E5%AD%90"><span class="nav-text">7.1 删除组内或区域内原子</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-2-%E5%88%A0%E9%99%A4%E9%87%8D%E5%8F%A0%E5%8E%9F%E5%AD%90"><span class="nav-text">7.2 删除重叠原子</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-3-%E9%9A%8F%E6%9C%BA%E5%88%A0%E9%99%A4%E5%8E%9F%E5%AD%90"><span class="nav-text">7.3 随机删除原子</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-4-%E5%88%A0%E9%99%A4%E5%88%86%E5%AD%90"><span class="nav-text">7.4 删除分子</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8%E3%80%81%E6%97%8B%E8%BD%AC%E6%A8%A1%E5%9E%8B"><span class="nav-text">8、旋转模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%8A%9B%E5%9C%BA%E8%AE%BE%E7%BD%AE"><span class="nav-text">三、力场设置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E5%8A%BF%E5%87%BD%E6%95%B0"><span class="nav-text">1、势函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-lj-x2F-cut%E5%9C%A8in%E6%96%87%E4%BB%B6%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">1.1  lj&#x2F;cut在in文件中使用方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-tersoff%E5%8A%BF%E5%87%BD%E6%95%B0"><span class="nav-text">1.2  tersoff势函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-%E6%B7%B7%E5%90%88%E5%8A%BF%E5%87%BD%E6%95%B0hybrid"><span class="nav-text">1.3 混合势函数hybrid</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%83%BD%E9%87%8F%E6%9C%80%E5%B0%8F%E5%8C%96"><span class="nav-text">四、能量最小化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81minimize"><span class="nav-text">1、minimize</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-minimize%E5%91%BD%E4%BB%A4"><span class="nav-text">1.1 minimize命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-min-style%E5%91%BD%E4%BB%A4"><span class="nav-text">1.2 min_style命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-%E4%BD%BF%E7%94%A8%E4%B8%BE%E4%BE%8B"><span class="nav-text">1.3 使用举例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%B8%A9%E5%BA%A6%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">五、温度初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81velocity"><span class="nav-text">1、velocity</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-velocity-create%E8%BF%9B%E8%A1%8C%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">1.1  velocity create进行初始化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-velocity-set%E8%AE%BE%E7%BD%AE%E5%8E%9F%E5%AD%90%E5%9C%A8%E7%89%B9%E5%AE%9A%E6%96%B9%E5%90%91%E4%B8%8A%E7%9A%84%E9%80%9F%E5%BA%A6"><span class="nav-text">1.2 velocity set设置原子在特定方向上的速度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-velocity-ramp%E8%AE%BE%E7%BD%AE%E9%80%9F%E5%BA%A6%E5%9C%BA"><span class="nav-text">1.3 velocity ramp设置速度场</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%BC%9B%E8%B1%AB"><span class="nav-text">六、弛豫</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81nve-x2F-nvt-x2F-npt"><span class="nav-text">1、nve&#x2F;nvt&#x2F;npt</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-nve%EF%BC%88%E5%BE%AE%E6%AD%A3%E5%88%99%E7%B3%BB%E7%BB%BC%EF%BC%89"><span class="nav-text">1.1 nve（微正则系综）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-nvt%EF%BC%88%E7%AD%89%E6%B8%A9%E7%AD%89%E5%8E%8B%EF%BC%89"><span class="nav-text">1.2 nvt（等温等压）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-npt%EF%BC%88%E7%AD%89%E5%8E%8B%E7%AD%89%E6%B8%A9%EF%BC%89"><span class="nav-text">1.3 npt（等压等温）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81-%E6%8E%A7%E6%B8%A9"><span class="nav-text">2、 控温</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81Nose-Hoover%E7%83%AD%E6%B5%B4%E6%B3%95"><span class="nav-text">1、Nose-Hoover热浴法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81langevin%E6%8E%A7%E6%B8%A9%E6%B3%95"><span class="nav-text">2、langevin控温法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3%E3%80%81temp-x2F-rescale%E9%80%9F%E5%BA%A6%E6%A0%87%E5%AE%9A%E6%B3%95"><span class="nav-text">3、temp&#x2F;rescale速度标定法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4%E3%80%81berendson%E6%8E%A7%E6%B8%A9"><span class="nav-text">4、berendson控温</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81fix-setforce"><span class="nav-text">1、fix setforce</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E6%B8%A9%E5%BA%A6%E6%8E%A7%E5%88%B6"><span class="nav-text">2、温度控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81variable%E8%B5%8B%E5%80%BC"><span class="nav-text">3、variable赋值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81change-box"><span class="nav-text">4、change_box</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5%E3%80%81displace-atoms"><span class="nav-text">5、displace_atoms</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6%E3%80%81reset-timestep"><span class="nav-text">6、reset_timestep</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#7%E3%80%81%E5%8F%98%E9%87%8F%E7%9A%84%E5%89%8D%E7%BC%80%EF%BC%9Av-%E3%80%81c-%E3%80%81f-%E3%80%82"><span class="nav-text">7、变量的前缀：v_、c_、f_。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7%E3%80%81%E4%B8%89%E7%BB%B4%E9%98%B5%E5%88%97"><span class="nav-text">7、三维阵列</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%87%BA"><span class="nav-text">输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#0%E3%80%81compute"><span class="nav-text">0、compute</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#0-1%E3%80%81%E9%87%8D%E6%96%B0%E8%AE%A1%E7%AE%97%E6%B8%A9%E5%BA%A6"><span class="nav-text">0.1、重新计算温度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#0-2%E3%80%81%E7%BB%98%E5%88%B6%E6%B8%A9%E5%BA%A6%E4%BA%91%E5%9B%BE"><span class="nav-text">0.2、绘制温度云图</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81thermo"><span class="nav-text">1、thermo</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-thermo%E5%91%BD%E4%BB%A4"><span class="nav-text">1.1 thermo命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-thermo-style%E5%91%BD%E4%BB%A4"><span class="nav-text">1.2 thermo_style命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81dump"><span class="nav-text">2、dump</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-%E6%9C%80%E7%9C%81%E5%BF%83%E7%9A%84%E8%BE%93%E5%87%BA%E6%96%B9%E5%BC%8F%EF%BC%9Adump-atom"><span class="nav-text">2.1 最省心的输出方式：dump atom</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-%E4%B8%AA%E6%80%A7%E5%8C%96%E7%9A%84%E8%BE%93%E5%87%BA%E6%96%B9%E5%BC%8F%EF%BC%9Adump-custom"><span class="nav-text">2.2 个性化的输出方式：dump custom</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E8%BE%93%E5%87%BA%EF%BC%9Adump-atom-x2F-gz"><span class="nav-text">2.3 压缩文件输出：dump atom&#x2F;gz</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-%E6%96%87%E4%BB%B6%E5%88%86%E6%AD%A5%E8%BE%93%E5%87%BA%EF%BC%9Adump"><span class="nav-text">2.4 文件分步输出：dump *</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-5-dump-modify-element"><span class="nav-text">2.5 dump_modify element</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81fix"><span class="nav-text">3、fix</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1%E3%80%81fix-print"><span class="nav-text">3.1、fix print</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2%E3%80%81fix-ave-x2F-time%E5%91%BD%E4%BB%A4"><span class="nav-text">3.2、fix ave&#x2F;time命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81%E5%BE%84%E5%90%91%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0RDF"><span class="nav-text">4、径向分布函数RDF</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B%EF%BC%9A"><span class="nav-text">案例：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5%E3%80%81%E5%8E%9F%E5%AD%90%E7%BB%84%E5%8A%BF%E8%83%BD%E3%80%81%E9%80%9F%E5%BA%A6%E3%80%81%E6%B8%A9%E5%BA%A6%E7%AD%89"><span class="nav-text">5、原子组势能、速度、温度等</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6%E3%80%81%E8%BD%BD%E8%8D%B7-%E6%B7%B1%E5%BA%A6%E6%9B%B2%E7%BA%BF"><span class="nav-text">6、载荷-深度曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7%E3%80%81%E9%85%8D%E4%BD%8D%E6%95%B0%E5%88%86%E6%9E%90"><span class="nav-text">7、配位数分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8%E3%80%81common-neighborhood-analysis"><span class="nav-text">8、common neighborhood analysis</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81restart"><span class="nav-text">1、restart</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-restart%E5%91%BD%E4%BB%A4%EF%BC%9A%E5%91%A8%E6%9C%9F%E6%80%A7%E4%BF%9D%E5%AD%98"><span class="nav-text">1.1 restart命令：周期性保存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-write-restart%E5%91%BD%E4%BB%A4%EF%BC%9A%E4%B8%80%E6%AC%A1%E6%80%A7%E4%BF%9D%E5%AD%98"><span class="nav-text">1.2 write_restart命令：一次性保存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-read-restart%E5%91%BD%E4%BB%A4%EF%BC%9A%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6"><span class="nav-text">1.3 read_restart命令：读取文件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81read-data"><span class="nav-text">2、read_data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81rerun"><span class="nav-text">3、rerun</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB"><span class="nav-text">问题汇总</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E6%A8%A1%E5%9E%8B%E5%BB%BA%E6%A8%A1"><span class="nav-text">复杂模型建模</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81Materials-Studio%E5%BB%BA%E6%A8%A1"><span class="nav-text">1、Materials Studio建模</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81Atomsk%E5%BB%BA%E6%A8%A1"><span class="nav-text">2、Atomsk建模</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%A3%A8%E7%B2%92%E5%BB%BA%E6%A8%A1"><span class="nav-text">磨粒建模</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fan"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Fan</p>
+  <div class="site-description" itemprop="description">自强不息！</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/19/lammps%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Fan">
+      <meta itemprop="description" content="自强不息！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼七">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          lammps命令
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-01-19 09:52:45" itemprop="dateCreated datePublished" datetime="2023-01-19T09:52:45+08:00">2023-01-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-02-14 09:53:05" itemprop="dateModified" datetime="2023-02-14T09:53:05+08:00">2023-02-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">软件学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>本文为lammps常用命令解释，记录了学习lammps命令的过程以及建模思路。</p>
+<span id="more"></span>
+
+<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#----------1 模拟参数--------------------</span></span><br><span class="line"><span class="attribute">units</span>           metal</span><br><span class="line"><span class="attribute">boundary</span>        p p p</span><br><span class="line"><span class="attribute">atom_style</span>      atomic</span><br><span class="line"><span class="attribute">timestep</span>        <span class="number">0</span>.<span class="number">001</span></span><br><span class="line"><span class="attribute">neighbor</span>        <span class="number">2</span>.<span class="number">0</span> bin</span><br><span class="line"><span class="attribute">neigh_modify</span>    delay <span class="number">0</span> every <span class="number">5</span> check yes</span><br><span class="line"></span><br><span class="line"><span class="comment">#----------2 体系模型的建立----------------</span></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment">#输出原子初始结构</span></span><br><span class="line"><span class="attribute">write_data</span> 	test.data                    </span><br><span class="line"></span><br><span class="line"><span class="comment">#----------3 力场的设置-------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#----------4 能量最小化-------</span></span><br><span class="line"><span class="attribute">thermo</span>		<span class="number">100</span></span><br><span class="line"><span class="attribute">thermo_style</span>	custom step press pe temp ke</span><br><span class="line"><span class="attribute">dump</span>		<span class="number">1</span> <span class="literal">all</span> atom <span class="number">100</span> mini.lammpstrj</span><br><span class="line"><span class="attribute">min_style</span>	cg</span><br><span class="line"><span class="attribute">minimize</span>	<span class="number">1</span>e-<span class="number">15</span> <span class="number">1</span>e-<span class="number">15</span> <span class="number">5000</span> <span class="number">5000</span></span><br><span class="line"><span class="attribute">undump</span>		<span class="number">1</span></span><br><span class="line"><span class="attribute">reset_timestep</span>	<span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#-----------5 温度初始化--------</span></span><br><span class="line"><span class="attribute">velocity</span>	<span class="literal">all</span> create <span class="number">300</span> <span class="number">321456</span> rot yes dist gaussian </span><br><span class="line"></span><br><span class="line"><span class="comment">#-----------6 弛豫-------------</span></span><br><span class="line"><span class="attribute">thermo</span>		<span class="number">100</span></span><br><span class="line"><span class="attribute">thermo_style</span>	custom step press pe temp ke</span><br><span class="line"><span class="attribute">dump</span>		<span class="number">1</span> <span class="literal">all</span> atom <span class="number">100</span> mini.lammpstrj</span><br><span class="line"><span class="attribute">fix</span>		<span class="number">1</span> <span class="literal">all</span> nvt temp <span class="number">300</span> <span class="number">300</span> <span class="number">0</span>.<span class="number">1</span> </span><br><span class="line"><span class="attribute">run</span>		<span class="number">10000</span></span><br><span class="line"><span class="attribute">unfix</span>		<span class="number">1</span></span><br><span class="line"><span class="attribute">undump</span>		<span class="number">1</span></span><br><span class="line"><span class="attribute">reset_timestep</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#-------7 具体模拟设置-------</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><h4 id="1、in文件"><a href="#1、in文件" class="headerlink" title="1、in文件"></a>1、in文件</h4><p>lammps软件只是一个求解器，没有可视化的前处理和后处理软件，所有的命令只能通过代码的方式输入到求解器进行求解计算。</p>
+<p>所有的命令都被写到一个称为“in”的文件里，对于初学者来说，熟悉in文件的编写是一个难点。</p>
+<p>in文件其实就是一个文本文档，也没有要求<strong>文件名或者后缀名</strong>中必须带有“in”字样，用任何文件名均可运行。</p>
+<p>in文件里的代码是按照<strong>编写的顺序</strong>进行解释执行，对于大部分命令行来说，前后顺序影响并不是很大，但是，对于一些命令，在执行过程中需要某个参数，则这个参数的定义和计算必须写在命令执行之前。</p>
+<p>例如，对晶体使用fix deform命令进行拉伸时，应变速率代码必须写到fix deform命令行的前面。</p>
+<p>lammps命令非常丰富，官方给出的说明手册就达2000多页，我们也不可能记住和使用所有的命令。</p>
+<p>对于某一个研究方向来说，常用的命令可能也就那么几十个，只要我们掌握这几十个命令基本上能够满足模拟要求。</p>
+<h5 id="1-1-in文件模块分类"><a href="#1-1-in文件模块分类" class="headerlink" title="1.1 in文件模块分类"></a>1.1 in文件模块分类</h5><p>（1）模拟环境参数设置</p>
+<p>这一部分主要设置一些模拟参数，比如模拟体系的单位（units）、边界条件（boundary）、原子类型（atom_style）、邻居列表的定义（neighbor）、时间步长（timestep）等。</p>
+<p>（2）体系模型的建立</p>
+<p>这一部分的功能就是建立体系的原子模型，通常有两种方式。</p>
+<p><strong>第一种</strong>方式是使用lammps自带的建模命令建模，比如使用region命令划分区域，create_box命令生成模拟盒子，lattcie确定原子晶格常数，create_atoms生成原子。</p>
+<p>使用命令行建模比较抽象，建模过程不是“所见即所得”，为了验证所建模型是否符合要求，可以在建模代码的后面使用write_data命令把模型保持为data文件，在lammps中运行in文件，用ovito观察一下模型是否正确。</p>
+<p><strong>第二种</strong>建模方式是使用其他软件进行可视化的建模，例如<strong>Material studio</strong>、Atomsk等软件，建模完成后转换为lammps可以识别data文件，使用read_data命令读入到lammps中。</p>
+<p>（3）力场的设置</p>
+<p>模型建好之后，需要设置力场参数，也就是常说的势函数设置。</p>
+<p>力场的设置分两步，首先设置力场类型，如pair_style、bond_style、angle_style、dihedral_style、improper_style。</p>
+<p>之后，设置与之相对于的参数，分别使用pair_coeff、bond_coeff、angle_coeff、dihedral_coeff、improper_coeff。</p>
+<p>（4）能量最小化</p>
+<p>在正式模拟之前，一般都需要进行能量最小化，消除模型不合理的结构。</p>
+<p>能量最小化要在温度初始化之前进行，min_style确定能量最小化类型，minimize命令设置相关参数。</p>
+<p>（5）温度初始化</p>
+<p>能量最小化之后，就可以进行温度初始化。体系的温度是根据原子的速度计算得到的，因此，温度初始化也就是对原子进行速度初始化。</p>
+<p>使用velocity命令按照设定的规律随机设定原子速度，使体系温度设定为一个固定值。</p>
+<p>（6）弛豫</p>
+<p>在npt、nvt等系综下，对体系进行充分的弛豫，使体系的能量达到最低，获得平衡态的结构。</p>
+<p>前面这6部分是模拟准备过程，到此为止，体系已经达到平衡，可以进行下一步模拟。</p>
+<p>这6部分的代码在大部分的模拟中都是通用的。</p>
+<p>（7）具体模拟设置</p>
+<p>这一部分代码与模拟的具体内容有关，比如拉伸、剪切、结晶、吸附等等。设置输出轨迹文件、热力学数据等等，便于后期统计分析。</p>
+<p>对于不同的模拟过程，lammps模拟in文件可能会有区别，总体结构类似，大部分代码是重复的。</p>
+<p>下面分享一个in文件模板，大家可以根据自己的科研课题修改使用。</p>
+<h3 id="一、模拟参数"><a href="#一、模拟参数" class="headerlink" title="一、模拟参数"></a>一、模拟参数</h3><h4 id="1、units"><a href="#1、units" class="headerlink" title="1、units"></a>1、units</h4><p> units: 选择单位系统, lammps 提供了 lj、real、metal 三种单位系统</p>
+<p>metal对应单位是ps    1fs&#x3D;0.001ps</p>
+<h4 id="2、boundary"><a href="#2、boundary" class="headerlink" title="2、boundary"></a>2、boundary</h4><p>boundary命令设置box的边界条件，语法比较简单：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">boundary x y z</span></span><br></pre></td></tr></table></figure>
+
+<p>参数xyz分别设置该维度的边界条件，最基本的边界条件有四种：p、f、s、m。</p>
+<p>lammps支持对同一方向的两个表面设置不同的边界条件，如对y方向下表面设置f边界、上表面设置s边界，可以写为：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boundary <span class="selector-tag">p</span> fs <span class="selector-tag">p</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>1. 周期性边界：p</strong></p>
+<p>参数p表示周期性边界条件，当粒子从一侧飞出，会从相对应的另一侧再次进入box，一般情况下不会发生“lost atoms”丢失原子错误。</p>
+<p><strong>2. 固定边界：f</strong></p>
+<p>参数f表示box的表面在该方向上被固定住，不因体系压力的变化发生移动。</p>
+<p>如果原子从一个表面飞出，会提示“lost atoms”错误，设置thermo_modify lost可以允许原子丢失，否则模拟过程会被终止。</p>
+<p><strong>3. 收缩性边界：s</strong></p>
+<p>参数s表示在该方向上，盒子的表面会根据体系的压力大小或原子运动情况发生移动。</p>
+<p>一般情况下，盒子会配合原子的移动，尽量把原子包含在box内，但是当原子速度过快，位移太大时原子也可能会飞出盒子，造成“lost atoms”错误。</p>
+<p><strong>4. 限制性收缩：m</strong></p>
+<p>参数m功能和s差不多，盒子大小同样会随原子的移动而发生变化，但盒子在收缩到限定值时就不再发生变化，也就是盒子尺寸有一个最小值。</p>
+<p>例如z方向上表面最小值设为50，当该表面收缩到50时会停止收缩，类似转换成了临时性的固定边界。</p>
+<p>通常在建模或者读取data文件之前设置boundary命令，在模拟运行的过程中也可以改变边界条件设置。</p>
+<p>比如，使用velocity进行拉伸时，拉伸方向z不能为周期性边界条件，但是在弛豫阶段又需要在npt系综下消除z方向的应力，否则初始应力可能不为0，这种情况下就可以先使用周期性边界条件进行驰豫，在拉伸前使用change_box命令改变周期性条件：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">boundary</span> <span class="selector-tag">p</span> <span class="selector-tag">p</span> <span class="selector-tag">p</span></span><br><span class="line">#进行<span class="selector-tag">npt</span>系综下驰豫</span><br><span class="line">……</span><br><span class="line"><span class="selector-id">#z</span>方向改为<span class="selector-tag">s</span></span><br><span class="line"><span class="selector-tag">change_box</span> <span class="keyword">all</span> <span class="selector-tag">boundary</span> <span class="selector-tag">p</span> <span class="selector-tag">p</span> <span class="selector-tag">s</span></span><br><span class="line">#进行拉伸</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+
+<p>边界条件设置比较简单，在模拟过程中出现丢失原子或者体系演化不合理时，灵活改变边界条件可能会获得比较理想的结果。</p>
+<h4 id="3、atom-style"><a href="#3、atom-style" class="headerlink" title="3、atom_style"></a>3、atom_style</h4><p>定义你的模拟体系中的原子属性, 注意这个 style 要区分后面设置力场参数时命令里提到的atom type </p>
+<h4 id="4、dimension"><a href="#4、dimension" class="headerlink" title="4、dimension"></a>4、dimension</h4><p> dimension: 2d 模拟还是 3d 模拟, 默认是 3d </p>
+<h3 id="二、体系模型的建立"><a href="#二、体系模型的建立" class="headerlink" title="二、体系模型的建立"></a>二、体系模型的建立</h3><p><strong>使用lammps自带的建模命令建模主要有以下几个流程：</strong></p>
+<blockquote>
+<p>（1）使用region命令确定一个模拟区域</p>
+<p>（2）使用create_box命令在以上区域内生成一个模拟盒子box</p>
+<p>（3）使用lattice命令确定晶格结构</p>
+<p>（4）使用create_atoms命令在box内填充原子</p>
+</blockquote>
+<h4 id="1、region"><a href="#1、region" class="headerlink" title="1、region"></a>1、region</h4><p>在lammps模拟中，所有的原子都被限定在一个空间区域内运动，这个空间区域也就是常说的模拟盒子box。</p>
+<p>在建立box之前，我们需要在空间中划分出一个区域，在这个区域内生成box，<strong>region命令通常写在create_box命令之前</strong>。</p>
+<p>region命令主要功能是划定一个特定区域，形状可以为长方体、圆柱体、球体等。</p>
+<p>lammps提供了一个region union命令，可把多个region区域合并为一个区域。</p>
+<p>使用这个命令，可以创建复杂形状的区域，语法命令格式为：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">region ID <span class="keyword">union</span> N <span class="keyword">reg</span>-ID1 <span class="keyword">reg</span>-ID2 ...</span><br></pre></td></tr></table></figure>
+
+<p>N为合并区域的数量，后面为合并区域的ID</p>
+<p><strong>以最常见的纳米磨削模型的建模为例，介绍region的使用方法。</strong></p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220915202102807.png"></p>
+<p>如上图所示，单晶铜分成了三个区域，红色区域为边界层，蓝色区域为恒温层，绿色区域为牛顿层。</p>
+<p>建立上述模型，主要使用region命令中的block参数建立长方体结构，使用union参数对长方体进行区域合并，使用sphere参数建立金刚石球体。</p>
+<p>（1）生成最底层的边界层，前两行生成两个block（矩形）区域，第三行使用union将两个区域合并为一个区域</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">region</span>     boundary1    block <span class="number">0</span> <span class="number">20</span> <span class="number">0</span> <span class="number">80</span> <span class="number">0</span> <span class="number">160</span> units box</span><br><span class="line"><span class="attribute">region</span>     boundary2    block <span class="number">20</span> <span class="number">250</span> <span class="number">0</span> <span class="number">80</span> <span class="number">0</span> <span class="number">20</span> units box</span><br><span class="line"><span class="attribute">region</span>     boundary     union  <span class="number">2</span>  boundary1  boundary2</span><br></pre></td></tr></table></figure>
+
+<p>（2）生成恒温层，方法同上</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">region</span>     temp_layer1    block <span class="number">20</span> <span class="number">40</span> <span class="number">0</span> <span class="number">80</span> <span class="number">20</span> <span class="number">160</span> units box</span><br><span class="line"><span class="attribute">region</span>     temp_layer2    block <span class="number">40</span> <span class="number">250</span> <span class="number">0</span> <span class="number">80</span> <span class="number">20</span> <span class="number">40</span> units box</span><br><span class="line"><span class="attribute">region</span>     temp_layer     union  <span class="number">2</span>  temp_layer1  temp_layer2</span><br></pre></td></tr></table></figure>
+
+<p>（3）生成牛顿层</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">region</span>     newton_layer  block <span class="number">40</span> <span class="number">250</span> <span class="number">0</span> <span class="number">80</span> <span class="number">40</span> <span class="number">160</span> units box</span><br></pre></td></tr></table></figure>
+
+<p>（4）将三个区域合并为piece层</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">region</span>     <span class="built_in">piece</span> <span class="built_in">union</span> <span class="number">3</span> boundary temp_layer newton_layer</span><br></pre></td></tr></table></figure>
+
+<p>（5）生成刀具区域，类型为sphere，圆心坐标（300,40,170），半径为30埃米（在metal单位下）</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">region</span>     ball   sphere  <span class="number">300</span> <span class="number">40</span> <span class="number">170</span> <span class="number">30</span></span><br></pre></td></tr></table></figure>
+
+<p>（6）将工件区和刀具区合并，该区域即为模拟盒子box区域</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">region</span>    <span class="built_in">box</span> <span class="built_in">union</span> <span class="number">2</span> <span class="built_in">piece</span> ball</span><br></pre></td></tr></table></figure>
+
+<p>（7）在box区域内生成一个模拟盒子，盒子内包含4种原子</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">create_box</span>  <span class="number">4</span> box</span><br></pre></td></tr></table></figure>
+
+<p>（8）在工件区域内生成Cu原子</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">lattice</span>         fcc <span class="number">3</span>.<span class="number">61</span> </span><br><span class="line"><span class="attribute">create_atoms</span>  <span class="number">1</span> region boundary</span><br><span class="line"><span class="attribute">create_atoms</span>  <span class="number">2</span> region temp_layer</span><br><span class="line"><span class="attribute">create_atoms</span>  <span class="number">3</span> region newton_layer</span><br></pre></td></tr></table></figure>
+
+<p>（9）在球内填充金刚石原子，原子类型为4</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">lattice</span>       diamond  <span class="number">3</span>.<span class="number">52</span> </span><br><span class="line"><span class="attribute">create_atoms</span>  <span class="number">4</span> region ball</span><br></pre></td></tr></table></figure>
+
+<p>（10）设置原子质量</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mass</span>    <span class="number">1</span> <span class="number">64</span></span><br><span class="line"><span class="attribute">mass</span>    <span class="number">2</span> <span class="number">64</span></span><br><span class="line"><span class="attribute">mass</span>    <span class="number">3</span> <span class="number">64</span></span><br><span class="line"><span class="attribute">mass</span>    <span class="number">4</span> <span class="number">12</span></span><br></pre></td></tr></table></figure>
+
+<p>（11）为便于后续模拟，对不同区域内原子进行分组</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">group</span>      <span class="title">boundary</span> region boundary</span><br><span class="line"><span class="keyword">group</span>      <span class="title">temp_layer</span> region temp_layer</span><br><span class="line"><span class="keyword">group</span>      <span class="title">newton_layer</span> region newton_layer</span><br><span class="line"><span class="keyword">group</span>      <span class="title">tool</span> region tool</span><br></pre></td></tr></table></figure>
+
+<p>（12）保存data文件</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">write_data</span>    <span class="type">Cu_C</span>.<span class="class"><span class="keyword">data</span></span></span><br></pre></td></tr></table></figure>
+
+<p>至此，模型就建立完成了</p>
+<h4 id="2、create-box"><a href="#2、create-box" class="headerlink" title="2、create_box"></a>2、create_box</h4><p>lammps模拟时所有的原子都必须位于一个有限的区域内，这个有限的区域也就是所谓的模拟盒子：box。</p>
+<p>因此，在创建原子之前，要先创建box，用到的命令为create_box。</p>
+<p>create_box的语法为：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">create_box N region-ID keyword value</span></span><br></pre></td></tr></table></figure>
+
+<p>其中,N为盒子内包含的原子类型数，region-ID为区域名称</p>
+<h5 id="2-1-创建正交box"><a href="#2-1-创建正交box" class="headerlink" title="2.1 创建正交box"></a>2.1 <strong>创建正交box</strong></h5><p>创建一个模拟盒子之前必须先创建一个区域，在此区域的基础上创建盒子。</p>
+<p>例如创建一个大小为10<em>10</em>10的立方区域，名称为mybox。以mybox尺寸创建box，box内含有1种原子。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">region</span> mybox block <span class="number">0</span> <span class="number">10</span> <span class="number">0</span> <span class="number">10</span> <span class="number">0</span> <span class="number">10</span> units box</span><br><span class="line"><span class="attribute">create_box</span> <span class="number">1</span> mybox</span><br></pre></td></tr></table></figure>
+
+<p>如果region为球形，lammps首先计算出一个外切于此球的立方区域，应以此创建box，而不是创建一个球形的box。</p>
+<p>例如：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">region</span> box sphere <span class="number">0</span>.<span class="number">0</span> <span class="number">0</span>.<span class="number">0</span> <span class="number">0</span>.<span class="number">0</span> <span class="number">5</span>  units box</span><br><span class="line"><span class="attribute">create_box</span> <span class="number">1</span> box</span><br></pre></td></tr></table></figure>
+
+<p>以上命令创建的盒子大小为10^3^。</p>
+<h5 id="2-2-创建非正交box"><a href="#2-2-创建非正交box" class="headerlink" title="2.2 创建非正交box"></a>2.2 <strong>创建非正交box</strong></h5><p>如果region区域为非正交区域，则以此区域可以创建非正交box。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">region</span> box prism <span class="number">0</span> <span class="number">10</span> <span class="number">0</span> <span class="number">10</span> <span class="number">0</span> <span class="number">10</span> <span class="number">2</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="attribute">create_box</span> <span class="number">1</span> box</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-3-创建复杂box"><a href="#2-3-创建复杂box" class="headerlink" title="2.3 创建复杂box"></a>2.3 <strong>创建复杂box</strong></h5><p>如果box内原子之间有键或角等信息，需要在创建box时指定键角等数量，具体格式为：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">bond/types value = <span class="comment"># of bond types</span></span><br><span class="line">angle/types value = <span class="comment"># of angle types</span></span><br><span class="line">dihedral/types value = <span class="comment"># of dihedral types</span></span><br><span class="line">improper/types value = <span class="comment"># of improper types</span></span><br><span class="line">extra<span class="regexp">/bond/</span>per/atom value = <span class="comment"># of bonds per atom</span></span><br><span class="line">extra<span class="regexp">/angle/</span>per/atom value = <span class="comment"># of angles per atom</span></span><br><span class="line">extra<span class="regexp">/dihedral/</span>per/atom value = <span class="comment"># of dihedrals per atom</span></span><br><span class="line">extra<span class="regexp">/improper/</span>per/atom value = <span class="comment"># of impropers per atom</span></span><br><span class="line">extra<span class="regexp">/special/</span>per/atom value = <span class="comment"># of special neighbors per atom</span></span><br></pre></td></tr></table></figure>
+
+<p>例如创建含有H2O分子的box：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">region</span> box block <span class="number">0</span> <span class="number">10</span> <span class="number">0</span> <span class="number">10</span> <span class="number">0</span> <span class="number">10</span> units box</span><br><span class="line"><span class="attribute">create_box</span> <span class="number">2</span> box bond/types <span class="number">1</span> angle/types <span class="number">1</span> extra/bond/per/atom <span class="number">2</span> &amp;   </span><br><span class="line"><span class="attribute">extra</span>/special/per/atom <span class="number">2</span> extra/angle/per/atom <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>create_box命令应该是相对简单的一个命令，但要记住<strong>每个模型只有一个box，create_box用一次就足够了</strong>。</p>
+<h4 id="3、lattice"><a href="#3、lattice" class="headerlink" title="3、lattice"></a>3、lattice</h4><h5 id="3-1-lattice"><a href="#3-1-lattice" class="headerlink" title="3.1 lattice"></a>3.1 lattice</h5><p>对于简单的晶体结构，比如体心立方bcc、面心立方fcc等，可以使用lattice bcc或者fcc命令建模。</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lattice <span class="built_in">style</span> <span class="built_in">scale</span> keyword <span class="built_in">values</span> ...</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>style： <em>none</em> or <em>sc</em> or <em>bcc</em> or <em>fcc</em> or <em>hcp</em> or <em>diamond</em> or <em>sq</em> or <em>sq2</em> or <em>hex</em> or <em>custom</em></p>
+<blockquote>
+<p>Sc（简单立方） or bcc（体心立方） or fcc（面心立方） or hcp （六角密堆积）or diamond（金刚石）类型用于三维建模。sq （四方）or sq2 or hex（六方）类型用于二维建模。custom类型既可以用于二维，也可以用于三维建模。</p>
+</blockquote>
+<ul>
+<li>sc晶格有1个基本原子，在立方体左下角后面的位置。</li>
+<li>bcc晶格有2个基本原子，分别在立方体的角上和中心的位置。</li>
+<li>fcc晶格有4个基本原子，有1个在角上，另外3个在面心的位置。</li>
+<li>hcp晶格有4个基本原子，有2个在z&#x3D;0的平面上，另外2个在z&#x3D;0.5的平面上。</li>
+<li>diamond晶格有8个基本原子。</li>
+</ul>
+</li>
+<li><p>scale：晶格和模拟盒子的比例因子</p>
+</li>
+<li><p>可以不添加或添加多个keyword&#x2F;value。</p>
+</li>
+</ul>
+<h5 id="3-2-lattice-custom"><a href="#3-2-lattice-custom" class="headerlink" title="3.2 lattice custom"></a>3.2 lattice custom</h5><p>对于结构稍微复杂点的晶体，可以使用lattice custom命令。</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lattice custom Length <span class="built_in">a1</span> <span class="built_in">a2</span> <span class="built_in">a3</span> <span class="keyword">basis </span>...</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用lattice custom建模流程如下：</strong></p>
+<p>（1）找出晶体中最小的重复单元，也就是原胞。</p>
+<p>（2）确定基矢a1，a2，a3。对于大多晶体，基矢可以和坐标轴重合，例如正方形晶胞的基矢a1（1 0 0）、a2（0 1 0）、a3（0 0 1）。</p>
+<p>（3）确定原胞内各原子的坐标，这个坐标不是绝对坐标值，而是相对于基矢的相对坐标，最大值不能超过1。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/RDM2ibjLOnY5KSnoAomHdo5Q4DIZG7o5rJzBONpaKaC8F3qeC15qZWjxdISzv94xURp0NtiaYicdWcpncmyIZU7oQ/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p><strong>下面以石墨烯为例，详解一下建模具体过程：</strong></p>
+<p>（1）找出最小的重复单元：如上图红框所示，最小的重复单元划分方法不唯一，选择一种即可。</p>
+<p>（2）确定基矢：a1沿水平x轴方向，a2沿垂直y轴方向。石墨烯是二维结构，a3取小于单层石墨烯厚度。</p>
+<p>假设石墨烯键长L&#x3D;1.42，则a1&#x3D;3L，a2&#x3D;1.732L，a3&#x3D;2L（低于3.35即可）。</p>
+<p>（3）确定各原子坐标（实际坐标值&#x2F;基矢各方向长度）：</p>
+<p>原子1坐标：（0,0,0）</p>
+<p>原子2坐标：（0.33,0,0）</p>
+<p>原子3坐标：（0.5,0.5,0）</p>
+<p>原子4坐标：（0.833,0.5,0）</p>
+<p>以上数据写入lattice custom代码：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">lattice</span>      custom <span class="number">1</span>.<span class="number">421</span> a1 <span class="number">3</span> <span class="number">0</span> <span class="number">0</span> a2 <span class="number">0</span> <span class="number">1</span>.<span class="number">732</span> <span class="number">0</span> a3 <span class="number">0</span> <span class="number">0</span> <span class="number">2</span> &amp;       </span><br><span class="line">                        <span class="attribute">basis</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> &amp;       </span><br><span class="line">                        <span class="attribute">basis</span> <span class="number">0</span>.<span class="number">33</span> <span class="number">0</span> <span class="number">0</span> &amp;        </span><br><span class="line">                        <span class="attribute">basis</span> <span class="number">0</span>.<span class="number">5</span> <span class="number">0</span>.<span class="number">5</span> <span class="number">0</span> &amp;        </span><br><span class="line">                        <span class="attribute">basis</span> <span class="number">0</span>.<span class="number">833</span> <span class="number">0</span>.<span class="number">5</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4、create-atoms"><a href="#4、create-atoms" class="headerlink" title="4、create_atoms"></a>4、create_atoms</h4><p>create_atoms命令是lammps建模命令中必不可少的一个命令，主要功能是在指定区域内填充一定数量的原子。</p>
+<p>create_atoms命令格式为：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_atoms <span class="keyword">type</span> style args <span class="built_in">keyword</span> values <span class="params">...</span></span><br></pre></td></tr></table></figure>
+
+<p>其中，type指定填充原子的类型，style指定填充原子的方法，lammps提供了box 、region 、single和random 4种填充原子方式。</p>
+<p>接下来详细介绍这4种填充原子的方式。</p>
+<h5 id="4-1-在盒子box内填充原子"><a href="#4-1-在盒子box内填充原子" class="headerlink" title="4.1 在盒子box内填充原子"></a>4.1 <strong>在盒子box内填充原子</strong></h5><figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">create_atoms</span> <span class="keyword">type</span> box</span><br></pre></td></tr></table></figure>
+
+<p>box类型是最简单的一种用法，在模拟盒子内按照指定的晶格类型填充指定类型的原子，<strong>执行这句命令之前需要提前定义box和lattice</strong>。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">create_atoms</span> <span class="number">1</span> box</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-2-在指定区域（region）内填充原子"><a href="#4-2-在指定区域（region）内填充原子" class="headerlink" title="4.2 在指定区域（region）内填充原子"></a>4.2 <strong>在指定区域（region）内填充原子</strong></h5><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_atoms <span class="keyword">type</span> <span class="type">region </span>region-ID</span><br></pre></td></tr></table></figure>
+
+<p>对于复杂结构体系或者不同形状晶体结构，可以配合region命令实现分区域填充原子。</p>
+<p>例如在一个球内填充Cu原子：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">lattice</span>  fcc <span class="number">3</span>.<span class="number">61</span></span><br><span class="line"><span class="attribute">region</span>  box block -<span class="number">10</span> <span class="number">10</span> -<span class="number">10</span> <span class="number">10</span> -<span class="number">10</span> <span class="number">10</span></span><br><span class="line"><span class="attribute">create_box</span>  <span class="number">1</span> box</span><br><span class="line"><span class="attribute">region</span>  Cu_sphere sphere <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">5</span></span><br><span class="line"><span class="attribute">create_atoms</span>  <span class="number">1</span> region Cu_sphere</span><br></pre></td></tr></table></figure>
+
+<p>或者在圆锥内填充Fe原子，在圆柱内填充Cu原子，代码如下：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#生成box</span></span><br><span class="line"><span class="attribute">region</span>  box block -<span class="number">30</span> <span class="number">30</span> -<span class="number">30</span> <span class="number">30</span> <span class="number">0</span> <span class="number">60</span> units box</span><br><span class="line"><span class="attribute">create_box</span>  <span class="number">2</span> box</span><br><span class="line"><span class="comment">#圆柱Cu原子</span></span><br><span class="line"><span class="attribute">lattice</span>  fcc <span class="number">3</span>.<span class="number">61</span></span><br><span class="line"><span class="attribute">region</span>  cu cylinder z <span class="number">0</span> <span class="number">0</span> <span class="number">15</span> <span class="number">0</span> <span class="number">40</span> units box</span><br><span class="line"><span class="attribute">create_atoms</span>  <span class="number">1</span> region cu</span><br><span class="line"><span class="comment">#圆锥Fe原子</span></span><br><span class="line"><span class="attribute">lattice</span>  fcc <span class="number">2</span>.<span class="number">86</span></span><br><span class="line"><span class="attribute">region</span>  fe cone z <span class="number">0</span> <span class="number">0</span> <span class="number">15</span> <span class="number">0</span> <span class="number">42</span> <span class="number">60</span> units box</span><br><span class="line"><span class="attribute">create_atoms</span>  <span class="number">2</span> region fe</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220915212654228.png"></p>
+<h5 id="4-3-生成单个原子"><a href="#4-3-生成单个原子" class="headerlink" title="4.3 生成单个原子"></a>4.3 <strong>生成单个原子</strong></h5><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_atoms <span class="keyword">type</span> <span class="type">single </span>x y z</span><br></pre></td></tr></table></figure>
+
+<p>create_atoms可以在指定的坐标点上生成单个原子，xyz为原子坐标。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">lattice</span>  fcc <span class="number">2</span>.<span class="number">86</span></span><br><span class="line"><span class="attribute">region</span>  box block <span class="number">0</span> <span class="number">20</span> <span class="number">0</span> <span class="number">20</span> <span class="number">0</span> <span class="number">20</span></span><br><span class="line"><span class="attribute">create_box</span>  <span class="number">1</span> box</span><br><span class="line"><span class="attribute">create_atoms</span>  <span class="number">1</span> single <span class="number">10</span> <span class="number">10</span> <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220915212817307.png"></p>
+<h5 id="4-4-随机生成原子"><a href="#4-4-随机生成原子" class="headerlink" title="4.4 随机生成原子"></a>4.4 <strong>随机生成原子</strong></h5><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_atoms <span class="keyword">type</span> <span class="type">random </span>N seed region-ID</span><br></pre></td></tr></table></figure>
+
+<p>random类型在指定区域内随机生成原子，N为生成原子总数，seed为随机数种子，region-ID指定填充原子区域。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">lattice</span>  fcc <span class="number">2</span>.<span class="number">86</span></span><br><span class="line"><span class="attribute">region</span>  box block <span class="number">0</span> <span class="number">20</span> <span class="number">0</span> <span class="number">20</span> <span class="number">0</span> <span class="number">40</span></span><br><span class="line"><span class="attribute">create_box</span>  <span class="number">1</span> box</span><br><span class="line"><span class="attribute">region</span>  fe block <span class="number">0</span> <span class="number">20</span> <span class="number">0</span> <span class="number">20</span> <span class="number">5</span> <span class="number">35</span></span><br><span class="line"><span class="attribute">create_atoms</span>  <span class="number">1</span> random <span class="number">30</span> <span class="number">8763</span> fe</span><br></pre></td></tr></table></figure>
+
+<h4 id="5、read-data"><a href="#5、read-data" class="headerlink" title="5、read_data"></a>5、read_data</h4><p>在前面的教程中，我们已经知道，lammps建模方法有两种，可以使用lammps自带的建模命令建模，也可以使用第三方软件建模。</p>
+<p>如果使用第三方软件建模，必须将模型文件转换为lammps可以识别的data文件，不同的建模方式转换方法有所不同。</p>
+<p>Material studio软件建模完成导出car文件，可通过msi2lmp软件转化为data文件，Atomsk软件建模完成可以直接导出data文件。</p>
+<p>假设现在已经有了data文件，我们就可以使用read_data命令将模型读入到lammps中，read_data命令的格式为：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">read_data</span></span> <span class="keyword">file</span> keyword args ...</span><br></pre></td></tr></table></figure>
+
+<p>如果只需要读取一个data文件，直接将文件名写到read_data命令的后面即可：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">read_data</span> <span class="type">Fe</span>.<span class="class"><span class="keyword">data</span></span></span><br></pre></td></tr></table></figure>
+
+<p>read_data命令支持在一个lammps代码中读取多个data文件，将不同的结构组装为一个复杂的体系。</p>
+<p>当然，复杂体系的建模也可以在建模软件里面完成，但有些情况下，使用read_data命令会更加灵活。</p>
+<p>比如两部分结构分别进行弛豫，达到平衡以后再组合到一起，或者两部分结构是用两种建模软件建模，分别生成data文件后，使用read_data可以很方便的组合到一起。</p>
+<p>读取两种文件例子：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#读取Fe.data</span></span><br><span class="line"><span class="attribute">read_data</span>    Fe.data extra/atom/types <span class="number">1</span></span><br><span class="line">     <span class="comment">#第二次调用read_data命令，读取Cu.data,offset关键字说明原子类型+1</span></span><br><span class="line">     <span class="comment">#shift设置读取Cu模型后，Cu原子尺寸整体沿-y方向偏移22埃米</span></span><br><span class="line"><span class="attribute">read_data</span>    Cu.data add append offset <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> shift <span class="number">0</span>.<span class="number">0</span> -<span class="number">22</span> <span class="number">0</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="6、set"><a href="#6、set" class="headerlink" title="6、set"></a>6、set</h4><p>在lammps模拟中，有时需要设置固定层，为了能够清楚的显示固定层，要把固定层原子设定为不同颜色，如下图所示。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220916210338871.png"></p>
+<p>解决的方法有两种，最简单的一种方法是使用<strong>create_atoms时选择和基体原子不一样的原子类型</strong>。</p>
+<p>如果晶体结构是通过其他建模软件生成，直接由data文件读入，那么，刚才那种方法就不适用了。</p>
+<p>这种情况可以使用<strong>set命令改变原子的类型</strong>。</p>
+<p>语法为：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set <span class="keyword">group</span> <span class="title">group-ID</span> <span class="keyword">type</span> N</span><br></pre></td></tr></table></figure>
+
+<p>使用这条命令之前，先将要改变类型的原子归入到一个group内。</p>
+<p>例如将left组原子类型设为2：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> roup left<span class="built_in"> type </span>2</span><br></pre></td></tr></table></figure>
+
+<h4 id="7、delete-atoms"><a href="#7、delete-atoms" class="headerlink" title="7、delete_atoms"></a>7、delete_atoms</h4><p>lammps建模时，我们使用create_atoms创建原子，有些情况下，需要删除一些原子，用到的命令为：delete_atoms。</p>
+<p>delete_atoms语法：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">delete_atoms</span></span> style args keyword value ...</span><br></pre></td></tr></table></figure>
+
+<p>下面介绍delete_atoms常见的用法</p>
+<h5 id="7-1-删除组内或区域内原子"><a href="#7-1-删除组内或区域内原子" class="headerlink" title="7.1 删除组内或区域内原子"></a>7.1 <strong>删除组内或区域内原子</strong></h5><p>整组或者整个区域删除原子，直接使用group或者region关键字即可，删除原子后原子ID已经不连续，使用<strong>compress yes可对ID序号进行压缩，也就是重新排序，产生连续的原子ID。</strong></p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#删除edge组内所有原子</span></span><br><span class="line">delete_atoms <span class="keyword">group</span> <span class="title">edge</span></span><br><span class="line"><span class="comment">#删除sphere区域内所有原子，并且不压缩ID</span></span><br><span class="line">delete_atoms region sphere compress no</span><br></pre></td></tr></table></figure>
+
+<h5 id="7-2-删除重叠原子"><a href="#7-2-删除重叠原子" class="headerlink" title="7.2 删除重叠原子"></a>7.2 <strong>删除重叠原子</strong></h5><p>在不同区域内填充原子，有可能会造成两区域边界部分原子重叠，产生重叠的原子之间受力过大容易飞出box，出现“lost atoms”错误。</p>
+<p>因此，在建模时可删除重叠原子，用的命令为：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete_atoms overlap args = cutoff group1-ID group2-ID</span><br></pre></td></tr></table></figure>
+
+<p>group1-ID、group2-ID为两个原子组，cutoff确定原子间距，间距在cutoff内并且分别处于两个组内的原子之一（group1-ID组）会被删除。如：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">delete_atoms</span> overlap <span class="number">0</span>.<span class="number">3</span> group1 group2</span><br></pre></td></tr></table></figure>
+
+<h5 id="7-3-随机删除原子"><a href="#7-3-随机删除原子" class="headerlink" title="7.3 随机删除原子"></a>7.3 <strong>随机删除原子</strong></h5><p>按照一定比例随机删除原子，比如随机产生空位，语法为：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete_atoms porosity <span class="built_in">args</span> = <span class="built_in">region</span>-ID fraction seed</span><br></pre></td></tr></table></figure>
+
+<p>fraction为删除原子比例，seed为随机数种子。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">delete_atoms</span> porosity cube <span class="number">0</span>.<span class="number">1</span> <span class="number">482793</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="7-4-删除分子"><a href="#7-4-删除分子" class="headerlink" title="7.4 删除分子"></a>7.4 <strong>删除分子</strong></h5><p>分子含有多个原子，如果仅删除一个原子，如H2O仅删除一个H或者一个O原子，在模拟的时候可能会报错。</p>
+<p>这时候就需要删除整个H2O分子，加上关键字mol即可。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">delete_atoms</span>   overlap <span class="number">0</span>.<span class="number">5</span> Water Cu  mol yes</span><br></pre></td></tr></table></figure>
+
+<h4 id="8、旋转模型"><a href="#8、旋转模型" class="headerlink" title="8、旋转模型"></a>8、旋转模型</h4><p>displace命令操作的是原子组，因此，先把以上模型原子划入tool组：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">group</span>   <span class="title">tool</span> <span class="keyword">type</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">displace_atoms <span class="keyword">group</span> rotate Px Py Pz <span class="literal">Rx</span> Ry Rz theta</span><br><span class="line">rotate args = Px Py Pz <span class="literal">Rx</span> Ry Rz theta</span><br><span class="line">  Px,Py,Pz = 旋转轴上的一个点</span><br><span class="line">  <span class="literal">Rx</span>,Ry,Rz = 旋转轴</span><br><span class="line">  theta = 旋转角度</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、力场设置"><a href="#三、力场设置" class="headerlink" title="三、力场设置"></a>三、力场设置</h3><h4 id="1、势函数"><a href="#1、势函数" class="headerlink" title="1、势函数"></a>1、势函数</h4><h5 id="1-1-lj-x2F-cut在in文件中使用方法"><a href="#1-1-lj-x2F-cut在in文件中使用方法" class="headerlink" title="1.1  lj&#x2F;cut在in文件中使用方法"></a>1.1  <strong>lj&#x2F;cut在in文件中使用方法</strong></h5><p>在in文件中使用lj&#x2F;cut，需要明确的指定相互作用的原子类型，如：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">pair_style</span> lj/cut <span class="number">10</span></span><br><span class="line"><span class="attribute">pair_coeff</span> * * <span class="number">0</span>.<span class="number">02</span> <span class="number">3</span>.<span class="number">12</span></span><br><span class="line"><span class="attribute">pair_coeff</span> <span class="number">1</span> <span class="number">3</span> <span class="number">0</span>.<span class="number">03</span> <span class="number">3</span>.<span class="number">22</span> <span class="number">8</span>.<span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<p>上面两句指定全部原子之间的lj&#x2F;cut力场，截断半径为10，epsilon&#x3D;0.02、sigma&#x3D;3.12。</p>
+<p>1和3原子截断半径为8.5，epsilon&#x3D;0.03、sigma&#x3D;3.22。</p>
+<h5 id="1-2-tersoff势函数"><a href="#1-2-tersoff势函数" class="headerlink" title="1.2  tersoff势函数"></a>1.2  tersoff势函数</h5><p>tersoff势写法：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pair_style tersoff</span><br><span class="line">pair_coeff * * SiC.tersoff <span class="built_in">Si</span> <span class="built_in">Si</span> C</span><br></pre></td></tr></table></figure>
+
+<p>第一行pair_style指定势函数类型为tersoff。</p>
+<p>第二行pair_coeff映射原子类型，pair_coeff命令后面必须为“*”，不能写具体的原子类型（如1 2）。</p>
+<p>“*”后面为tersoff势文件名称，最后一部分为原子列表。</p>
+<h5 id="1-3-混合势函数hybrid"><a href="#1-3-混合势函数hybrid" class="headerlink" title="1.3 混合势函数hybrid"></a>1.3 混合势函数hybrid</h5><p>以SiC和Cu体系为例，体系中的原子类型分别为：Si（type 1）、C（type 2）、Cu（type 3），对应的写法为</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">pair_style</span>  hybrid tersoff eam lj/cut <span class="number">10</span>.<span class="number">0</span></span><br><span class="line"><span class="attribute">pair_coeff</span>  * * tersoff SiC.tersoff Si C NULL</span><br><span class="line"><span class="attribute">pair_coeff</span>  <span class="number">3</span> <span class="number">3</span> Cu.eam</span><br><span class="line"><span class="attribute">pair_coeff</span>  <span class="number">1</span> <span class="number">3</span> lj/cut <span class="number">0</span>.<span class="number">0034</span> <span class="number">3</span>.<span class="number">12</span> </span><br><span class="line"><span class="attribute">pair_coeff</span>  <span class="number">2</span> <span class="number">3</span> lj/cut <span class="number">0</span>.<span class="number">053</span>  <span class="number">2</span>.<span class="number">98</span></span><br></pre></td></tr></table></figure>
+
+<p>pair_style命令指出需要设置的三种势函数类型。</p>
+<p>第2行表示前2种原子（Si、C）使用tersoff势，第三种原子位置为NULL表示该原子（Cu）不使用SiC势。</p>
+<p>第3行设置Cu为eam势。</p>
+<p>第4、5行设置Si-Cu、C-Cu为lj&#x2F;cut势，参数仅为演示。</p>
+<h3 id="四、能量最小化"><a href="#四、能量最小化" class="headerlink" title="四、能量最小化"></a>四、能量最小化</h3><h4 id="1、minimize"><a href="#1、minimize" class="headerlink" title="1、minimize"></a>1、<strong>minimize</strong></h4><h5 id="1-1-minimize命令"><a href="#1-1-minimize命令" class="headerlink" title="1.1 minimize命令"></a>1.1 minimize命令</h5><p>minimize命令通过力的计算排开距离过近的原子，使体系的能量降到一个较低的水平，便于<strong>后续的弛豫操作</strong>。</p>
+<p>minimize语法为：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">minimize etol ftol maxiter maxeval</span></span><br></pre></td></tr></table></figure>
+
+<p>后面四个参数为minimize运行停止条件，其中etol、ftol分别为能量和力的容差，<strong>maxiter、maxeval为迭代最大步数</strong>。</p>
+<p>在最小化过程中，达到四个条件中的任意一个时，最小化即停止运行。</p>
+<p>力或者能量已经降低到一个较低水平，或者力或能量还没有降低到一个低值，但设定的迭代步数已经用完，都会停止最小化。</p>
+<h5 id="1-2-min-style命令"><a href="#1-2-min-style命令" class="headerlink" title="1.2 min_style命令"></a>1.2 <strong>min_style命令</strong></h5><p>minimize最小化采用的算法由min_style命令确定，min_style语法为：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">min_style stylestyle = cg<span class="built_in"> or </span>hftn<span class="built_in"> or </span>sd<span class="built_in"> or </span>quickmin<span class="built_in"> or </span>fire<span class="built_in"> or </span>fire/old<span class="built_in"> or </span>spin<span class="built_in"> or </span>spin/cg<span class="built_in"> or </span>spin/lbfgs</span><br></pre></td></tr></table></figure>
+
+<p>最常用的为共轭梯度法（cg）、最速下降法（sd）。</p>
+<h5 id="1-3-使用举例"><a href="#1-3-使用举例" class="headerlink" title="1.3 使用举例"></a>1.3 <strong>使用举例</strong></h5><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">min_style</span> cg</span><br><span class="line"><span class="attribute">minimize</span> <span class="number">1</span>.<span class="number">0</span>e-<span class="number">4</span> <span class="number">1</span>.<span class="number">0</span>e-<span class="number">6</span> <span class="number">100</span> <span class="number">1000</span></span><br></pre></td></tr></table></figure>
+
+<p>如果已经进行了最小化，但是后续弛豫仍然会报错，可查看log文件，排查minimize运行停止的条件，适当调小能量和力的容差或者加大迭代步数。</p>
+<p>如以上语句可改为：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">min_style</span> cg</span><br><span class="line"><span class="attribute">minimize</span> <span class="number">1</span>.<span class="number">0</span>e-<span class="number">15</span> <span class="number">1</span>.<span class="number">0</span>e-<span class="number">15</span> <span class="number">10000</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="五、温度初始化"><a href="#五、温度初始化" class="headerlink" title="五、温度初始化"></a>五、温度初始化</h3><h4 id="1、velocity"><a href="#1、velocity" class="headerlink" title="1、velocity"></a>1、velocity</h4><p>原子速度在分子动力学模拟中是一个重要的参数，不仅决定了当前时刻体系的温度，也决定了原子在下一个的位置。</p>
+<p>速度的设置是分子动力学模拟必不可少的一个步骤。</p>
+<p>在lammps中，使用velocity命令设置原子的速度，命令格式为：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">velocity <span class="keyword">group</span><span class="params">-ID</span> style args <span class="built_in">keyword</span> value <span class="params">...</span></span><br></pre></td></tr></table></figure>
+
+<p>其中，group-ID指定哪一组原子将要被设置速度，style决定了速度设置的类型。</p>
+<p><strong>常见的速度设置方式有以下三种：</strong></p>
+<h5 id="1-1-velocity-create进行初始化"><a href="#1-1-velocity-create进行初始化" class="headerlink" title="1.1  velocity create进行初始化"></a>1.1  <strong>velocity create进行初始化</strong></h5><p>分子动力学模拟需要有一个初始的状态，因此，当原子模型建立完成，进行minimize能量最小化之后，需要进行速度初始化，体系的温度是由原子的温度计算得到，因此，这个过程也称为温度初始化。</p>
+<p>使用的命令为velocity create，例如：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">velocity</span> <span class="literal">all</span> create <span class="number">300</span> <span class="number">4928459</span></span><br></pre></td></tr></table></figure>
+
+<p>这一条语句的作用是对所有原子进行速度初始化，总体系的温度为300k，4928459为随机数，每个原子的速度被随机设置，默认的情况下，原子的速度符合正态分布。</p>
+<p>也可以设置dist参数，使原子的速度符合高斯分布：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">velocity</span> <span class="literal">all</span> create <span class="number">300</span> <span class="number">4928459</span> dist gaussian</span><br></pre></td></tr></table></figure>
+
+<p>当然，也可以对部分原子进行速度初始化，只需要改变原子组即可：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">velocity</span> mobile create <span class="number">298</span> <span class="number">4928459</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="1-2-velocity-set设置原子在特定方向上的速度"><a href="#1-2-velocity-set设置原子在特定方向上的速度" class="headerlink" title="1.2 velocity set设置原子在特定方向上的速度"></a>1.2 <strong>velocity set设置原子在特定方向上的速度</strong></h5><p>在拉伸、剪切等动力学模拟中，需要这种一部分原子沿着某一个方向移动，可以使用velocity set命令设定特定方向的速度。</p>
+<p>例如在沿着Z轴进行拉伸模拟时，需要把底部原子固定住，使上部（top）原子沿着Z轴施加一个速度，可以写为：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">velocity top <span class="built_in">set</span> <span class="literal">NULL</span> <span class="literal">NULL</span> 2  sum <span class="literal">yes</span> units box</span><br></pre></td></tr></table></figure>
+
+<p>上句代码中 NULL NULL 2 表示不设置x和y方向的速度，仅设置z方向速度，sum yes的意思是将速度2加到原子当前时刻速度分量上，如果不写sum yes，则表示忽略原来的速度，直接将z方向速度直接设为2。</p>
+<p>默认的单位为晶格单位（lattice），units box关键字可将单位设置为实际速度单位，具体单位与体系units有关。</p>
+<p>也可以多个方向同时设置：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">velocity</span> top set <span class="number">2</span> <span class="number">2</span> <span class="number">0</span> sum yes</span><br></pre></td></tr></table></figure>
+
+<p>将x、y方向移动速度设为2（晶格单位），z方向速度为0，覆盖掉原来的速度值。设置之后相当于top组原子沿着x和y方向的对角线方向移动。</p>
+<h5 id="1-3-velocity-ramp设置速度场"><a href="#1-3-velocity-ramp设置速度场" class="headerlink" title="1.3 velocity ramp设置速度场"></a>1.3 <strong>velocity ramp设置速度场</strong></h5><p>lammps允许在某一个方向上按照不同的坐标位置设置不同的速度，例如：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">velocity</span> flow ramp vx <span class="number">0</span>.<span class="number">0</span> <span class="number">5</span>.<span class="number">0</span> y <span class="number">5</span> <span class="number">15</span></span><br></pre></td></tr></table></figure>
+
+<p>这句代码是将y坐标从5到15的原子在x方向的速度设为0到5，y坐标小于5的原子x方向速度为0，y坐标大于15的原子x方向的速度为5，中间的原子x方向速度按照比例关系进行设定，例如y坐标为10的原子x方向上的速度为2.5。</p>
+<h3 id="六、弛豫"><a href="#六、弛豫" class="headerlink" title="六、弛豫"></a>六、弛豫</h3><h4 id="1、nve-x2F-nvt-x2F-npt"><a href="#1、nve-x2F-nvt-x2F-npt" class="headerlink" title="1、nve&#x2F;nvt&#x2F;npt"></a>1、nve&#x2F;nvt&#x2F;npt</h4><p>在lammps模拟中，<strong>常用的系综有nve、nvt、npt三种系综</strong>，下面说说这三种系综的使用方法。</p>
+<h5 id="1-1-nve（微正则系综）"><a href="#1-1-nve（微正则系综）" class="headerlink" title="1.1 nve（微正则系综）"></a>1.1 <strong>nve（微正则系综）</strong></h5><p><strong>nve系综保证系统中原子数量n、体系总体积v和体系总能量e保持不变。</strong></p>
+<p>nve系综没有控温的功能，初始条件确定后，在力场的作用下，原子速度发生变化，相应的体系温度发生变化。我们知道，体系总能量e&#x3D;势能+动能，温度发生变化，动能就会变化，势能和动能相互转换，总能量保持不变。</p>
+<p>nve使用方法：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fix</span> <span class="number">1</span> <span class="literal">all</span> nve</span><br></pre></td></tr></table></figure>
+
+<p>nve语法比较简单，使用fix语句确定原子组就可以了，nve系综对边界条件没有要求。</p>
+<h5 id="1-2-nvt（等温等压）"><a href="#1-2-nvt（等温等压）" class="headerlink" title="1.2 nvt（等温等压）"></a>1.2 <strong>nvt（等温等压）</strong></h5><p><strong>nvt系综保证体系的原子数量n、体积v和温度t保持不变。</strong></p>
+<p>nvt系综下，模拟盒子box的尺寸不会发生变化，lammps通过改变原子的速度对体系的温度进行调节。</p>
+<p>nvt语法：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fix ID <span class="keyword">group</span>-ID nvt <span class="keyword">temp</span> Tstart Tstop Tdamp</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<p>ID：fix语句ID标识符</p>
+<p>group-ID：原子组标识</p>
+<p>temp：温度标识</p>
+<p>Tstart：初始温度</p>
+<p>Tstop：结束温度</p>
+<p>Tdamp：阻尼系数</p>
+<p>Tstart、Tstop主要设置初始和结束温度，Tdamp称为阻尼系数，主要是控制温度调节的幅度。</p>
+<p>在nvt系综中，<strong>Tdamp一般设置为100*timestep</strong>。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#nvt系综下恒温：</span></span><br><span class="line"><span class="attribute">fix</span> <span class="number">1</span> <span class="literal">all</span> nvt temp <span class="number">300</span>.<span class="number">0</span> <span class="number">300</span>.<span class="number">0</span> <span class="number">100</span></span><br><span class="line"><span class="comment">#nvt系综下升温（比如融化）：</span></span><br><span class="line"><span class="attribute">fix</span> <span class="number">1</span> <span class="literal">all</span> nvt temp <span class="number">300</span>.<span class="number">0</span> <span class="number">2000</span>.<span class="number">0</span> <span class="number">100</span></span><br><span class="line"><span class="comment">#nvt系综下降温（比如结晶）：</span></span><br><span class="line"><span class="attribute">fix</span> <span class="number">1</span> <span class="literal">all</span> nvt temp <span class="number">2000</span>.<span class="number">0</span> <span class="number">300</span>.<span class="number">0</span> <span class="number">100</span></span><br></pre></td></tr></table></figure>
+
+<p>nvt系综对边界条件没有要求。</p>
+<h5 id="1-3-npt（等压等温）"><a href="#1-3-npt（等压等温）" class="headerlink" title="1.3 npt（等压等温）"></a>1.3 <strong>npt（等压等温）</strong></h5><p><strong>npt系综保证体系的原子数量n、压强p和温度t保持不变。</strong></p>
+<p>npt系综不仅进行控温，还进行控压。和nvt一样，npt系综通过调节原子速度调控温度，不同的是，npt系综下box的尺寸可以发生变化。</p>
+<p>npt系综通过改变box的尺寸调节压力，比如，当体系压力超过设定值时，扩大box尺寸降低压力。</p>
+<p>npt语法：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fix ID <span class="keyword">group</span>-ID npt <span class="keyword">temp</span> Tstart Tstop Tdamp Pstart Pstop Pdamp</span><br></pre></td></tr></table></figure>
+
+<p>npt语法和nvt差不多，只不过多了Pstart Pstop Pdamp三个参数进行压力控制。</p>
+<p>Pstart、Pstop分别为初始压力、结束压力，<strong>Pdamp压力调节阻尼系数，通常为1000*timestep。</strong></p>
+<p><strong>需要注意的是，npt在控压方向上必须保证边界条件为p，否则会出错。</strong></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#温度300k，iso表示在各个方向上进行控压，压力为0</span></span><br><span class="line"><span class="attribute">fix</span> <span class="number">1</span> <span class="literal">all</span> npt temp <span class="number">300</span>.<span class="number">0</span> <span class="number">300</span>.<span class="number">0</span> <span class="number">100</span>.<span class="number">0</span> iso <span class="number">0</span>.<span class="number">0</span> <span class="number">0</span>.<span class="number">0</span> <span class="number">1000</span>.<span class="number">0</span></span><br><span class="line"><span class="comment">#温度300k，对x、y方向进行控压，z方向不控压</span></span><br><span class="line"><span class="attribute">fix</span> <span class="number">1</span> <span class="literal">all</span> npt temp <span class="number">300</span>.<span class="number">0</span> <span class="number">300</span>.<span class="number">0</span> <span class="number">100</span>.<span class="number">0</span> x <span class="number">0</span>.<span class="number">0</span> <span class="number">0</span>.<span class="number">0</span> <span class="number">1000</span> y <span class="number">0</span>.<span class="number">0</span> <span class="number">0</span>.<span class="number">0</span> <span class="number">1000</span></span><br></pre></td></tr></table></figure>
+
+<p>在模拟的时候到底应该选择哪一个系综，可能是初学者最头疼的事了。</p>
+<p><strong>选择系综主要与模拟的体系、模拟的目的有关。</strong></p>
+<p>nve系综是一个封闭的系统，与外界没有能量交换，一般用于不需要控温、体系内能量相互转换的模拟，比如石墨烯卷曲到纳米棒。</p>
+<p><strong>在大多数模拟中，用nvt或者npt都可以。</strong></p>
+<p>以拉伸为例，使用deform进行拉伸，系综可以为nvt，也可以为npt，不过在npt下更有容易模拟泊松效应。</p>
+<p>使用velocity方式进行拉伸，在拉伸方向只能为s边界，使用nvt系综更方便。</p>
+<p>nvt和npt系综也可以配合使用，比如，对于比较复杂的模型，可以先进行nvt系综下弛豫，然后再进行npt系综下的弛豫。</p>
+<p><strong>系综的选择没有统一的规则，最好的方法是多读文献，相同的模拟环境下，看看文献中用的是哪种系综。</strong></p>
+<blockquote>
+<p><strong>多数情况下，用nvt系综进行驰豫即可，但部分体积变化比较大的体系，用npt系综进行驰豫效果会更好。</strong></p>
+</blockquote>
+<h4 id="2、-控温"><a href="#2、-控温" class="headerlink" title="2、 控温"></a>2、 控温</h4><p>控温的基本原理是通过调节原子的速度达到调节体系温度的目的。调节原子速度的算法有很多，因此，对应的控温方式有多种。</p>
+<h5 id="1、Nose-Hoover热浴法"><a href="#1、Nose-Hoover热浴法" class="headerlink" title="1、Nose-Hoover热浴法"></a>1、Nose-Hoover热浴法</h5><p>nvt和npt采用Nose-Hoover热浴法调节体系温度，因此，如果论文中提到Nose-Hoover，其实就是用nvt或者npt，至于用哪个，主要看是否控压。<br>对应代码为：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fix <span class="number">1</span> <span class="keyword">all</span> nvt <span class="keyword">temp</span> <span class="number">300.0</span> <span class="number">300.0</span> <span class="number">100.0</span></span><br><span class="line">或</span><br><span class="line">fix <span class="number">1</span> <span class="keyword">all</span> npt <span class="keyword">temp</span> <span class="number">300.0</span> <span class="number">300.0</span> <span class="number">100</span> iso <span class="number">0</span> <span class="number">0</span> <span class="number">1000</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2、langevin控温法"><a href="#2、langevin控温法" class="headerlink" title="2、langevin控温法"></a>2、langevin控温法</h5><p>langevin控温只通过力的计算调节原子的速度，但是不能对时间进行积分，如果对一组原子只施加langevin控温，原子会固定不动。<br>因此，一般需要配合fix nve使用。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fix</span> <span class="number">1</span> <span class="literal">all</span> nve</span><br><span class="line"><span class="attribute">fix</span> <span class="number">2</span> <span class="literal">all</span> langevin <span class="number">300</span> <span class="number">300</span> <span class="number">100</span>.<span class="number">0</span> <span class="number">48279</span></span><br></pre></td></tr></table></figure>
+
+<p>对于分层控制的体系来说，这种控温方式相对灵活。<br>如在摩擦中，只对恒温层进行控温，其他层不控温：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fix</span> <span class="number">1</span> <span class="literal">all</span> nve</span><br><span class="line"><span class="attribute">fix</span> <span class="number">2</span> temp_layer langevin <span class="number">300</span> <span class="number">300</span> <span class="number">100</span>.<span class="number">0</span> <span class="number">48279</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="3、temp-x2F-rescale速度标定法"><a href="#3、temp-x2F-rescale速度标定法" class="headerlink" title="3、temp&#x2F;rescale速度标定法"></a>3、temp&#x2F;rescale速度标定法</h5><p>temp&#x2F;rescale称为速度标定法，是一种比较“粗暴”的控温方式。<br>基本原理是当温度超出设定温度时，通过缩放的方式调节温度使其达到设定值。<br>temp&#x2F;rescale也需要配合fix nve使用才能更新原子位置。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fix</span> <span class="number">1</span> <span class="literal">all</span> nve</span><br><span class="line"><span class="attribute">fix</span> <span class="number">2</span> flow temp/rescale <span class="number">100</span> <span class="number">1</span>.<span class="number">0</span> <span class="number">1</span>.<span class="number">1</span> <span class="number">0</span>.<span class="number">02</span> <span class="number">0</span>.<span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="4、berendson控温"><a href="#4、berendson控温" class="headerlink" title="4、berendson控温"></a>4、berendson控温</h5><p>berendson控温我用的不多，不是很熟，大家可以查一下控温原理。<br>berendson控温同样需要和fix nve配合使用</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fix</span> <span class="number">1</span> <span class="literal">all</span> nve</span><br><span class="line"><span class="attribute">fix</span> <span class="number">2</span> <span class="literal">all</span> temp/berendsen <span class="number">300</span>.<span class="number">0</span> <span class="number">300</span>.<span class="number">0</span> <span class="number">100</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>每一种控温方式都有其存在的合理性和应用范围，大家在选用的时候可多参考论文，灵活选择。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h4 id="1、fix-setforce"><a href="#1、fix-setforce" class="headerlink" title="1、fix setforce"></a>1、fix setforce</h4><p>在分子动力学模拟中，有时需要固定一部分原子，例如，使用velocity命令对体系进行拉伸时，固定底部原子，对顶部原子施加一定的速度实现拉伸。</p>
+<p>在纳米磨削中，也需要固定设置一个固定层，防止工件在磨削力的作用下移动。</p>
+<p>在lammps中固定原子的方式有多种，我比较常用的是<strong>fix setforce</strong>命令。</p>
+<p>fix setforce命令语法格式为：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fix ID <span class="keyword">group</span><span class="params">-ID</span> setforce fx fy fz <span class="built_in">keyword</span> value <span class="params">...</span></span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li>ID是本次fix设置的id，可以任意命名。</li>
+<li>group-ID是需要被施加力的原子组</li>
+<li>fx、fy、fz是施加力的方向和大小。</li>
+</ul>
+<p>fix setforce原理是在xyz方向上设置原子新的受力值，如果某个方向不需要设置，可设为NULL。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将indenter在xyz三个方向的受力设为0</span></span><br><span class="line"><span class="attribute">fix</span> freeze indenter setforce <span class="number">0</span>.<span class="number">0</span> <span class="number">0</span>.<span class="number">0</span> <span class="number">0</span>.<span class="number">0</span></span><br><span class="line"><span class="comment">#将edge在yz方向上的受力设为0，x方向受力保持原值不变</span></span><br><span class="line"><span class="attribute">fix</span> <span class="number">2</span> edge setforce NULL <span class="number">0</span>.<span class="number">0</span> <span class="number">0</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>固定boundary组，就可以把boundary组各个方向的受力设为0：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fix</span> <span class="number">1</span> boundary setforce <span class="number">0</span>.<span class="number">0</span> <span class="number">0</span>.<span class="number">0</span> <span class="number">0</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>如果只是使用setforce一句命令，有可能还会存在一个问题。</p>
+<blockquote>
+<p>当boundary组的原子受力为0，但如果boundary组原子有非零温度，也就是原子有速度的话，即使受力为0，原子也会按照初始的速度继续移动，同样达不到固定原子的效果。</p>
+<p>这种情况下，需要配合velocity使用，把该原子组的速度设为0.</p>
+</blockquote>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">velocity</span> boundary set <span class="number">0</span>.<span class="number">0</span> <span class="number">0</span>.<span class="number">0</span> <span class="number">0</span>.<span class="number">0</span></span><br><span class="line"><span class="attribute">fix</span> <span class="number">1</span> boundary setforce <span class="number">0</span>.<span class="number">0</span> <span class="number">0</span>.<span class="number">0</span> <span class="number">0</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>上面两句代码配合使用，就可以固定boundary原子。</p>
+<h4 id="2、温度控制"><a href="#2、温度控制" class="headerlink" title="2、温度控制"></a>2、温度控制</h4><p>fix nvt命令中的temp默认为全部原子的平均温度，因为边界层原子温度为0k，只有提高top层原子温度才能保证全局温度为300k。<br> 解决的办法也比较简单，在fix nvt后面加一句fix_modify命令，把fix nvt命令中的temp控温对象设为top组原子。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#上层原子温度初始化为300k</span></span><br><span class="line"><span class="attribute">velocity</span> top create <span class="number">300</span> <span class="number">8989</span></span><br><span class="line"><span class="comment">#固定下层原子</span></span><br><span class="line"><span class="attribute">velocity</span> botom set <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="attribute">fix</span> <span class="number">01</span> botom setforce <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="comment">#计算上下层温度</span></span><br><span class="line"><span class="attribute">compute</span> topTemp top temp</span><br><span class="line"><span class="attribute">compute</span> botTemp botom temp</span><br><span class="line"><span class="comment">#输出上下层和全局温度</span></span><br><span class="line"><span class="attribute">thermo</span>          <span class="number">100</span></span><br><span class="line"><span class="attribute">thermo_style</span>    custom step c_topTemp c_botTemp  temp </span><br><span class="line"><span class="comment">#保存结构文件</span></span><br><span class="line"><span class="attribute">dump</span>            <span class="number">1</span> <span class="literal">all</span> atom <span class="number">100</span> cu.xyz</span><br><span class="line"><span class="attribute">fix</span>             <span class="number">2</span> <span class="literal">all</span> nvt temp <span class="number">300</span> <span class="number">300</span> <span class="number">0</span>.<span class="number">01</span></span><br><span class="line"><span class="attribute">fix_modify</span>      <span class="number">2</span> temp topTemp</span><br><span class="line"><span class="attribute">run</span>             <span class="number">1000</span></span><br></pre></td></tr></table></figure>
+
+<p>在阅读论文时，大家应该会注意到，不同的论文在模拟时，可能采用不同的控温方式。</p>
+<p>有的是Nose-Hoover，有的是速度标定法，有的同学可能不知道如何用代码实现。</p>
+<p>控温的基本原理是通过调节原子的速度达到调节体系温度的目的。</p>
+<p><strong>调节原子速度的算法有很多，因此，对应的控温方式有多种。</strong></p>
+<p><strong>1. Nose-Hoover热浴法</strong></p>
+<p>nvt和npt采用Nose-Hoover热浴法调节体系温度。</p>
+<p>如果论文中提到Nose-Hoover，其实就是用nvt或者npt，至于用哪个，主要看是否控压。</p>
+<p>对应代码为：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fix</span> <span class="number">1</span> <span class="literal">all</span> nvt temp <span class="number">300</span>.<span class="number">0</span> <span class="number">300</span>.<span class="number">0</span> <span class="number">100</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fix</span>  <span class="number">1</span> <span class="literal">all</span> npt temp <span class="number">300</span>.<span class="number">0</span> <span class="number">300</span>.<span class="number">0</span> <span class="number">100</span> iso <span class="number">0</span> <span class="number">0</span> <span class="number">1000</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2. langevin控温法</strong></p>
+<p>langevin控温只通过力的计算调节原子的速度，但是不能对时间进行积分。</p>
+<p>如果对一组原子只施加langevin控温，原子会固定不动。</p>
+<p><strong>因此，一般需要配合fix nve使用。</strong></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fix</span> <span class="number">1</span> <span class="literal">all</span> nve</span><br><span class="line"><span class="attribute">fix</span> <span class="number">2</span> <span class="literal">all</span> langevin <span class="number">300</span> <span class="number">300</span> <span class="number">100</span>.<span class="number">0</span> <span class="number">48279</span></span><br></pre></td></tr></table></figure>
+
+<p>对于分层控制的体系来说，<strong>这种控温方式相对灵活。</strong></p>
+<p>如在摩擦中，只对恒温层进行控温，其他层不控温：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fix</span> <span class="number">1</span> <span class="literal">all</span> nve</span><br><span class="line"><span class="attribute">fix</span> <span class="number">2</span> temp_layer langevin <span class="number">300</span> <span class="number">300</span> <span class="number">100</span>.<span class="number">0</span> <span class="number">48279</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3. temp&#x2F;rescale速度标定法</strong></p>
+<p>temp&#x2F;rescale称为速度标定法，<strong>是一种比较“粗暴”的控温方式。</strong></p>
+<p>基本原理是当温度超出设定温度时，通过缩放的方式调节温度使其达到设定值。</p>
+<p>temp&#x2F;rescale也需要配合fix nve使用才能更新原子位置。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fix</span> <span class="number">1</span> <span class="literal">all</span> nve</span><br><span class="line"><span class="attribute">fix</span> <span class="number">2</span> flow temp/rescale <span class="number">100</span> <span class="number">1</span>.<span class="number">0</span> <span class="number">1</span>.<span class="number">1</span> <span class="number">0</span>.<span class="number">02</span> <span class="number">0</span>.<span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>4. berendson控温</strong></p>
+<p>berendson控温我用的不多，不是很熟，大家可以查一下控温原理。</p>
+<p>berendson控温同样需要和fix nve配合使用</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fix</span> <span class="number">1</span> <span class="literal">all</span> nve</span><br><span class="line"><span class="attribute">fix</span> <span class="number">2</span> <span class="literal">all</span> temp/berendsen <span class="number">300</span>.<span class="number">0</span> <span class="number">300</span>.<span class="number">0</span> <span class="number">100</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>每一种控温方式都有其存在的合理性和应用范围，大家在选用的时候可多参考论文，灵活选择。</p>
+<h4 id="3、variable赋值"><a href="#3、variable赋值" class="headerlink" title="3、variable赋值"></a>3、variable赋值</h4><p>variable命令两种不同的使用方式：“v_”和”&amp;”。</p>
+<p><strong>（1）“&amp;”立即获取变量值</strong></p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">variable L0 <span class="keyword">equal</span> <span class="variable">$&#123;tmp&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>这句命令是把变量“tmp”的值立即计算出来，而tmp的值为lx，因此，系统取得lx的值36.1，并将36.1赋值给L0。</p>
+<p><strong>（2）“v_”获取变量计算公式，暂不计算具体数值</strong></p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">variable</span> L1 <span class="comment">equal v_tmp</span></span><br></pre></td></tr></table></figure>
+
+<p>以上命令运行后，L1的值等于v_tmp的值，即L1&#x3D;v_tmp，但此时并不计算v_tmp的值，又因为v_tmp&#x3D;lx，因此L1&#x3D;lx。</p>
+<p>但此时，<strong>并没有将lx的值赋值给L1，仅仅是明确这种相等的关系。</strong></p>
+<p>当在下一句thermo命令输出L1的时候，再计算L1的值，根据公式L1&#x3D;lx，系统计算此时lx的值，并复制给L1。</p>
+<h4 id="4、change-box"><a href="#4、change-box" class="headerlink" title="4、change_box"></a>4、change_box</h4><p>change_box改变box尺寸有<strong>三种方式：绝对尺寸、增量尺寸、比例尺寸</strong>，下面详细介绍这三种方式。</p>
+<p><strong>（1）绝对尺寸</strong></p>
+<p>change_box可一步到位，直接设定box在xyz各方向上的新尺寸。</p>
+<p>命令格式为：</p>
+<figure class="highlight smalltalk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">change_box all x|y|z final lo hi</span><br></pre></td></tr></table></figure>
+
+<p>例如，将x方向box尺寸改为(0,100)：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">change_box</span> <span class="literal">all</span> x final <span class="number">0</span> <span class="number">100</span> units box</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）增量尺寸</strong></p>
+<p>有些时候，我们只想改变box某一侧的尺寸，这时候可设置在某个方向上增大（或减小）一定的尺寸。</p>
+<p>命令格式为：</p>
+<figure class="highlight smalltalk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">change_box all x|y|z delta dlo dhi</span><br></pre></td></tr></table></figure>
+
+<p>delta表示增量，dlo表示在该轴负方向的尺寸增量，dhi表示该轴正方向尺寸增量。</p>
+<p>例如，在z轴正方向增加50埃米：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">change_box</span> <span class="literal">all</span> z delta <span class="number">0</span> <span class="number">50</span> units box</span><br></pre></td></tr></table></figure>
+
+<p><strong>（3）比例尺寸</strong></p>
+<p>box的尺寸也可以按照一定的比例进行缩放。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">change_box</span> <span class="literal">all</span> x|y|z scale factor<span class="meta"> [volume]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>scale为缩放关键字，factor为缩放比例，volume表示体积是否变化。</strong></p>
+<p>下句命令表示：x方向扩大为原尺寸的1.1倍，z方向尺寸相应的缩小以保证体积不变</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">change_box</span> <span class="literal">all</span> x scale <span class="number">1</span>.<span class="number">1</span> z volume</span><br></pre></td></tr></table></figure>
+
+<p>x方向扩大为1.1倍，y和z方向相应的缩小，保证体积不变:</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">change_box</span> <span class="literal">all</span> x scale <span class="number">1</span>.<span class="number">1</span> y volume z volume</span><br></pre></td></tr></table></figure>
+
+<p>x和y方向均多大为1.1倍，z方向缩小，保证体积不变</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">change_box</span> <span class="literal">all</span> x scale <span class="number">1</span>.<span class="number">1</span> z volume y scale <span class="number">1</span>.<span class="number">1</span> z volume</span><br></pre></td></tr></table></figure>
+
+<p>下面是change_box的一个案例in文件，初始模型尺寸为30<em>10</em>10（晶格单位），在z方向增加真空层，box尺寸扩大为：30<em>10</em>20。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">units</span>   metal</span><br><span class="line"><span class="attribute">boundary</span> p p p</span><br><span class="line"><span class="attribute">atom_style</span> atomic</span><br><span class="line"><span class="attribute">lattice</span> fcc <span class="number">3</span>.<span class="number">61</span></span><br><span class="line"><span class="attribute">region</span>  box block <span class="number">0</span> <span class="number">30</span> <span class="number">0</span> <span class="number">10</span> <span class="number">0</span> <span class="number">10</span></span><br><span class="line"><span class="attribute">create_box</span> <span class="number">1</span> box</span><br><span class="line"><span class="attribute">create_atoms</span> <span class="number">1</span> box</span><br><span class="line"><span class="attribute">mass</span>    <span class="number">1</span> <span class="number">64</span></span><br><span class="line"><span class="attribute">write_data</span> cu1.data</span><br><span class="line"><span class="attribute">change_box</span> <span class="literal">all</span> z delta <span class="number">0</span> <span class="number">5</span></span><br><span class="line"><span class="attribute">write_data</span> cu2.data</span><br></pre></td></tr></table></figure>
+
+<p>增加真空层后的效果为：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/RDM2ibjLOnY7qq98mBXhPHm00iakcicY6ibicjyMibX5WxDp0aBLHlcWypcibslQcmOqiaatRMKJAH8wZrCKw59TE6IftQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<h4 id="5、displace-atoms"><a href="#5、displace-atoms" class="headerlink" title="5、displace_atoms"></a>5、displace_atoms</h4><p>displace_atoms命令语法规则为</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">displace_atoms <span class="keyword">group</span>-ID <span class="keyword">move</span> delx dely delz</span><br></pre></td></tr></table></figure>
+
+<p>displace_atoms设置move关键词可实现group组原子在x、y、z方向的坐标值按照增量“delx dely delz”变化，从而实现快速移动。</p>
+<p>“delx dely delz”值为正表示沿坐标轴正方向移动，值为负表示沿坐标轴负方向移动。</p>
+<p>下面以简化版的摩擦模型为例，演示displace_atoms具体使用方法。</p>
+<p>模型底部为工件Cu，上部为金刚石刀具，初始模型为：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/RDM2ibjLOnY7Hj64VdUfvTEv37vc3FGVNTxAicic0at9zkEjoF7adqjeleMRAQwmIRiaeY0TE38khELIzrl4UCicA1w/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>快速移动后，模型为：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/RDM2ibjLOnY7Hj64VdUfvTEv37vc3FGVNFNFcoGCqLWUYViadgmmPJQKo3oshicLsPV4x5gGzCUpsjTrKqOZWeNUw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>全部in文件如下：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">units</span> metal</span><br><span class="line"><span class="attribute">atom_style</span> atomic</span><br><span class="line"><span class="attribute">boundary</span> p p p</span><br><span class="line"><span class="comment">#create box</span></span><br><span class="line"><span class="attribute">region</span>  box block <span class="number">0</span> <span class="number">200</span> <span class="number">0</span> <span class="number">40</span> <span class="number">0</span> <span class="number">100</span> units box</span><br><span class="line"><span class="attribute">create_box</span> <span class="number">2</span> box</span><br><span class="line"><span class="comment">#create Cu</span></span><br><span class="line"><span class="attribute">region</span> piece block <span class="number">0</span> <span class="number">200</span> <span class="number">0</span> <span class="number">40</span> <span class="number">0</span> <span class="number">40</span> units box</span><br><span class="line"><span class="attribute">lattice</span> fcc <span class="number">3</span>.<span class="number">61</span> </span><br><span class="line"><span class="attribute">create_atoms</span> <span class="number">1</span> region piece</span><br><span class="line"><span class="comment">#create ball</span></span><br><span class="line"><span class="attribute">region</span> ball sphere <span class="number">100</span> <span class="number">20</span> <span class="number">85</span> <span class="number">15</span> units box</span><br><span class="line"><span class="attribute">lattice</span>       diamond  <span class="number">3</span>.<span class="number">52</span> </span><br><span class="line"><span class="attribute">create_atoms</span>  <span class="number">2</span> region ball</span><br><span class="line"><span class="attribute">group</span> ball type <span class="number">2</span></span><br><span class="line"><span class="comment">#mass define</span></span><br><span class="line"><span class="attribute">mass</span>    <span class="number">1</span> <span class="number">64</span></span><br><span class="line"><span class="attribute">mass</span>    <span class="number">2</span> <span class="number">12</span></span><br><span class="line"><span class="comment">#save data</span></span><br><span class="line"><span class="attribute">write_data</span> all1.data</span><br><span class="line"><span class="comment">#move ball</span></span><br><span class="line"><span class="attribute">displace_atoms</span> ball move <span class="number">0</span> <span class="number">0</span> -<span class="number">30</span> units box</span><br><span class="line"><span class="comment">#save data</span></span><br><span class="line"><span class="attribute">write_data</span> all2.data</span><br></pre></td></tr></table></figure>
+
+<h4 id="6、reset-timestep"><a href="#6、reset-timestep" class="headerlink" title="6、reset_timestep"></a>6、reset_timestep</h4><p>lammps模拟时，一般需要设置能量最小化、弛豫、数据采集等阶段，不同的阶段运行步数不同。</p>
+<p>在默认情况下，模拟步数是从模拟开始到模拟结束一直累加计算的。</p>
+<p><strong>一般情况下，这种设置不会有太大的影响。但在某些情况下，某一阶段步数不是从零开始，在采集数据是会造成不必要的麻烦。</strong></p>
+<p>如在摩擦模拟中，摩擦球的运动距离可由模拟步数<em>步长</em>运动速度计算得到，此时，模拟步数从0开始计数相对比较方便。</p>
+<p>这时候就可以使用reset_timestep命令,语法为：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">reset_timestep N</span></span><br></pre></td></tr></table></figure>
+
+<p>该命令的作用是将当前模拟步数重新设为第N步。</p>
+<p>如果使模拟步数归零，命令为：6</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">reset_timestep</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="7、变量的前缀：v-、c-、f-。"><a href="#7、变量的前缀：v-、c-、f-。" class="headerlink" title="7、变量的前缀：v_、c_、f_。"></a>7、变量的前缀：<code>v_</code>、<code>c_</code>、<code>f_</code>。</h5><p><strong>（1）前缀v_</strong></p>
+<p>lammps中使用variable定义一个变量，类似与C语言中变量的定义。</p>
+<p>如定义一个名为beta的变量：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">variable</span> beta equal temp/<span class="number">3</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>要获取beta变量的值，不能直接用beta这个变量名，需要在变量名称的前面加前缀“v_”:</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">thermo <span class="number">100</span></span><br><span class="line">thermo_style <span class="keyword">custom</span> <span class="keyword">step</span> v_beta</span><br></pre></td></tr></table></figure>
+
+<p><strong>(2)前缀c_</strong></p>
+<p>compute命令在lammps中主要是计算模拟过程中的一些量，如力、能量等。</p>
+<p>compute计算结果存储到与compute id相关的变量中，如果要提取计算结果，需要在id前面加前缀“c_”：c_id。</p>
+<p>如计算单原子的应力：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compute <span class="number">1</span> mobile stress/atom <span class="literal">NULL</span></span><br></pre></td></tr></table></figure>
+
+<p>读取计算结果：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">thermo</span> <span class="number">100</span></span><br><span class="line"><span class="attribute">thermo_style</span> custom step c_1[<span class="number">1</span>] c_1[<span class="number">2</span>] c_1[<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+
+<p>c_1表示单原子的应力结果，如果结果是一个标量，直接用c_1就可以输出，如果计算结果是一个矢量（类似c语言的数组），需要在c_1后面加[1|2|3]获得其中的某一个值。</p>
+<p><strong>（3）前缀f_</strong></p>
+<p>fix命令是另一个重要的lammps命令，某些fix命令不仅起设置作用，还会把设置结果存储到f_id的变量中。</p>
+<p>如固定top组的命令为：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fix</span> <span class="number">1</span> top setforce <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>top组受力被重置为0，但在重置为0之前，top组原子受力被保存到f_1中，在xyz三个方向的受力分别为：f_1[1]、f_1[2]、f_f[3]。</p>
+<p>这些力可以存为一个变量，也可以直接输出。</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">variable</span>  forcex <span class="comment">equal f_1[1]</span></span><br><span class="line">thermo_style <span class="comment">custom step v_forcex f_1[1]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="7、三维阵列"><a href="#7、三维阵列" class="headerlink" title="7、三维阵列"></a>7、三维阵列</h4><p>replicate命令格式非常简单：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">replicate nx ny nz</span></span><br></pre></td></tr></table></figure>
+
+<p>nx、ny、nz为在xyz方向上复制的份数，和MS建立超晶胞命令类似，如：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">replicate</span> <span class="number">2</span> <span class="number">3</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>表示分别在xyz方向上扩大为2、3、2倍。</p>
+<p>代码如下：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">lattice</span> fcc <span class="number">3</span>.<span class="number">61</span></span><br><span class="line"><span class="attribute">region</span> Cu sphere <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">20</span> units box</span><br><span class="line"><span class="attribute">create_box</span> <span class="number">1</span> Cu</span><br><span class="line"><span class="attribute">create_atoms</span> <span class="number">1</span> region Cu</span><br><span class="line"><span class="attribute">replicate</span> <span class="number">3</span> <span class="number">3</span> <span class="number">1</span></span><br><span class="line"><span class="attribute">mass</span> <span class="number">1</span> <span class="number">64</span></span><br><span class="line"><span class="attribute">write_data</span> Cu.data</span><br></pre></td></tr></table></figure>
+
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><h4 id="0、compute"><a href="#0、compute" class="headerlink" title="0、compute"></a>0、compute</h4><p>热力学量和动力学量：ke、pe、temp、pressure、msd（平均均方位移）、vacf（速度自相关函数）</p>
+<p>结构量：rdf、coord&#x2F;atom</p>
+<h5 id="0-1、重新计算温度"><a href="#0-1、重新计算温度" class="headerlink" title="0.1、重新计算温度"></a>0.1、重新计算温度</h5><p>根据分子动力学理论，体系的温度与原子的速度有关。</p>
+<p>温度由公式 KE &#x3D; dim&#x2F;2NKT计算得到</p>
+<p>其中：KE为原子组的总动能（1&#x2F;2 mv^2)，dim为模拟维度，N为原子总数，K为玻尔兹曼常数，T为温度。</p>
+<p>在一些模拟中，体系的温度并不能完全按照以上公式进行计算：</p>
+<p>该命令首先计算原子组质心的速度，在计算温度时，去除质心速度：<code>compute temp/com</code></p>
+<p>使用方法：</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compute myTemp mobile temp/<span class="keyword">com</span></span><br></pre></td></tr></table></figure>
+
+<p>重新计算温度后，可在thermo或者fix命令中使用新的温度，如用在nvt系综设置中：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fix</span> <span class="number">1</span> flow nvt temp <span class="number">300</span> <span class="number">300</span> <span class="number">0</span>.<span class="number">1</span></span><br><span class="line"><span class="attribute">fix_modify</span> <span class="number">1</span> temp myTemp</span><br></pre></td></tr></table></figure>
+
+<p>或者：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">thermo_modify temp myTemp</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>温度修正命令不仅用到流体体系模拟中，在剪切或者有固定边界层的体系中同样适用。</strong></p>
+<p>对温度进行修正计算后，模拟结果会更加准确。</p>
+<h5 id="0-2、绘制温度云图"><a href="#0-2、绘制温度云图" class="headerlink" title="0.2、绘制温度云图"></a>0.2、绘制温度云图</h5><p>介绍lammps一个更好的绘制温度云图的方法：compute ave&#x2F;sphere&#x2F;atom</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">compute</span> <span class="number">1</span> <span class="literal">all</span> ave/sphere/atom</span><br></pre></td></tr></table></figure>
+
+<p>默认的半径为pair的截断半径，也可以自己设置新的半径，如：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">compute</span> <span class="number">1</span> <span class="literal">all</span> ave/sphere/atom cutoff <span class="number">5</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>如激光加热Cu球得到的温度云图为：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/RDM2ibjLOnY7iaDplRMAZs3fR9NBCCQggu9knVia9fKxwKW5qLokdne2n7xwoMBpdCL6Tmh3X39xjIZ2t0Szgy2yQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<h4 id="1、thermo"><a href="#1、thermo" class="headerlink" title="1、thermo"></a>1、thermo</h4><p>thermo命令不仅把数据显示到屏幕上，同时把显示数据保存到log.lammps中，便于后期进行数据处理。打开log.lammps文件，找到输出数据部分，复制到绘图软件即可。</p>
+<h5 id="1-1-thermo命令"><a href="#1-1-thermo命令" class="headerlink" title="1.1 thermo命令"></a>1.1 thermo命令</h5><p>lammps提供了thermo命令实时把模拟结果信息输出到屏幕上，同时也会把信息存入到log文件，便于后期数据处理。</p>
+<p>thermo命令语法格式：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">thermo N</span></span><br></pre></td></tr></table></figure>
+
+<p>N表示每隔N步在屏幕上输出默认信息。</p>
+<h5 id="1-2-thermo-style命令"><a href="#1-2-thermo-style命令" class="headerlink" title="1.2 thermo_style命令"></a>1.2 <strong>thermo_style命令</strong></h5><p>通常，thermo命令配合thermo_style使用。</p>
+<p>thermo_style有三种主要的显示方式：one、multi、custom。</p>
+<p>thermo_style one命令是把信息都输出在一行中，这也是thermo_style默认的方式，如果不写thermo_style命令，系统默认的就是thermo_style one。</p>
+<p>因此，下面2个命令是等价的：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#输出设置1</span></span><br><span class="line"><span class="attribute">thermo</span>  <span class="number">100</span></span><br><span class="line"><span class="comment">#输出设置2</span></span><br><span class="line"><span class="attribute">thermo</span>  <span class="number">100</span></span><br><span class="line"><span class="attribute">thermo_style</span> one</span><br></pre></td></tr></table></figure>
+
+<p>thermo_style one和thermo_style multi使用比较简单，但是有个缺点，<strong>只能显示默认的几个信息量，无法自定义显示的内容。</strong></p>
+<ul>
+<li>thermo_style custom命令格式为：</li>
+</ul>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">thermo_style</span> custom 输出量<span class="number">1</span> 输出量<span class="number">2</span> 输出量<span class="number">3</span> ……</span><br></pre></td></tr></table></figure>
+
+<p>在thermo_style custom命令中输出的量不仅包含系统已经定义好的变量，还包括通过compute、fix、variable等命令生成的自定义变量。主要包括：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">step,</span> elapsed, elaplong, dt, time,</span><br><span class="line"><span class="built_in">cpu,</span> tpcpu, spcpu, cpuremain, part, timeremain,</span><br><span class="line"><span class="built_in">atoms,</span> temp, press, pe, ke, etotal,</span><br><span class="line"><span class="built_in">evdwl,</span> ecoul, epair, ebond, eangle, edihed, eimp,</span><br><span class="line"><span class="built_in">emol,</span> elong, etail,</span><br><span class="line"><span class="built_in">enthalpy,</span> ecouple, econserve,</span><br><span class="line"><span class="built_in">vol,</span> density, lx, ly, lz, xlo, xhi, ylo, yhi, zlo, zhi,</span><br><span class="line"><span class="built_in">xy,</span> xz, yz, xlat, ylat, zlat,</span><br><span class="line"><span class="built_in">bonds,</span> angles, dihedrals, impropers,</span><br><span class="line"><span class="built_in">pxx,</span> pyy, pzz, pxy, pxz, pyz,</span><br><span class="line"><span class="built_in">fmax,</span> fnorm, nbuild, ndanger,</span><br><span class="line"><span class="built_in">cella,</span> cellb, cellc, cellalpha, cellbeta, cellgamma,</span><br><span class="line"><span class="built_in">c_ID,</span> c_ID[I], c_ID[I][J],</span><br><span class="line"><span class="built_in">f_ID,</span> f_ID[I], f_ID[I][J],</span><br><span class="line"><span class="built_in">v_name,</span> v_name[I]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>例如，每100步在屏幕上输出<strong>步数（step）、温度（temp）、压力（press）、势能（pe）、体积（vol），三个方向尺寸（lx ly lz）</strong>可以写为：</p>
+</blockquote>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">thermo <span class="number">100</span></span><br><span class="line">thermo_style custom step temp press pe vol lx ly lz</span><br></pre></td></tr></table></figure>
+
+<p>对于一些波动比较大的值，thermo命令不能进行均值输出。比如摩擦力曲线，波动比较大，使用平均值输出（fix ave&#x2F;time）能够得到更平滑的曲线。</p>
+<h4 id="2、dump"><a href="#2、dump" class="headerlink" title="2、dump"></a>2、dump</h4><p>dump命令输出单个原子的信息，如原子坐标、受力、原子速度等。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">dump</span> ID <span class="keyword">group</span>-ID style N <span class="keyword">file</span> args</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-1-最省心的输出方式：dump-atom"><a href="#2-1-最省心的输出方式：dump-atom" class="headerlink" title="2.1 最省心的输出方式：dump atom"></a>2.1 <strong>最省心的输出方式：dump atom</strong></h5><p>在调试程序的时候，如果我们仅仅需要输出原子坐标，可以使用这一条命令：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">dump</span> <span class="number">1</span> <span class="literal">all</span> atom <span class="number">100</span> dump.atom</span><br></pre></td></tr></table></figure>
+
+<p>每隔100步输出全部原子的坐标，原子坐标存到dump.atom中，文件的后缀名没有统一标准，可以任意取。</p>
+<p>使用atom方式输出的dump.atom文件中只包含原子类型和原子坐标。</p>
+<p>只输出某个原子组的信息，把all改成原子组ID即可：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">dump</span> <span class="number">1</span> subgroup atom <span class="number">100</span> dump.atom</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-2-个性化的输出方式：dump-custom"><a href="#2-2-个性化的输出方式：dump-custom" class="headerlink" title="2.2 个性化的输出方式：dump custom"></a>2.2 <strong>个性化的输出方式：dump custom</strong></h5><p>dump atom类型仅输出原子坐标，如需输出更多的原子信息，可使用dump custom命令自定义输出。</p>
+<p>custom类型可输出的原子信息包括：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">possible attributes = id, mol, <span class="keyword">proc</span>,<span class="title"> procp1,</span> type,<span class="title"> element,</span> mass,<span class="title">                      </span></span><br><span class="line"><span class="title">                      x,</span> y,<span class="title"> z,</span> xs,<span class="title"> ys,</span> zs,<span class="title"> xu,</span> yu,<span class="title"> zu,</span> <span class="title">                    </span></span><br><span class="line"><span class="title">                      xsu,</span> ysu,<span class="title"> zsu,</span> ix,<span class="title"> iy,</span> iz,<span class="title">                     </span></span><br><span class="line"><span class="title">                      vx,</span> vy,<span class="title"> vz,</span> fx,<span class="title"> fy,</span> fz,<span class="title">                      </span></span><br><span class="line"><span class="title">                      q,</span> mux,<span class="title"> muy,</span> muz,<span class="title"> mu,</span> <span class="title">                    </span></span><br><span class="line"><span class="title">                      radius,</span> diameter,<span class="title"> omegax,</span> omegay,<span class="title"> omegaz,</span> <span class="title">                   </span></span><br><span class="line"><span class="title">                      angmomx,</span> angmomy,<span class="title"> angmomz,</span> tqx,<span class="title"> tqy,</span> tqz,<span class="title">                   </span></span><br><span class="line"><span class="title">                      c_ID,</span> c_ID[N],<span class="title"> f_ID,</span> f_ID[N],<span class="title"> v_name</span></span><br></pre></td></tr></table></figure>
+
+<p>使用方法也比较简单，在输出文件名的后面列出要输出的原子信息即可，例如：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dump <span class="number">1</span> <span class="keyword">all</span> custom <span class="number">100</span> dump.atom id <span class="keyword">type</span> <span class="type">x </span>y z vx vy vz fx fy fz</span><br></pre></td></tr></table></figure>
+
+<p>上一句命令输出的原子信息包括：原子id，原子类型，xyz坐标，xyz方向的速度，xyz方向的受力</p>
+<p>custom类型不仅能够输出原子系统自带的属性，也支持输出compute、fix等命令计算的原子信息：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">compute</span> myPress <span class="literal">all</span> stress/atom NULL</span><br><span class="line"><span class="attribute">dump</span> <span class="number">2</span> <span class="literal">all</span> custom <span class="number">100</span> tmp.dump id myPress[<span class="number">1</span>] myPress[<span class="number">2</span>] myPress[<span class="number">3</span>] &amp;                                                                       myPress[<span class="number">4</span>] myPress[<span class="number">5</span>] myPress[<span class="number">6</span>]</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-3-压缩文件输出：dump-atom-x2F-gz"><a href="#2-3-压缩文件输出：dump-atom-x2F-gz" class="headerlink" title="2.3 压缩文件输出：dump atom&#x2F;gz"></a>2.3 <strong>压缩文件输出：dump atom&#x2F;gz</strong></h5><p>如果体系比较大，包含的原子比较多，输出的dump.atom文件会比较大，可以使用atom&#x2F;gz样式，将坐标文件进行压缩后再保存。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">dump</span> <span class="number">1</span> <span class="literal">all</span> atom/gz <span class="number">100</span> dump.atom.gz</span><br></pre></td></tr></table></figure>
+
+<p>压缩文件的类型为gz，使用常用的解压软件都可以进行解压，解压之后得到dump.atom文件，与上一步得到的文件内容一致。</p>
+<h5 id="2-4-文件分步输出：dump"><a href="#2-4-文件分步输出：dump" class="headerlink" title="2.4 文件分步输出：dump *"></a>2.4 <strong>文件分步输出：dump *</strong></h5><p>对于非常大的体系，原子信息输出到一个文件中可能会比较大。文件导入到ovito分析时电脑反应比较慢，后期处理不是很方便。</p>
+<p>lammps提供了一种分步输出轨迹文件的方法：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dump <span class="number">1</span> <span class="keyword">all</span> custom <span class="number">100</span> dump.atom.* id <span class="keyword">type</span> <span class="type">x </span>y z</span><br></pre></td></tr></table></figure>
+
+<p>在文件名的后面加上”.<em>“，每隔100步系统会把原子轨迹保存到1个新文件里，“</em>”会被自动的替换成步数。</p>
+<p>例如模拟300步，系统会保存4个文件：dump.atom.0、dump.atom.100、dump.atom.200、dump.atom.300。</p>
+<p>dump.atom.0是模拟0步时的初始状态信息，每次模拟时，系统会自动保存该文件。</p>
+<p>这样进行分步保存之后，每个轨迹文件会小的多，把单个文件导入到ovito后，ovito也会自动的寻找同文件夹下的其他轨迹文件，分析起来和单个文件效果是一样的，但是速度要快很多。</p>
+<p><strong>对于一般模拟来说，上面4种方法基本上能够满足要求，如有更高级的需求，可以查阅dump命令手册。</strong></p>
+<h5 id="2-5-dump-modify-element"><a href="#2-5-dump-modify-element" class="headerlink" title="2.5 dump_modify element"></a>2.5 <strong>dump_modify element</strong></h5><p><strong>默认情况下，ovito不能区分元素和原子半径</strong></p>
+<p>如果希望安装ovito预设方案显示不同的原子半径和元素颜色，需要在dump命令中指定原子对应的元素类型。</p>
+<p>使用的命令为dump_modify element.</p>
+<p>这个命令比较简单，在element后面按照data文件中mass列表中的顺序指定对应的元素即可：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">dump</span>    <span class="number">1</span> <span class="literal">all</span> xyz <span class="number">1</span> dump.xyz </span><br><span class="line"><span class="attribute">dump_modify</span> <span class="number">1</span> element O H Na Cl</span><br></pre></td></tr></table></figure>
+
+<p>在ovito中打开dump.xyz，显示效果比之前要好很多：</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220927094805625.png"></p>
+<blockquote>
+<p>要注意的是，dump_modify element支持的文件格式有限，如果用ovito查看结果，使用xyz格式即可。</p>
+</blockquote>
+<h4 id="3、fix"><a href="#3、fix" class="headerlink" title="3、fix"></a>3、fix</h4><h5 id="3-1、fix-print"><a href="#3-1、fix-print" class="headerlink" title="3.1、fix print"></a>3.1、fix print</h5><p>thermo命令输出的数据需要单独从log文件中复制出来，如果数据较多就会比较麻烦，比较简单方式是把数据输出到一个单独的文件。</p>
+<p>如拉伸过程中的应力应变数据输出到stress-strain.dat文件，可以使用fix print命令：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fix 1 all <span class="built_in">print</span> 100 <span class="string">&quot;<span class="variable">$&#123;strainx&#125;</span> <span class="variable">$&#123;stressx&#125;</span>&quot;</span> file stress-strain.dat<span class="built_in"> screen </span><span class="literal">no</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="3-2、fix-ave-x2F-time命令"><a href="#3-2、fix-ave-x2F-time命令" class="headerlink" title="3.2、fix ave&#x2F;time命令"></a>3.2、<strong>fix ave&#x2F;time命令</strong></h5><p>fix print命令按一定步数输出当前步数的瞬时值，有些模拟数据可能波动比较大，用fix print命令得到的曲线可能不平滑，此时，可对数据按一定步数进行平均后进行输出，用到的命令为fix ave&#x2F;time命令</p>
+<p>fix ave&#x2F;time命令的功能是按照设定的步数对输出变量求平均值，并将平均值保存到设定文件中。</p>
+<p>语法规则为：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fix ID <span class="keyword">group</span><span class="params">-ID</span> ave/time Nevery Nrepeat Nfreq value1 value2 <span class="params">...</span> <span class="built_in">keyword</span> args <span class="params">...</span></span><br></pre></td></tr></table></figure>
+
+<p>这个命令的语法相对复杂，设置的参数也较多，本文只介绍一种用法。</p>
+<p><strong>2. fix ave&#x2F;time使用方法</strong></p>
+<p>以输出摩擦过程中摩擦球的受力为例：</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">compute</span> fx0 ball reduce <span class="built_in">sum</span> fx</span><br><span class="line"><span class="built_in">compute</span>  fy0 ball reduce <span class="built_in">sum</span> fy</span><br><span class="line"><span class="built_in">compute</span>  fz0 ball reduce <span class="built_in">sum</span> fz</span><br><span class="line">variable step0 equal step</span><br><span class="line"><span class="built_in">fix</span> <span class="number">1</span> all ave/<span class="built_in">time</span> <span class="number">10</span> <span class="number">5</span> <span class="number">100</span> v_step0 c_fx0 c_fy0 c_fz0 file friction.txt</span><br></pre></td></tr></table></figure>
+
+<p>前三行分别计算xyz方向的力，第四行代码获取当前模拟步数。</p>
+<p>fix命令中10 5 100的意思是每100步保存1次数据，保存的数据为v_step0 c_fx0 c_fy0 c_fz0变量的平均值。</p>
+<p>file friction.txt把数据保存到friction.txt文件中。</p>
+<p>最难理解的可能就是10 5 100这三个数的设置。</p>
+<p>10 5 100表示每100步计算或者保存1次数据（平均值），“10 5”参数表示以100步为基准向前每隔10步采1个样，共采5个样。</p>
+<p>所以，计算第一个平均值采的样为：60、70、80、90、100，对这5步的受力值取平均即为friction.txt中的第一组数据。</p>
+<p>同理，如手册中的例子为“2 6 100”，采样为：90,92,94,96,98,100。</p>
+<h4 id="4、径向分布函数RDF"><a href="#4、径向分布函数RDF" class="headerlink" title="4、径向分布函数RDF"></a>4、径向分布函数RDF</h4><p>径向分布函数（Radial distribution function）是指给定某个粒子的坐标，其他粒子在空间的分布几率。</p>
+<p>在lammps中对应的命令为：compute rdf。</p>
+<p>语法格式为：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compute ID <span class="keyword">group</span><span class="params">-ID</span> rdf Nbin itype1 jtype1 itype2 jtype2 <span class="params">...</span> <span class="built_in">keyword</span>/value <span class="params">...</span></span><br></pre></td></tr></table></figure>
+
+<p>其中，Nbin为分片数量，一般选择数值为100-500之间。</p>
+<p>itype1表示中心原子，jtype1为分布原子。</p>
+<p>itype1和jtype1应该成对设置，表示计算第i种原子周围出现第j种原子的概率。</p>
+<p>如果不设置itype1、jtype1表示全部原子周围出现其它原子的概率。</p>
+<h5 id="案例："><a href="#案例：" class="headerlink" title="案例："></a>案例：</h5><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attribute">units</span>    real</span><br><span class="line"><span class="attribute">atom_style</span>  atomic</span><br><span class="line"><span class="comment"># 读取data文件</span></span><br><span class="line"><span class="attribute">read_data</span>  Kr.data</span><br><span class="line"><span class="comment"># 力场设置</span></span><br><span class="line"><span class="attribute">pair_style</span>      lj/cut <span class="number">10</span>.<span class="number">0</span></span><br><span class="line"><span class="attribute">pair_coeff</span>      <span class="number">1</span> <span class="number">1</span> <span class="number">0</span>.<span class="number">34319013128</span> <span class="number">3</span>.<span class="number">591</span></span><br><span class="line"><span class="attribute">neighbor</span>        <span class="number">1</span>.<span class="number">0</span> bin</span><br><span class="line"><span class="attribute">neigh_modify</span>    every <span class="number">1</span> check yes</span><br><span class="line"><span class="comment">#输出设置</span></span><br><span class="line"><span class="attribute">thermo</span>          <span class="number">1000</span></span><br><span class="line"><span class="attribute">thermo_style</span>    custom step temp pe ke etotal</span><br><span class="line"><span class="attribute">dump</span>            <span class="number">2</span> <span class="literal">all</span> custom <span class="number">5000</span> md.lammpstrj id type x y z</span><br><span class="line"><span class="comment">#计算rdf</span></span><br><span class="line"><span class="attribute">timestep</span>        <span class="number">1</span>.<span class="number">0</span></span><br><span class="line"><span class="attribute">compute</span>         myRDF <span class="literal">all</span> rdf <span class="number">500</span> <span class="number">1</span> <span class="number">1</span></span><br><span class="line"><span class="attribute">fix</span>            <span class="number">1</span> <span class="literal">all</span> nve</span><br><span class="line"><span class="attribute">fix</span>             <span class="number">2</span> <span class="literal">all</span> ave/time <span class="number">1</span> <span class="number">100000</span> <span class="number">100000</span> c_myPDF[*] file rdf.dat mode vector</span><br><span class="line"><span class="attribute">run</span>            <span class="number">100000</span></span><br><span class="line"><span class="attribute">unfix</span>        <span class="number">2</span></span><br><span class="line"><span class="attribute">unfix</span>        <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>以c_myRDF[1]为横坐标，c_myRDF[2]为纵坐标，即可绘制g(r)曲线。</p>
+<blockquote>
+<p><strong>fix ave&#x2F;time，分步采样取平均值，使曲线平滑</strong></p>
+</blockquote>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220923155712014.png"></p>
+<h4 id="5、原子组势能、速度、温度等"><a href="#5、原子组势能、速度、温度等" class="headerlink" title="5、原子组势能、速度、温度等"></a>5、原子组势能、速度、温度等</h4><p><strong>（1）分组</strong></p>
+<p>以铜、水润湿体系为例，分别根据原子类型设置两个原子组：water、cu：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">group</span> <span class="title">water</span> <span class="keyword">type</span> <span class="number">1</span> <span class="number">2</span></span><br><span class="line"><span class="keyword">group</span> <span class="title">cu</span> <span class="keyword">type</span> <span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）计算每个原子的势能</strong></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compute mype <span class="keyword">all</span> <span class="keyword">pe</span>/atom</span><br></pre></td></tr></table></figure>
+
+<p><strong>（3）求和</strong></p>
+<p>把两个组内的原子势能相加，得到原子的势能，compute reduce sum命令实现单原子量的求和计算。</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">compute <span class="number">1</span> water <span class="built_in">reduce</span> <span class="built_in">sum</span> c_mype</span><br><span class="line">compute <span class="number">2</span> cu <span class="built_in">reduce</span> <span class="built_in">sum</span> c_mype</span><br></pre></td></tr></table></figure>
+
+<p><strong>（4）输出</strong></p>
+<p>原子组的势能为标量，可使用thermo命令输出：</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">thermo <span class="number">100</span></span><br><span class="line">thermo_style <span class="keyword">custom</span> <span class="keyword">step</span> temp pe c_1 c2</span><br></pre></td></tr></table></figure>
+
+<p>这个方法也可以计算原子组的其它量，如：<strong>原子组的动能、电荷、速度、温度</strong>等等。</p>
+<h4 id="6、载荷-深度曲线"><a href="#6、载荷-深度曲线" class="headerlink" title="6、载荷-深度曲线"></a>6、载荷-深度曲线</h4><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">compute</span> <span class="number">1</span> tool group/group newton</span><br><span class="line"><span class="attribute">thermo</span>     <span class="number">20</span></span><br><span class="line"><span class="attribute">thermo_style</span>  custom step temp press c_1 c_1[<span class="number">1</span>] c_1[<span class="number">2</span>] c_1[<span class="number">3</span>] </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="7、配位数分析"><a href="#7、配位数分析" class="headerlink" title="7、配位数分析"></a>7、配位数分析</h4><p>ovito提供了Voronoi一分析方法，可以分析原子的配位数、原子体积，也可以进行多面体分析。</p>
+<p>选择这个命令后，点击左下方的”Particles”，在原子信息列表中会自动显示每个原子的坐标、配位数、体积、半径。</p>
+<p>(2)点击File菜单，选择”Export File”，在弹出窗口底部选择lammps dump类型的文件可导出新的dump文件。</p>
+<p><img src="C:%5CUsers%5CFan%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230206103052095.png"></p>
+<h4 id="8、common-neighborhood-analysis"><a href="#8、common-neighborhood-analysis" class="headerlink" title="8、common neighborhood analysis"></a>8、common neighborhood analysis</h4><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compute ID <span class="keyword">group</span>-ID cna/atom cutoff</span><br></pre></td></tr></table></figure>
+
+<p>例如Cu的晶格常数为fcc 3.61，因此，cutoff为3.08。<br>计算Cu的CNA命令为：</p>
+<pre><code>compute 1 all cna/atom 3.08
+</code></pre>
+<p>（2）计算结果输出<br>compute cna&#x2F;atom计算结果为单个原子的量，一共5类结果。</p>
+<pre><code>fcc = 1
+hcp = 2
+bcc = 3
+icosahedral = 4
+unknown = 5
+</code></pre>
+<p>用dump命令输出到轨迹文件，用ovito color coding进行涂色就可以看到原子结构了。</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dump <span class="number">1</span> <span class="keyword">all</span> custom <span class="number">1000</span> npt.xyz id <span class="keyword">type</span> <span class="type">x </span>y z c_1</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="1、restart"><a href="#1、restart" class="headerlink" title="1、restart"></a>1、restart</h4><p>lammps提供了restart、write_restart命令保存模拟文件、read_restart命令读取模拟文件，利用好这三个命令能够最大程度地避免因断电、死机等意外造成的影响。</p>
+<p>对于比较大的体系，驰豫时间也比较长，在模型驰豫之后保存restart文件，在后续的模拟过程中（比如不同应变速率的拉伸模拟），直接读取rstart文件进行拉伸即可，不需要再进行驰豫，提高了模拟效率。</p>
+<p>比如在第1000步保存了restart.1000文件，在运行到第1100步时断电，重新开机之后就可以直接读取restart.1000文件继续运算，结果和正常运算几乎没有差别。</p>
+<p>保存restart文件有两种方式：<strong>周期性保存和一次性保存</strong>。</p>
+<h5 id="1-1-restart命令：周期性保存"><a href="#1-1-restart命令：周期性保存" class="headerlink" title="1.1 restart命令：周期性保存"></a>1.1 <strong>restart命令：周期性保存</strong></h5><p>restart命令可以每隔多少步保存一次restart文件，如每隔1000步保存一次：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">restart</span> <span class="number">1000</span> <span class="built_in">restart</span>.equil</span><br></pre></td></tr></table></figure>
+
+<p>生成文件有：restart.equil.0、restart.equil.1000、restart.equil.2000、……</p>
+<h5 id="1-2-write-restart命令：一次性保存"><a href="#1-2-write-restart命令：一次性保存" class="headerlink" title="1.2 write_restart命令：一次性保存"></a>1.2 <strong>write_restart命令：一次性保存</strong></h5><p>周期性保存文件，产生文件较多，在能量最小化或者驰豫阶段，一般只需要在驰豫结束保存一个restart文件即可。</p>
+<p>这时候可以在弛豫代码后面使用write_restart命令，如：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">write_restart <span class="built_in">restart</span>.equil</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-3-read-restart命令：读取文件"><a href="#1-3-read-restart命令：读取文件" class="headerlink" title="1.3 read_restart命令：读取文件"></a>1.3 <strong>read_restart命令：读取文件</strong></h5><p>重启模拟比较简单，使用方法和read_data命令类似：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">read_restart <span class="built_in">restart</span>.equil</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，并不是所有的模拟信息都保存在restart.equil文件中。</p>
+<p>比如fix命令就需要在新的模拟文件中重新设置，官方手册已经列举的很全面，有需要可以查查手册。</p>
+<h4 id="2、read-data"><a href="#2、read-data" class="headerlink" title="2、read_data"></a>2、read_data</h4><h4 id="3、rerun"><a href="#3、rerun" class="headerlink" title="3、rerun"></a>3、rerun</h4><p>rerun可以理解为重新运算，但是这个运算并不会和run命令一样，从头开始运算，而是从run运算的结果中提取原子信息，如坐标、速度等，以此进行能量、力以及热力学的输出等。</p>
+<p><strong>该命令的优点是不需要重新积分运算，不影响原来的运行结果，仅提取需要的信息进行部分运算，运算速度快。</strong></p>
+<p><strong>下面以补充计算rdf为例，介绍rerun的使用方法。</strong></p>
+<p><strong>（1）in.first</strong></p>
+<p>in.first文件模拟了一个溶液体系的原子演化过程，运行1000步，轨迹文件保存到lj.dump文件中。</p>
+<p>这个in文件没有进行rdf的计算。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#in.first</span></span><br><span class="line"><span class="attribute">variable</span>  x index <span class="number">1</span></span><br><span class="line"><span class="attribute">variable</span>  y index <span class="number">1</span></span><br><span class="line"><span class="attribute">variable</span>  z index <span class="number">1</span></span><br><span class="line"><span class="attribute">variable</span>  xx equal <span class="number">20</span>*$x</span><br><span class="line"><span class="attribute">variable</span>  yy equal <span class="number">20</span>*$y</span><br><span class="line"><span class="attribute">variable</span>  zz equal <span class="number">20</span>*$z</span><br><span class="line"><span class="attribute">units</span>    ljatom_style  atomic</span><br><span class="line"><span class="attribute">lattice</span>    fcc <span class="number">0</span>.<span class="number">8442</span></span><br><span class="line"><span class="attribute">region</span>    box block <span class="number">0</span> <span class="variable">$&#123;xx&#125;</span> <span class="number">0</span> <span class="variable">$&#123;yy&#125;</span> <span class="number">0</span> <span class="variable">$&#123;zz&#125;</span></span><br><span class="line"><span class="attribute">create_box</span>  <span class="number">1</span> box</span><br><span class="line"><span class="attribute">create_atoms</span>  <span class="number">1</span> boxmass    <span class="number">1</span> <span class="number">1</span>.<span class="number">0</span></span><br><span class="line"><span class="attribute">velocity</span>  <span class="literal">all</span> create <span class="number">1</span>.<span class="number">44</span> <span class="number">87287</span> loop geom</span><br><span class="line"><span class="attribute">pair_style</span>  lj/cut <span class="number">2</span>.<span class="number">5</span></span><br><span class="line"><span class="attribute">pair_coeff</span>  <span class="number">1</span> <span class="number">1</span> <span class="number">1</span>.<span class="number">0</span> <span class="number">1</span>.<span class="number">0</span> <span class="number">2</span>.<span class="number">5</span></span><br><span class="line"><span class="attribute">neighbor</span>  <span class="number">0</span>.<span class="number">3</span> bin</span><br><span class="line"><span class="attribute">neigh_modify</span>  delay <span class="number">0</span> every <span class="number">20</span> check no</span><br><span class="line"><span class="attribute">fix</span> <span class="number">1</span> <span class="literal">all</span> nve</span><br><span class="line"><span class="attribute">dump</span> <span class="number">1</span> <span class="literal">all</span> custom <span class="number">100</span> lj.dump id type x y z vx vy vz</span><br><span class="line"><span class="attribute">thermo</span> <span class="number">100</span></span><br><span class="line"><span class="attribute">run</span> <span class="number">1000</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>(2)in.rdf</strong></p>
+<p>在lj.dump文件的基础上补充rdf的运算，首先把rdf命令写到in文件，把最后一句的run语句改成rerun语句：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">compute</span> myRDF <span class="literal">all</span> rdf <span class="number">100</span> cutoff <span class="number">5</span>.<span class="number">0</span></span><br><span class="line"><span class="attribute">fix</span> <span class="number">2</span> <span class="literal">all</span> ave/time <span class="number">100</span> <span class="number">10</span> <span class="number">1000</span> c_myRDF[*] file rdf.rerun mode vector</span><br><span class="line"><span class="attribute">rerun</span> lj.dump dump x y z</span><br></pre></td></tr></table></figure>
+
+<p><strong>rerun后面紧跟dump文件名，之后是需要提取的原子坐标。</strong></p>
+<p>这样重启动一个“运算”就可以把rdf计算出来。</p>
+<h3 id="问题汇总"><a href="#问题汇总" class="headerlink" title="问题汇总"></a>问题汇总</h3><ul>
+<li><strong>原子丢失</strong>    <ul>
+<li>未能量最小化</li>
+<li>timestep 大小有问题</li>
+<li>硬件问题：内存、并行网络</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>其他表现：体系失稳，温度持续上升</p>
+<p>解决方法：调整参数，重新开始</p>
+</blockquote>
+<ul>
+<li><p><strong>One or more atoms are time integrated more than once</strong></p>
+<p>分子动力学模拟的主要运算是原子的积分运算，通过求解积分方程得到原子的受力以及计算原子的速度，从而得出下一时刻原子的位置和状态。</p>
+<p>原子的积分体现到代码中就是fix nve&#x2F;nvt&#x2F;npt等系综的设置，有些fix命令也自带积分运算，如fix move、fix rigid（设置刚体）等命令。</p>
+<p>原子<strong>不设置系综，就不会参与积分方程的求解</strong>，最明显的现象是在模拟过程中，原子是静止的。</p>
+<p><strong>但原子也不能设置多个系综，如果设置两个以上的系综，要参与两次积分运算，很明显是错误的。</strong></p>
+<blockquote>
+<p>fix nve与fix move linear  重复积分</p>
+</blockquote>
+<p>1.Cannot open file …<br>错误原因：<br>不能打开文件，大部分原因是输入的文件名错误或者文件不存在。<br>解决办法：<br>具体看提示的错误文件名和lammps停止在哪一行。<br>如lammps停止在read_data命令，需要检查in文件中的data文件名是否输入正确，或者文件夹内是否已经包含了data文件。</p>
+</li>
+</ul>
+<p>2.Cannot open EAM potential file<br>错误原因：不能打开eam力场文件。<br>解决办法：<br>检查力场文件名称是否正确，或者是否存在该文件。</p>
+<p>3.Neighbor list overflow, boost neigh_modify one<br>错误原因：<br>一个原子的邻居数过多，超出了邻居数最大值。<br>默认情况下，一个原子最大的邻居原子数为2000，当超出2000后会提示该错误。<br>解决办法：<br>使用neigh_modify one命令把邻居原子数改的大一点，比如5000。</p>
+<ol start="4">
+<li><p>All pair coeffs are not set<br>错误原因：<br>部分原子之间的pair_coeff参数没有设置<br>解决方法：<br>这种情况一般出现在使用pair_style hybrid设置混合势的时候，并没有把所有的原子对势写完整。<br>仔细检查是否有遗漏的原子对势。</p>
+</li>
+<li><p>Pair hybrid sub-style is not used<br>错误原因：<br>在pair_style 命令中使用了hybrid命令，并列出了相应的势函数类型，但是并没有在下面的参数设置中使用列出的势函数类型。<br>解决方法：<br>删除pair_style hybrid后面多余的势函数类型。</p>
+</li>
+<li><p>Group ID does not exist<br>错误原因：<br>在某个命令中使用了未经定义的group ID。<br>解决办法：<br>查看错误提示处的group ID是否已经定义，如果已经定义，也可能是输入的时候不小心打错某个字母，改正即可。</p>
+</li>
+</ol>
+<h3 id="复杂模型建模"><a href="#复杂模型建模" class="headerlink" title="复杂模型建模"></a>复杂模型建模</h3><h4 id="1、Materials-Studio建模"><a href="#1、Materials-Studio建模" class="headerlink" title="1、Materials Studio建模"></a>1、Materials Studio建模</h4><p>利用 Materials Studio 软件进行建模后，将原子类型，原子坐标，盒子信息写入<br>data 文件，再使 in 文件读取 data 文件。</p>
+<p>I will typically use <strong>cif files</strong> or similar and tools such as <strong>VESTA, OVITO</strong>, etc to translate structures into lammps compatible formats or notation.  example of SiC 6H cif data…..</p>
+<p>From Vesta, you can use File:”<strong>Export data</strong>“ to <strong>vasp</strong> 、<strong>pdb</strong> or <strong>xyz</strong> for example. From here you may use <strong>OVITO</strong> or <strong>VMD</strong> to try and visualize and make changes as needed to transform into a <strong>LAMMPS data file</strong> that preserves the information that you need.</p>
+<h4 id="2、Atomsk建模"><a href="#2、Atomsk建模" class="headerlink" title="2、Atomsk建模"></a>2、Atomsk建模</h4><p>ATOMSK(The Swiss-army knife of atomic simulations)是一款非常优秀的分子建模软件，可以作为MS、LAMMPS自身命令建模的替代软件,并可以在linux、mac、windows系统中均可使用。 </p>
+<p>官网：<a target="_blank" rel="noopener" href="https://atomsk.univ-lille.fr/index.php">https://atomsk.univ-lille.fr/index.php</a></p>
+<blockquote>
+<p>以下为Windows下记录</p>
+</blockquote>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#建模</span></span><br><span class="line"><span class="attribute">atomsk</span> --create bcc <span class="number">2</span>.<span class="number">856</span> Fe Fe.xsf  </span><br><span class="line"><span class="comment">#扩包</span></span><br><span class="line"><span class="attribute">atomsk</span> Fe.xsf -duplicate <span class="number">5</span> <span class="number">5</span> <span class="number">5</span> Fe.lmp</span><br><span class="line"><span class="comment">#二合一</span></span><br><span class="line"><span class="attribute">atomsk</span> -- bcc <span class="number">2</span>.<span class="number">856</span> Fe -duplicate <span class="number">5</span> <span class="number">5</span> <span class="number">5</span> Fe.lmp</span><br></pre></td></tr></table></figure>
+
+<p>斜晶胞转正交：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">atomsk ZnO<span class="selector-class">.cif</span> -orthocell final<span class="selector-class">.dat</span> lmp</span><br></pre></td></tr></table></figure>
+
+<p>格式:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">atomsk <span class="attr">--create</span> &lt;lattice&gt; &lt;<span class="selector-tag">a</span>&gt; <span class="selector-attr">[&lt;c&gt;]</span> &lt;sp1&gt; <span class="selector-attr">[&lt;sp2&gt; &lt;sp3&gt;...]</span> <span class="selector-attr">[orient (hkl)X (hkl)Y (hkl)Z]</span> <span class="selector-attr">[options]</span> &lt;outputfile&gt; <span class="selector-attr">[&lt;formats&gt;]</span></span><br><span class="line">orient <span class="selector-attr">[10-10]</span> <span class="selector-attr">[-12-10]</span> <span class="selector-attr">[0001]</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>lattice</strong>：晶格类型（见下表）；</p>
+</li>
+<li><p><strong>a</strong> : 晶格参数（以 Å 为单位）；</p>
+</li>
+<li><p><strong>c</strong> : 晶格参数（单位为 Å，仅对某些结构需要）；</p>
+</li>
+<li><p>**sp1, sp2…**：构成材料的原子种类（一字或二字符号）；必须指定的物种数量取决于晶格，见下表。</p>
+</li>
+<li><p><strong>orient ( *hkl* ) X ( *hkl* ) Y ( *hkl* ) Z</strong>：创建的晶格的晶体取向（仅限立方晶格和六角晶格）。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220920152307514.png"></p>
+</li>
+</ul>
+<ul>
+<li>钎锌矿氮化镓晶胞建模</li>
+</ul>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">atomsk</span> --create wz <span class="number">3</span>.<span class="number">21629007</span> <span class="number">5</span>.<span class="number">23996200</span> Ga N <span class="number">920</span>.xsf</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-orthogonal-cell</code>该选项搜索单元向量的线性组合，从而获得一个矩形框，然后用原子填充这个新框。</li>
+</ul>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">atomsk</span> --create wz <span class="number">3</span>.<span class="number">21629007</span> <span class="number">5</span>.<span class="number">23996200</span> Ga N -orthogonal-cell <span class="number">920</span>-<span class="number">1</span>.xsf</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>扩包生成lmp文件</li>
+</ul>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">atomsk</span> <span class="number">920</span>-<span class="number">1</span>.xsf -duplicate <span class="number">30</span> <span class="number">30</span> <span class="number">20</span> <span class="number">920</span>-<span class="number">2</span>.lmp</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>合并命令生成工件三个区域</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">atomsk <span class="attr">--merge</span> z <span class="number">3</span> one<span class="selector-class">.cfg</span> two<span class="selector-class">.xsf</span> three<span class="selector-class">.cfg</span> final.xsf</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">atomsk</span> <span class="number">920</span>-<span class="number">1</span>.xsf -duplicate <span class="number">30</span> <span class="number">30</span> <span class="number">20</span> <span class="number">920</span>-<span class="number">2</span>.lmp</span><br><span class="line"></span><br><span class="line"><span class="attribute">atomsk</span> <span class="number">920</span>-<span class="number">2</span>.lmp -cut below <span class="number">2</span>.<span class="number">4</span> x initial.gin -cut above <span class="number">40</span> x</span><br></pre></td></tr></table></figure>
+
+<h5 id="磨粒建模"><a href="#磨粒建模" class="headerlink" title="磨粒建模"></a>磨粒建模</h5><p>球形</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">atomsk</span> --create diamond <span class="number">3</span>.<span class="number">57</span> C -duplicate <span class="number">50</span> <span class="number">50</span> <span class="number">50</span> C_supercell.xsf</span><br><span class="line"></span><br><span class="line"><span class="attribute">atomsk</span> C_supercell.xsf -select out sphere <span class="number">0</span>.<span class="number">5</span>*box <span class="number">0</span>.<span class="number">5</span>*box <span class="number">0</span>.<span class="number">5</span>*box <span class="number">30</span>  -rmatom select C_sphere.cfg</span><br></pre></td></tr></table></figure>
+
+<p>多面体</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">atomsk</span> C_supercell.xsf -<span class="literal">select</span> stl center <span class="number">4</span>.STL -<span class="literal">select</span> invert -rmatom <span class="literal">select</span> <span class="number">4</span>.cfg</span><br></pre></td></tr></table></figure>
+
+<p>4   30根号3  14.6</p>
+<p>8    30根号2  11.8</p>
+<p>12                  15.7</p>
+<p>20  30*（根号11）&#x2F;3     15.7</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MD/" rel="tag"># MD</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/19/lammps%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B/" rel="prev" title="lammps安装过程">
+                  <i class="fa fa-chevron-left"></i> lammps安装过程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/02/14/%E5%8E%8B%E7%97%95%E6%A8%A1%E5%9D%97NS018TD/" rel="next" title="NS018TD压痕模块">
+                  NS018TD压痕模块 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fan</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span> 
+<span id="times">载入时分秒...</span> 
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("02/22/2022 16:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

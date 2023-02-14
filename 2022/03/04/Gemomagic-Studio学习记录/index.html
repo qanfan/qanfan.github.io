@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+  <meta name="description" content="利用Geomagic Studio拥有强大的点云数据处理能力以及曲面重构功能将通过Mimics建立的三维几何表面模型转换为通用的实体模型，下面记录用到的操作。  Geomagic Studio 2014">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Geomagic Studio学习记录">
+<meta property="og:url" content="http://example.com/2022/03/04/Gemomagic-Studio%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="鱼七">
+<meta property="og:description" content="利用Geomagic Studio拥有强大的点云数据处理能力以及曲面重构功能将通过Mimics建立的三维几何表面模型转换为通用的实体模型，下面记录用到的操作。  Geomagic Studio 2014">
+<meta property="og:locale">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220304161626773.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/QQ%E6%88%AA%E5%9B%BE20220301161048.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220301162000836.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220304084328843.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220304110212772.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220304150107845.png">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220304151318833.png">
+<meta property="article:published_time" content="2022-03-04T02:43:45.000Z">
+<meta property="article:modified_time" content="2022-03-18T02:43:02.853Z">
+<meta property="article:author" content="Fan">
+<meta property="article:tag" content="逆向">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220304161626773.png">
+
+
+<link rel="canonical" href="http://example.com/2022/03/04/Gemomagic-Studio%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2022/03/04/Gemomagic-Studio%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/","path":"2022/03/04/Gemomagic-Studio学习记录/","title":"Geomagic Studio学习记录"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Geomagic Studio学习记录 | 鱼七</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="鱼七" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">鱼七</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">8</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">6</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D"><span class="nav-text">基础介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%BE%B9%E5%BD%A2%E6%8C%87%E4%BB%A4"><span class="nav-text">多边形指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%87%8D%E7%94%BB%E7%BD%91%E6%A0%BC"><span class="nav-text">1.重画网格</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B2%BE%E7%A1%AE%E6%9B%B2%E9%9D%A2"><span class="nav-text">精确曲面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%BC%96%E8%BE%91%E8%BD%AE%E5%BB%93%E7%BA%BF"><span class="nav-text">1. 编辑轮廓线</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A2%E6%B5%8B%E6%9B%B2%E7%8E%87"><span class="nav-text">探测曲率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A2%E6%B5%8B%E8%BD%AE%E5%BB%93%E7%BA%BF"><span class="nav-text">探测轮廓线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E5%8D%87%E7%BA%A6%E6%9D%9F"><span class="nav-text">提升约束</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%9E%84%E9%80%A0%E6%9B%B2%E9%9D%A2%E7%89%87"><span class="nav-text">2. 构造曲面片</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%E9%9D%A2%E6%9D%BF"><span class="nav-text">移动面板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9-x2F-%E8%A7%A3%E5%8E%8B%E7%BC%A9%E6%9B%B2%E9%9D%A2%E7%89%87%E5%B1%82"><span class="nav-text">压缩&#x2F;解压缩曲面片层</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9E%84%E9%80%A0%E6%A0%BC%E6%A0%85"><span class="nav-text">3. 构造格栅</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E5%B0%96%E8%A7%92%E8%BD%AE%E5%BB%93"><span class="nav-text">指定尖角轮廓</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E5%B9%B3%E9%9D%A2%E5%8C%BA%E5%9F%9F"><span class="nav-text">指定平面区域</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%8B%9F%E5%90%88%E6%9B%B2%E9%9D%A2"><span class="nav-text">4. 拟合曲面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%81%8F%E5%B7%AE%E5%88%86%E6%9E%90%EF%BC%88%E5%8F%AF%E4%B8%8D%E5%81%9A%EF%BC%89"><span class="nav-text">5. 偏差分析（可不做）</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fan"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Fan</p>
+  <div class="site-description" itemprop="description">自强不息！</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/04/Gemomagic-Studio%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Fan">
+      <meta itemprop="description" content="自强不息！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼七">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Geomagic Studio学习记录
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-04 10:43:45" itemprop="dateCreated datePublished" datetime="2022-03-04T10:43:45+08:00">2022-03-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-18 10:43:02" itemprop="dateModified" datetime="2022-03-18T10:43:02+08:00">2022-03-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%89%E9%99%90%E5%85%83/" itemprop="url" rel="index"><span itemprop="name">有限元</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>利用Geomagic Studio拥有强大的点云数据处理能力以及曲面重构功能将通过Mimics建立的三维几何表面模型转换为通用的实体模型，下面记录用到的操作。</p>
+<blockquote>
+<p>Geomagic Studio 2014  </p>
+</blockquote>
+<span id="more"></span>
+
+<p>利用Mimics生成的STL模型文件，在GS中拟合曲面具有以下优点：</p>
+<ul>
+<li>建模速度快，直接进入多边形阶段，避免了传统先处理点云数据，然后蒙罩形成多边形网格</li>
+<li>根据关节面特征，可以自定义边界约束，拟合关节面的NURBS曲面，对于后期软骨建模及有限元分析更为方便及精确。</li>
+</ul>
+<h2 id="基础介绍"><a href="#基础介绍" class="headerlink" title="基础介绍"></a>基础介绍</h2><p><strong>程序基本面板</strong></p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220304161626773.png"></p>
+<p><strong>常用快捷键</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">快捷键</th>
+<th align="center">命令含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">鼠标中键</td>
+<td align="center">旋转</td>
+</tr>
+<tr>
+<td align="center">Alt+鼠标中&#x2F;右键</td>
+<td align="center">平移</td>
+</tr>
+<tr>
+<td align="center">Ctrl+Z</td>
+<td align="center">撤销（只能返回一步）</td>
+</tr>
+<tr>
+<td align="center">Ctrl+P</td>
+<td align="center">选择画笔</td>
+</tr>
+<tr>
+<td align="center">Ctrl+A&#x2F;C</td>
+<td align="center">全选&#x2F;不选</td>
+</tr>
+<tr>
+<td align="center">Ctrl+V</td>
+<td align="center">只选择可见</td>
+</tr>
+<tr>
+<td align="center">Ctrl+F</td>
+<td align="center">设置旋转中心</td>
+</tr>
+</tbody></table>
+<h2 id="多边形指令"><a href="#多边形指令" class="headerlink" title="多边形指令"></a>多边形指令</h2><h3 id="1-重画网格"><a href="#1-重画网格" class="headerlink" title="1.重画网格"></a>1.重画网格</h3><ul>
+<li><strong>创建流形</strong></li>
+</ul>
+<p>​       创建流形功能可以将模型周围的小碎片去除</p>
+<ul>
+<li><p><strong>去除特征</strong> </p>
+<p>  解决小范围的凹凸平面，分析中易产生应力集中</p>
+</li>
+</ul>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/QQ%E6%88%AA%E5%9B%BE20220301161048.png"></p>
+<blockquote>
+<p>操作方法：</p>
+<p>选中区域，点击菜单栏去除特征或者右键选择去除特征</p>
+</blockquote>
+<p><strong>注意</strong>：区域不要过大，出现无法去除的原因有俩种:</p>
+<ol>
+<li>存在空洞</li>
+<li>未选中所有的面（软件只会选中视角所看到区域）</li>
+</ol>
+<ul>
+<li><p><strong>删除钉状物</strong>  </p>
+<p>  边峰尖锐处可以选中，删除钉状物，让其圆滑。</p>
+</li>
+</ul>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220301162000836.png"></p>
+<ul>
+<li><strong>显示–视图剪切 可以看到剖面情况</strong></li>
+</ul>
+<h2 id="精确曲面"><a href="#精确曲面" class="headerlink" title="精确曲面"></a>精确曲面</h2><p>曲面阶段的主要任务为<strong>轮廓线的编辑</strong>与<strong>曲面片的基本编辑</strong>，前者主要包括轮廓线的探测、曲率的探测、</p>
+<p>轮廓线的抽取、轮廓线的编辑与延伸以及如何松弛轮廓线；后者包括曲面片的编辑、面板移动、曲面片</p>
+<p>松弛以及曲面片修理。</p>
+<p>曲面阶段的主要流程如图</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220304084328843.png"></p>
+<ul>
+<li>第一步点击精确曲面，第一次弄选择<strong>新建曲面片</strong>，若不是可以选择<strong>恢复曲面片布局</strong></li>
+</ul>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220304110212772.png"></p>
+<p>接下来共有四个步骤：<strong>编辑轮廓线、构造曲面片、构造格栅、拟合曲面</strong></p>
+<blockquote>
+<p>也可以选择自动生成曲面片，但曲面片质量一般，不利于之后的网格划分及有限元分析。尽量手动从左到右四个流程走一遍。</p>
+</blockquote>
+<h3 id="1-编辑轮廓线"><a href="#1-编辑轮廓线" class="headerlink" title="1. 编辑轮廓线"></a>1. 编辑轮廓线</h3><p><strong>轮廓线的生成方法有二种，一就是探测曲率自动生成轮廊线，二就是探测轮廊线，再抽取出轮廓线。这二种方法只能二选一，介绍如下：</strong></p>
+<h4 id="探测曲率"><a href="#探测曲率" class="headerlink" title="探测曲率"></a>探测曲率</h4><p>选择<code>轮廓线</code>→<code>探测曲率</code>命令，在管理器面板上弹出<strong>探测曲率</strong>对话框。选中<strong>自动评估</strong>复选框，设置曲率级别，选中<strong>简化轮廓线</strong>复选框，单击应用按钮，单击确定按钮完成该命令。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220304150107845.png"></p>
+<blockquote>
+<p><strong>探测曲率</strong>命令将会引导软件自动地依据模型曲面的曲率生成轮廊线。<strong>自动估计</strong>就是让软件根据模型的复杂程度自动判断轮廊线的生成，而<strong>曲率级别</strong>决定了最高曲率线的临界值，它的值越小，最高曲率线的临界值就越小，即橘黄色线出现的可能性越大。</p>
+</blockquote>
+<h4 id="探测轮廓线"><a href="#探测轮廓线" class="headerlink" title="探测轮廓线"></a>探测轮廓线</h4><p>选择<code>轮廓线</code>→<code>探测轮廓线</code>命令，在管理器面板上弹出<strong>探测轮廓线</strong>对话框。</p>
+<p>通过设置区域的曲率敏感性、分隔符敏感性与最小面积，单击<strong>计算</strong>按钮探测区域，并通过编辑命令对探测区域进行修改，修改完成后，单</p>
+<p>击<strong>抽取</strong>按钮，最后单击确定按钮完成该命令。</p>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220304151318833.png"></p>
+<h4 id="提升约束"><a href="#提升约束" class="headerlink" title="提升约束"></a>提升约束</h4><p>执行<code>轮廓线</code>→<code>提升约束</code>→<code>升级/约束</code>，在管理器面板中弹出<strong>升级&#x2F;约束</strong>对话框。</p>
+<p>其中<strong>局部</strong>对话框用于对局部的曲率线或点进行操作，单击图中的黑色轮廓可将其升级为橘黄色轮廓线（高曲率轮廓线），如果错选了轮廓</p>
+<p>线，可以同时按着ctr1键同时单击该轮廓线，取消升级或降级。</p>
+<p><strong>全局</strong>对话框用于进行全局操作，<strong>全部约束</strong>即对所有点、线进行约束。选择完所有需升级约束的曲线或点后，单击执行和确定按钮即完成轮</p>
+<p>廓线的升级</p>
+<h3 id="2-构造曲面片"><a href="#2-构造曲面片" class="headerlink" title="2. 构造曲面片"></a>2. 构造曲面片</h3><p>执行<code>曲面片</code>→<code>构造曲面片命令</code>，选中<strong>自动估计</strong>复选框，并勾选<strong>检查路径相交</strong>复选框避免相交路径的出现，单击应用按钮，得到图形，最后单击确定按钮完成曲面片的构造。</p>
+<h4 id="移动面板"><a href="#移动面板" class="headerlink" title="移动面板"></a>移动面板</h4><p>选择菜单<code>曲面片</code>→<code>移动</code>→<code>移动面板</code>，在管理器面板中弹出<strong>移动面板</strong>对话框。在<strong>操作</strong>一栏选择<strong>编辑</strong>选项，这样就可以将轮廊线的顶点移到想</p>
+<p>要的地方，与此同时还可以升级&#x2F;降级线。</p>
+<blockquote>
+<p> 在移动轮廓线顶点时需要注意轮廊线不可相交，且尽量使最高曲率线位于区域最高的位置，这对于生成的曲面片的质量有好处。</p>
+</blockquote>
+<ul>
+<li>定义曲面片</li>
+</ul>
+<p>在<code>操作</code>一栏选择<code>定义</code>选项, <code>类型</code>一栏选择<code>格栅</code>复选框，单击区域任一地方，该区域将以白色的高亮形式显示。在轮廓上的节点上出现4有</p>
+<p>圆圈的角点，并用数字表示每二个角点之间的曲面片的数量。如果数字显示蓝色说明两对面曲面数相等；如果就是红色，则提醒两对</p>
+<p>的曲面数不等，需要在<code>操作</code>一栏中选择<code>添加/删除2条路径</code>，然后在要改变的那个边上单击一下增加二个曲面片，或按着ctrl并同时单击减</p>
+<p>少曲面片的路径，从而使两对面的曲面数相等，最后单击<strong>执行</strong>按钮，曲面片被重新布局。</p>
+<h4 id="压缩-x2F-解压缩曲面片层"><a href="#压缩-x2F-解压缩曲面片层" class="headerlink" title="压缩&#x2F;解压缩曲面片层"></a>压缩&#x2F;解压缩曲面片层</h4><p>执行<code>曲面片</code>→<code>压缩/解压缩曲面片层</code>，在管理器面板中弹出<strong>压缩曲面片层</strong>对话框，该命令用于删除或细分整行的曲面片。</p>
+<blockquote>
+<p>压缩合并曲面片的两行为一行。</p>
+<p>解压缩则正好相反，其将曲面的一行分为两半。</p>
+</blockquote>
+<h3 id="3-构造格栅"><a href="#3-构造格栅" class="headerlink" title="3. 构造格栅"></a>3. 构造格栅</h3><p>执行<code>格栅</code>→<code>构造格栅</code>命令，设置分辨率为20，这意味着每个曲面将会生成20个更小的曲面片，这些曲面片以直角的形式分布于大的曲面</p>
+<p>片里。NURBS曲面的控制点将遵循这些栅格。</p>
+<p><strong>修复相交区域</strong>复选框，用于检查相交的格栅并进行修复，通常选中该项。</p>
+<p><strong>检查几何图形</strong>就是指就是否通知用户，一旦完成这个功能，不论就是否存在不完善的区域都将使用格栅固定住，一般不选中该项。</p>
+<h4 id="指定尖角轮廓"><a href="#指定尖角轮廓" class="headerlink" title="指定尖角轮廓"></a>指定尖角轮廓</h4><p>指定尖角轮廓指定尖角轮廓与我们平时比较熟悉的锐化命令相似，通过选择<code>格栅</code>→<code>指定</code>命令，在其下拉菜单中选择指定尖角轮廓，打开<strong>指定尖角轮廓</strong>对话框，在<strong>选择</strong>一栏勾选轮廓线，用选择工具选择需要的轮廓线，选中的轮廓线将以紫色显示，单击约束按钮，约束选定的轮廓线。</p>
+<h4 id="指定平面区域"><a href="#指定平面区域" class="headerlink" title="指定平面区域"></a>指定平面区域</h4><p>在<code>格栅</code>→<code>指定</code>命令的下拉菜单中选择指定平面区域，打开<strong>指定平面区域</strong>对话框，勾选将边界标记为尖锐，选择工具选择需要置平的区域，并单击<strong>下一个</strong>按钮，依次指定平面区域，指定的平面区域将以彩色高亮显示。</p>
+<h3 id="4-拟合曲面"><a href="#4-拟合曲面" class="headerlink" title="4. 拟合曲面"></a>4. 拟合曲面</h3><p>选择<code>曲面</code>→<code>拟合曲面</code>命令置，打开<strong>拟合曲面</strong>对话框，系统将以面板上的格栅为基础创建一个NURBS曲面，创建的NURBS曲面如下图。</p>
+<p>对话框中部分选项说明如下:</p>
+<p><code>拟合方法</code>对话框用于选择曲面拟合的方法。</p>
+<p><strong>适应性</strong>方法将优化每个曲面片内所使用的控制点的数量,就是较常采用的方法;</p>
+<p><strong>常数</strong>方法将建立一个含有常数个控制点的布局。</p>
+<p><code>设置</code>对话框用于设置拟合的参数。</p>
+<p><strong>最大控制点数</strong>指定控制点数的最大值;</p>
+<p><strong>公差</strong>指定NURBS曲面相对于原始曲面片偏离的最大距离;</p>
+<p><strong>表面张力</strong>用于调整精度与平滑度之间的平衡;</p>
+<p>体外孤点百分比在NURBS曲面公差允许范围内,指定基本网格内可以超出公差的点的百分比。</p>
+<h3 id="5-偏差分析（可不做）"><a href="#5-偏差分析（可不做）" class="headerlink" title="5. 偏差分析（可不做）"></a>5. 偏差分析（可不做）</h3><p>利用偏差分析可查看生成的曲面模型与原始模型之间的偏差，通过单击<code>偏差分析</code>命令，打开偏差分析对话框，设置参考对象、测试对象、</p>
+<p>颜色段等参数，点击应用按钮，系统自动对测试对象与参考对象之间的偏差进行分析，并以不同的颜色分级显示误差大小。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%80%86%E5%90%91/" rel="tag"># 逆向</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/27/markdown%E8%AF%AD%E6%B3%95/" rel="prev" title="markdown语法">
+                  <i class="fa fa-chevron-left"></i> markdown语法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/03/04/next%E4%B8%BB%E9%A2%98%E7%9A%84%E6%9B%B4%E6%8D%A2%E5%8F%8A%E9%A1%B5%E9%9D%A2%E7%BE%8E%E5%8C%96/" rel="next" title="next主题的更换及页面美化">
+                  next主题的更换及页面美化 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fan</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span> 
+<span id="times">载入时分秒...</span> 
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("02/22/2022 16:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

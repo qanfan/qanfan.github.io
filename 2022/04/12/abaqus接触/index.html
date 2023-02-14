@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+  <meta name="description" content="整理的接触方面的一些解释和相关注意点，内容比较简略。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Abaqus接触">
+<meta property="og:url" content="http://example.com/2022/04/12/abaqus%E6%8E%A5%E8%A7%A6/index.html">
+<meta property="og:site_name" content="鱼七">
+<meta property="og:description" content="整理的接触方面的一些解释和相关注意点，内容比较简略。">
+<meta property="og:locale">
+<meta property="og:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220309152638009.png">
+<meta property="article:published_time" content="2022-04-12T11:52:42.000Z">
+<meta property="article:modified_time" content="2022-04-12T12:07:45.594Z">
+<meta property="article:author" content="Fan">
+<meta property="article:tag" content="接触">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220309152638009.png">
+
+
+<link rel="canonical" href="http://example.com/2022/04/12/abaqus%E6%8E%A5%E8%A7%A6/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2022/04/12/abaqus%E6%8E%A5%E8%A7%A6/","path":"2022/04/12/abaqus接触/","title":"Abaqus接触"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Abaqus接触 | 鱼七</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="鱼七" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">鱼七</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">8</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">6</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%8E%A5%E8%A7%A6%E5%92%8C%E7%BA%A6%E6%9D%9F%E5%88%86%E6%9E%90"><span class="nav-text">一、接触和约束分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%8E%A5%E8%A7%A6%E6%88%96%E7%BA%A6%E6%9D%9F%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-text">1.接触或约束的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%8E%A5%E8%A7%A6%E7%9A%84%E7%A6%BB%E6%95%A3%E6%96%B9%E5%BC%8F"><span class="nav-text">2.接触的离散方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-Node-to-Surface"><span class="nav-text">1.Node-to-Surface</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-Surface-to-Surface"><span class="nav-text">2.Surface-to-Surface</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%B8%BB%E4%BB%8E%E9%9D%A2%E9%80%89%E5%8F%96%E5%8E%9F%E5%88%99"><span class="nav-text">3.主从面选取原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%87%AA%E6%8E%A5%E8%A7%A6"><span class="nav-text">4.自接触</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E9%80%9A%E7%94%A8%E6%8E%A5%E8%A7%A6"><span class="nav-text">5.通用接触</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E6%9C%89%E9%99%90%E6%BB%91%E7%A7%BB-amp-%E5%B0%8F%E6%BB%91%E7%A7%BB"><span class="nav-text">6.有限滑移&amp;小滑移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E8%A7%A6%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF"><span class="nav-text">接触分析常见错误</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%BF%90%E5%8A%A8%E8%80%A6%E5%90%88%E4%B8%8E%E8%BF%9E%E7%BB%AD%E5%88%86%E5%B8%83%E8%80%A6%E5%90%88"><span class="nav-text">二、运动耦合与连续分布耦合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#abaqus%E5%BC%B9%E7%B0%A7%E5%8D%95%E5%85%83%E6%A8%A1%E6%8B%9F%E6%96%B9%E6%B3%95"><span class="nav-text">abaqus弹簧单元模拟方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E8%BF%9E%E6%8E%A5%E5%99%A8%E6%A8%A1%E6%8B%9F"><span class="nav-text">通过连接器模拟</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8spring%E5%8D%95%E5%85%83%E6%A8%A1%E6%8B%9F"><span class="nav-text">使用spring单元模拟</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Abaqus%E5%8D%95%E4%BD%8D"><span class="nav-text">Abaqus单位</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fan"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Fan</p>
+  <div class="site-description" itemprop="description">自强不息！</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/12/abaqus%E6%8E%A5%E8%A7%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Fan">
+      <meta itemprop="description" content="自强不息！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼七">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Abaqus接触
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-04-12 19:52:42 / 修改时间：20:07:45" itemprop="dateCreated datePublished" datetime="2022-04-12T19:52:42+08:00">2022-04-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%89%E9%99%90%E5%85%83/" itemprop="url" rel="index"><span itemprop="name">有限元</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>整理的接触方面的一些解释和相关注意点，内容比较简略。</p>
+<span id="more"></span>
+
+<h2 id="一、接触和约束分析"><a href="#一、接触和约束分析" class="headerlink" title="一、接触和约束分析"></a>一、接触和约束分析</h2><h3 id="1-接触或约束的作用"><a href="#1-接触或约束的作用" class="headerlink" title="1.接触或约束的作用"></a>1.接触或约束的作用</h3><p>接触：通过接触面第作用传递法向力和切向力</p>
+<p>如果不通过接触或者约束，可以通过共节点的方式</p>
+<h3 id="2-接触的离散方式"><a href="#2-接触的离散方式" class="headerlink" title="2.接触的离散方式"></a>2.接触的离散方式</h3><h5 id="1-Node-to-Surface"><a href="#1-Node-to-Surface" class="headerlink" title="1.Node-to-Surface"></a>1.Node-to-Surface</h5><p>1）传统的点面方式</p>
+<p>2）严格遵循主从关系，主面节点可以穿透从面，从面节点不能穿透主面</p>
+<p>3）接触搜寻关系依据主面的法向方向</p>
+<p>4）为避免穿透，一般要求<strong>从面网格密度低于主面</strong></p>
+<h5 id="2-Surface-to-Surface"><a href="#2-Surface-to-Surface" class="headerlink" title="2.Surface-to-Surface"></a>2.Surface-to-Surface</h5><p>1）面面接触的方式，适用于绝大多数情况的接触</p>
+<p>2）对主从面的选择不敏感</p>
+<p>3）接触搜寻关系依据从面的法向方向</p>
+<p>4）从面必须是基于单元的面</p>
+<blockquote>
+<p><strong>对比</strong>：</p>
+<p>S-S优点：获得更精确的接触应力、减小接触应力的振荡、减小穿透、减小主从面选择的敏感性</p>
+<p>如果一个面是基于Node，只能作为从面</p>
+</blockquote>
+<h3 id="3-主从面选取原则"><a href="#3-主从面选取原则" class="headerlink" title="3.主从面选取原则"></a>3.主从面选取原则</h3><ul>
+<li>当存在一个较小的面和一个较大的面时，一般将较小的面定义为从属面。</li>
+<li>当两个面大小接近时，选取较“硬”的面或单元划分粗糙的面作为主动面。值得注意的是，“硬”的面不一定是材料弹性模量大的材料，比如当一个薄金属片和一个橡胶材料接触时，此时就应该将薄金属片所属的面定义为从属面。</li>
+<li>当两个面区域接近，“硬度”也接近时，此时往往需要反复尝试才能得到较好的结果</li>
+</ul>
+<blockquote>
+<p>与点对面接触相比，面对面接触中主动面和从属面的选取，对计算结果的影响并不是很大。但是，当错误的将网格粗糙的面定义为从属面时，此时也许会引起<strong>计算成本</strong>的急剧增加。</p>
+</blockquote>
+<h3 id="4-自接触"><a href="#4-自接触" class="headerlink" title="4.自接触"></a>4.自接触</h3><p>当物体在分析过程中，产生较大的变形，自己与自己接触时使用。</p>
+<h3 id="5-通用接触"><a href="#5-通用接触" class="headerlink" title="5.通用接触"></a>5.通用接触</h3><ol>
+<li><p>通用接触一般适合在分析之初无法判断后续接触状态是什么样的情况，主要用于显式。</p>
+</li>
+<li><p>定义方便、消耗资源更多。</p>
+</li>
+</ol>
+<h3 id="6-有限滑移-amp-小滑移"><a href="#6-有限滑移-amp-小滑移" class="headerlink" title="6.有限滑移&amp;小滑移"></a>6.有限滑移&amp;小滑移</h3><ol>
+<li>有限滑移适用于绝大多数情况</li>
+<li>小滑移适用于接触状态变化很小，使用资源较少</li>
+</ol>
+<h3 id="接触分析常见错误"><a href="#接触分析常见错误" class="headerlink" title="接触分析常见错误"></a>接触分析常见错误</h3><ol>
+<li>消除初始的过盈接触和间隙</li>
+</ol>
+<p>当两个不同Part的面接触时，由于单元网格不一致，很可能会在两个面之间留下小的gap或penetration。默认的，ABAQUS&#x2F;Standard会将初始penetration当成interference  fits，并会相应地在接触一开始的时候处理掉。Section  计算中必须通过调整从属面位置来提高接触模拟精度，以保证接触刚开始时计算中没有penetration。</p>
+<ol start="2">
+<li><strong>让接触状态平稳过度，便于分析收敛</strong></li>
+</ol>
+<h2 id="二、运动耦合与连续分布耦合"><a href="#二、运动耦合与连续分布耦合" class="headerlink" title="二、运动耦合与连续分布耦合"></a>二、运动耦合与连续分布耦合</h2><ul>
+<li>运动耦合耦合面不会变形，连续分布耦合表面会扭曲</li>
+</ul>
+<h3 id="abaqus弹簧单元模拟方法"><a href="#abaqus弹簧单元模拟方法" class="headerlink" title="abaqus弹簧单元模拟方法"></a>abaqus弹簧单元模拟方法</h3><p>二者通过简单对比，效果一样，区别在于，使用spring单元更方便，但是只能模拟线性弹簧，要模拟非线性须修改INP文件（参考Abaqus有限元分析常见问题解答）</p>
+<ul>
+<li><strong>RP点耦合时选择表面或节点区域，效果相同</strong></li>
+<li>Rigid刚度只是刚度很大（e5N&#x2F;mm），不等于刚性连接</li>
+</ul>
+<h4 id="通过连接器模拟"><a href="#通过连接器模拟" class="headerlink" title="通过连接器模拟"></a>通过连接器模拟</h4><blockquote>
+<p>俩点之间建立线特征，再建立、指派连接器截面</p>
+</blockquote>
+<ul>
+<li>连接器只有一个自由度时，对局部坐标系无要求</li>
+</ul>
+<h4 id="使用spring单元模拟"><a href="#使用spring单元模拟" class="headerlink" title="使用spring单元模拟"></a>使用spring单元模拟</h4><blockquote>
+<p>注意先建立基准点，再建立参考点</p>
+<p>将点与对应区域耦合起来</p>
+</blockquote>
+<h2 id="Abaqus单位"><a href="#Abaqus单位" class="headerlink" title="Abaqus单位"></a>Abaqus单位</h2><ul>
+<li>软件中无单位，自己使用统一单位，下面为单位换算。通常使用m制，mm制。</li>
+</ul>
+<p><img src="https://qanfan.oss-cn-beijing.aliyuncs.com/image-20220309152638009.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8E%A5%E8%A7%A6/" rel="tag"># 接触</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/03/04/next%E4%B8%BB%E9%A2%98%E7%9A%84%E6%9B%B4%E6%8D%A2%E5%8F%8A%E9%A1%B5%E9%9D%A2%E7%BE%8E%E5%8C%96/" rel="prev" title="next主题的更换及页面美化">
+                  <i class="fa fa-chevron-left"></i> next主题的更换及页面美化
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/15/ABAQUS%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E6%B1%87%E6%80%BB/" rel="next" title="Abaqus常见错误汇总">
+                  Abaqus常见错误汇总 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fan</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span> 
+<span id="times">载入时分秒...</span> 
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("02/22/2022 16:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
